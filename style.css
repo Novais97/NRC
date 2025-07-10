@@ -175,6 +175,8 @@ h1 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   padding: 24px;
   width: 100%;
+
+
   max-width: 320px;
   text-align: left;
   transition: all 0.3s ease;
@@ -1190,18 +1192,7 @@ footer {
     font-size: 16px;
   }
   .msg-activate {
-   
-    box-shadow: 0 0 15px rgb(0, 0, 0);
-    border: none;
-    animation: msg1 7s linear infinite;
-       z-index: 3;
-        width: 80px;
-    height: 80px;
-    cursor: pointer;
-    top: 10vh;
-    left: 1%;
-    border-radius: 50%;
-    position: absolute;
+   display: none;
   }
   header {
     overflow-x: hidden;
@@ -1212,7 +1203,7 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 15px 20px;
+    padding: 25px auto;
     font-size: 1.3rem;
     max-width: 90vw;
     height: auto;
@@ -1221,30 +1212,9 @@ footer {
   .engine-1,
   .engine-2,
   .engine-3 {
-    position: absolute;
-     z-index: 0;
+   display: none;
   }
-  .engine-1 {
-    top: 170vh;
-    right: 65px;
-    width: 180px;
-    height: 180px;
- 
-  }
-  .engine-2 {
-    top: 180vh;
-    left: 50px;
-    width: 150px;
-    height: 150px;
- 
-  }
-  .engine-3 {
-    top: 195vh;
-    left: 120px;
-    width: 100px;
-    height: 100px;
-   
-  }
+
   .msg-container {
     overflow: hidden;
     background: linear-gradient(
@@ -1379,30 +1349,10 @@ footer {
   .engine-1,
   .engine-2,
   .engine-3 {
-    position: absolute;
-    z-index: 1;
-  }
-  .engine-1 {
-    top: 17vh;
-    right: 5px;
-    width: 180px;
-    height: 180px;
+  display: none;
 
   }
-  .engine-2 {
-    top: 18vh;
-    left: 74px;
-    width: 150px;
-    height: 150px;
 
-  }
-  .engine-3 {
-    top: 34vh;
-    left: 7rem;
-    width: 100px;
-    height: 100px;
-  
-  }
 
   .ncr-logo {
     max-width: 100%;
@@ -1414,23 +1364,17 @@ footer {
   }
 
   .msg-activate {
-    z-index: 3;
-        width: 80px;
-    height: 80px;
-    display: flex;
-    cursor: pointer;
-    top: 10vh;
-    left: 1%;
-    border-radius: 50%;
-    position: absolute;
+display: none;
   }
   .msg-box {
     padding: 10px 15px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     max-width: 95vw;
     min-height: 80vh;
     height: auto;
+      padding: 20px 20px;
     border-radius: 15px;
+    margin: auto;
     z-index:3 ;
   }
   .whatsapp-circle {
@@ -1518,6 +1462,336 @@ footer {
   .form-wrapper {
     margin-bottom: 10rem;
   }
+  .list-container {
+    flex-direction: column;
+  }
+
+  .list-container div {
+    padding: 1rem 0;
+    margin-left: 1rem;
+  }
+
+  .list-container li {
+    margin-left: 1.5rem;
+  }
+}
+@media (max-width: 360px) {
+  body {
+    box-sizing: border-box;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  header {
+    background-color: rgba(0, 0, 0, 0.9);
+    max-width: 360px;
+    overflow: hidden;
+    z-index: 1000;
+  }
+
+  .engine-1,
+  .engine-2,
+  .engine-3 {
+    display: none;
+  }
+
+  .ncr-logo {
+    max-width: 100%;
+    width: 150px;
+    z-index: 1000;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff;
+    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
+  }
+
+  .msg-activate {
+  display: none;
+  }
+
+  .msg-box {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    max-width: 95vw;
+    min-height: 80vh;
+    height: auto;
+    border-radius: 15px;
+    z-index: 3;
+  }
+
+  .whatsapp-circle {
+    z-index: 10000;
+  }
+
+  .msg-container {
+    background: linear-gradient(
+      -45deg,
+      #000000,
+      #050505,
+      #0a0a0a,
+      #111111,
+      #0d0d0d,
+      #080808,
+      #000000,
+      #131313,
+      #1a1a1a,
+      #0f0f0f,
+      #060606,
+      #000000,
+      #1c1c1c,
+      #0b0b0b,
+      #030303,
+      #000000,
+      #0a0a0a,
+      #080808,
+      #0c0c0c,
+      #000000,
+      #1e1e1e,
+      #000000,
+      #ffffff,
+      #000000
+    );
+    background-size: 600% 600%;
+    animation: blackWhiteFlow 45s linear infinite;
+    border-width: 10px;
+    z-index: 0;
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .title-1,
+  .title-2 {
+    font-size: 1.2rem;
+  }
+
+  .hero {
+    object-fit: cover;
+  }
+
+  section.hero h1,
+  section.hero h2,
+  section.hero h3 {
+    font-size: 1rem;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  a.button-left,
+  a.button-right {
+    width: 100% !important;
+    padding: 0.6rem !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+    margin: 5px 0 !important;
+    float: none !important;
+    display: block !important;
+  }
+
+  .form-wrapper {
+    margin-bottom: 10rem;
+  }
+
+  .list-container {
+    flex-direction: column;
+  }
+
+  .list-container div {
+    padding: 1rem 0;
+    margin-left: 1rem;
+  }
+
+  .list-container li {
+    margin-left: 1.5rem;
+  }
+}
+/* 📱 1. Dispositivos muito pequenos (até 320px) */
+@media (max-width: 320px) {
+  body {
+    font-size: 13px;
+  }
+
+  .ncr-logo {
+   
+    max-width: 100%;
+    width: 150px;
+    z-index: 1000;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff;
+    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
+  }
+  
+
+  .msg-activate {
+  display: none;
+  }
+
+  .card {
+    font-size: 0.8rem;
+  }
+
+  .msg-box {
+    font-size: 0.75rem;
+    padding: 8px 10px;
+  }
+}
+
+/* 📱 2. Smartphones médios (até 375px) */
+@media (max-width: 375px) {
+  body {
+    font-size: 14px;
+  }
+
+  .ncr-logo {
+    
+    max-width: 100%;
+    width: 150px;
+    z-index: 1000;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff;
+    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
+  
+  }
+
+  .msg-activate {
+    display: none;
+  }
+
+  .msg-box {
+    font-size: 0.8rem;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  a.button-left,
+  a.button-right {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* 📱 3. Surface Pro / Tablets verticais (até 912px) */
+@media (max-width: 912px) {
+  header {
+    background-color: rgba(0, 0, 0, 0.9);
+    max-width: 100%;
+    overflow: hidden;
+    z-index: 1000;
+  }
+
+  .engine-1,
+  .engine-2,
+  .engine-3 {
+    display: none;
+  }
+
+  .ncr-logo {
+    max-width: 100%;
+    width: 150px;
+    z-index: 1000;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff;
+    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
+  }
+
+  .msg-activate {
+display: none;
+  }
+
+  .msg-box {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    max-width: 95vw;
+    min-height: 80vh;
+    height: auto;
+    border-radius: 15px;
+    z-index: 3;
+  }
+
+  .whatsapp-circle {
+    z-index: 10000;
+  }
+
+  .msg-container {
+    background: linear-gradient(
+      -45deg,
+      #000000,
+      #050505,
+      #0a0a0a,
+      #111111,
+      #0d0d0d,
+      #080808,
+      #000000,
+      #131313,
+      #1a1a1a,
+      #0f0f0f,
+      #060606,
+      #000000,
+      #1c1c1c,
+      #0b0b0b,
+      #030303,
+      #000000,
+      #0a0a0a,
+      #080808,
+      #0c0c0c,
+      #000000,
+      #1e1e1e,
+      #000000,
+      #ffffff,
+      #000000
+    );
+    background-size: 600% 600%;
+    animation: blackWhiteFlow 45s linear infinite;
+    border-width: 10px;
+    z-index: 0;
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .title-1,
+  .title-2 {
+    font-size: 1.2rem;
+  }
+
+  section.hero h1,
+  section.hero h2,
+  section.hero h3 {
+    font-size: 1rem;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  a.button-left,
+  a.button-right {
+    width: 100% !important;
+    padding: 0.6rem !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+    margin: 5px 0 !important;
+    float: none !important;
+    display: block !important;
+  }
+
+  .form-wrapper {
+    margin-bottom: 10rem;
+  }
+
   .list-container {
     flex-direction: column;
   }
