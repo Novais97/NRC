@@ -16,7 +16,7 @@ body {
   margin: 0;
 
 }
-@media (min-width:768px){
+@media (min-width:800px){
   .ncr-logo{
     display: none;
   }
@@ -1258,13 +1258,15 @@ footer {
     box-sizing: border-box;
   }
 
-  .ncr-logo {
-    max-width: 100%;
 
-    width: 140px;
+  .ncr-logo {
+
+    width: 150px;
+    height:150px ;
+    z-index: 1000;
     border-radius: 50%;
     box-shadow: 0 0 10px #fff;
-    animation: logo 3s linear infinite, coracao 2s ease-in-out infinite;
+    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
   }
 
   .caixa {
@@ -1354,9 +1356,11 @@ footer {
   }
 
 
+
   .ncr-logo {
-    max-width: 100%;
+
     width: 150px;
+    height:150px ;
     z-index: 1000;
     border-radius: 50%;
     box-shadow: 0 0 10px #fff;
@@ -1495,9 +1499,11 @@ display: none;
     display: none;
   }
 
+ 
   .ncr-logo {
-    max-width: 100%;
+
     width: 150px;
+    height:150px ;
     z-index: 1000;
     border-radius: 50%;
     box-shadow: 0 0 10px #fff;
@@ -1617,10 +1623,11 @@ display: none;
     font-size: 13px;
   }
 
+
   .ncr-logo {
-   
-    max-width: 100%;
+
     width: 150px;
+    height:150px ;
     z-index: 1000;
     border-radius: 50%;
     box-shadow: 0 0 10px #fff;
@@ -1694,8 +1701,9 @@ display: none;
   }
 
   .ncr-logo {
-    max-width: 100%;
+
     width: 150px;
+    height:150px ;
     z-index: 1000;
     border-radius: 50%;
     box-shadow: 0 0 10px #fff;
