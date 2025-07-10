@@ -6,7 +6,15 @@
 
  
 }
-
+.ncr-logo {
+  width: 150px;
+  height: 150px;
+  z-index: 1000;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff;
+  animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
+  display: none;
+}
 body {
   box-sizing: border-box;
   width: 100%;
@@ -16,11 +24,7 @@ body {
   margin: 0;
 
 }
-@media (min-width:800px){
-  .ncr-logo{
-    display: none;
-  }
-}
+
 header {
   background-color: #000000;
   display: flex;
@@ -1184,6 +1188,11 @@ footer {
     transform: rotate(0deg);
   }
 }
+@media (min-width: 360px) and (max-width: 768px) {
+  .ncr-logo {
+    display: block;
+  }
+}
 /* Responsividade para tablets (max-width: 762px) */
 @media (max-width: 762px) {
   body {
@@ -1258,16 +1267,6 @@ footer {
     box-sizing: border-box;
   }
 
-
-  .ncr-logo {
-
-    width: 150px;
-    height:150px ;
-    z-index: 1000;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #fff;
-    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
-  }
 
   .caixa {
     display: none;
@@ -1355,17 +1354,6 @@ footer {
 
   }
 
-
-
-  .ncr-logo {
-
-    width: 150px;
-    height:150px ;
-    z-index: 1000;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #fff;
-    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
-  }
 
   .msg-activate {
 display: none;
@@ -1499,16 +1487,6 @@ display: none;
     display: none;
   }
 
- 
-  .ncr-logo {
-
-    width: 150px;
-    height:150px ;
-    z-index: 1000;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #fff;
-    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
-  }
 
   .msg-activate {
   display: none;
@@ -1623,18 +1601,6 @@ display: none;
     font-size: 13px;
   }
 
-
-  .ncr-logo {
-
-    width: 150px;
-    height:150px ;
-    z-index: 1000;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #fff;
-    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
-  }
-  
-
   .msg-activate {
   display: none;
   }
@@ -1655,16 +1621,9 @@ display: none;
     font-size: 14px;
   }
 
-  .ncr-logo {
+
     
-    max-width: 100%;
-    width: 150px;
-    z-index: 1000;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #fff;
-    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
-  
-  }
+
 
   .msg-activate {
     display: none;
@@ -1700,15 +1659,6 @@ display: none;
     display: none;
   }
 
-  .ncr-logo {
-
-    width: 150px;
-    height:150px ;
-    z-index: 1000;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #fff;
-    animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
-  }
 
   .msg-activate {
 display: none;
