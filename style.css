@@ -115,11 +115,6 @@ object-fit: cover;
   cursor: pointer;
 }
 
-input {
-  display: none;
-}
-
-
 /* menu integrado 4 menus radio */
 .info-menu {
   box-sizing: border-box; /* alinhamento de padding e borda */
@@ -287,6 +282,9 @@ border-left:hsl(0, 73%, 36%) 12px solid;
   font-weight: 500;
   line-height: 1.4;
 }
+.input-4-items{
+  display: none;
+} 
 
 input[type="radio"]:checked + label + .info-menu{
 max-height: 75vh; 
