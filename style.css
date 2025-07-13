@@ -68,8 +68,7 @@ body {
  
 }
 .info-menu-pai{
-  display: flex;
-  justify-content: center;
+
   position:relative;
 }
 
@@ -96,7 +95,7 @@ body {
   top:100%;
   position: absolute;
   overflow-y: auto;  
-  top:unset;
+ 
 left:5vw;
 width: 100vw;
 
