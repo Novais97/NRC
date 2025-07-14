@@ -15,27 +15,8 @@
   animation: logo 3s ease-in-out infinite, coracao 2s ease-in-out infinite;
   display: none;
 }
-.preview-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-.preview {
-    position: relative;
-    margin: 10px;
-}
-.preview img {
-    max-width: 100px;
-    max-height: 100px;
-}
-.delete-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+
+
 body {
   box-sizing: border-box;
   width: 100%;
@@ -78,6 +59,7 @@ border:5px solid #ff0000;
   box-shadow: 0 4px 12px #D6D3D1;
     padding: 15px auto;
   gap: 10px;
+  border:5px solid #ff0000;
   
 
  
