@@ -43,16 +43,7 @@ body {
   padding-top: 3.5rem;
   background-color: #f5f5f5;
   margin: 0;
-
-}
-
-body {
-  width: 100%;
-  background: #f7f9fc;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-  box-sizing: border-box;
-
 }
 
 
@@ -68,7 +59,7 @@ body {
  
 }
 .info-menu-pai{
-
+border:5px solid #ff0000;
   position:relative;
 }
 
@@ -95,7 +86,7 @@ body {
   top:100%;
   position: absolute;
   overflow-y: auto;  
- border:5px solid #ff0000;
+ 
 left:5vw;
 width: 100vw;
 
