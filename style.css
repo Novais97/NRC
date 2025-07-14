@@ -40,7 +40,7 @@ body {
  
 }
 .info-menu-pai{
-border:5px solid #ff0000;
+
   position:relative;
 }
 
@@ -65,7 +65,7 @@ border:5px solid #ff0000;
  
 }
 .info-menu {
-  top:100%;
+  bottom:0;
   position: absolute;
   overflow-y: auto;  
  
