@@ -894,6 +894,7 @@ h2 {
 .list-container {
   border: solid 1px;
   display: flex;
+  flex-direction:column;
   justify-content: space-evenly;
 }
 .list-container div {
@@ -906,7 +907,7 @@ h2 {
 }
 .list-container li {
   padding: 2px;
-  margin-left: 4rem;
+  margin-left: 2rem;
 }
 
 .form-wrapper {
