@@ -774,7 +774,7 @@ html {
 .scroll-to-form {
   animation: getQuote 2.5s ease-in-out infinite both;
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   right: 20px;
   background-color: #007bff;
   color: white;
@@ -793,7 +793,7 @@ html {
 /* Botão flutuante redondo com ícone do WhatsApp */
 .whatsapp-circle {
   position: fixed;
-  bottom: 100px;
+  bottom: 180px;
   right: 30px;
   width: 60px;
   height: 60px;
@@ -1469,3 +1469,4 @@ html {
   }
 }
 /* Responsividade para celulares pequenos (max-width: 400px) */
+
