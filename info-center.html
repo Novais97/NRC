@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NCR Info Center</title>
+  <style>
+    html, body {
+      background-color: #0e0e0e;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 100vh;
+    }
+
+    body {
+      background-color: #0e0e0e;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+ 
+      text-align: center;
+    }
+
+    h1 {
+      color: #b3d944;
+ 
+      font-size: 32px;
+    }
+
+    h2 {
+      color: #b3d944;
+
+      font-size: 24px;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #333;
+    
+      width: 60%;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    
+    }
+
+    .menu button {
+      background-color: transparent;
+      border: 2px solid #b3d944;
+      color: #b3d944;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .menu button:hover {
+      background-color: #b3d944;
+      color: #0e0e0e;
+    }
+
+    .bubbles-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .bubble {
+        flex: 1 1 300px;
+        margin-top: 25px;
+      display: none;
+      background-color: #1a1a1a;
+      border-left: 4px solid #b3d944;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      animation: rise 0.4s ease forwards;
+      text-align: left;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .bubble p {
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .close {
+      margin-top: 20px;
+      background-color: #b3d944;
+      border: none;
+      color: #0e0e0e;
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      background-color: #d7f369;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>NCR – Project Info Center</h1>
+    <hr>
+  </header>
+
+  <!-- MENU DE TÓPICOS -->
+  <section class="menu">
+    <button onclick="showBubble('scope')">Project Scope</button>
+    <button onclick="showBubble('vision')">Client Vision</button>
+    <button onclick="showBubble('craft')">Our Craft</button>
+    <button onclick="showBubble('process')">The Process</button>
+    <button onclick="showBubble('materials')">Materials We Trust</button>
+  </section>
+
+  <hr style="width: 80%; border-color: #444;">
+
+  <!-- CONTEÚDO EXPANDÍVEL -->
+  <section class="bubbles-wrapper">
+
+    <div id="scope" class="bubble">
+      <h2>Project Scope</h2>
+      <p>
+        Every NCR project begins with a clear scope tailored to your space, budget, and vision. Whether it’s a full renovation or a specific structural upgrade, we define exact deliverables, timelines, materials, and expected milestones — ensuring no surprises along the way. We believe in mapping success before swinging the first hammer.
+      </p>
+      <button class="close" onclick="closeBubbles()">Close</button>
+    </div>
+
+    <div id="vision" class="bubble">
+      <h2>Client Vision</h2>
+      <p>
+        At NCR, we believe every renovation begins with a story — yours. We don’t impose; we listen. We take your ideas, sketches, and conversations and translate them into structured plans with architectural clarity. From modern decks to cozy basements, your vision drives our craft.
+      </p>
+      <button class="close" onclick="closeBubbles()">Close</button>
+    </div>
+
+    <div id="craft" class="bubble">
+      <h2>Our Craft</h2>
+      <p>
+        Craftsmanship at NCR is more than wood and nails — it’s a blend of technique, design intuition, and pride in quality work. From the precision of mitre cuts to the perfection of aligned tiles, every detail matters. We treat every structure as if it were part of our own home.
+      </p>
+      <button class="close" onclick="closeBubbles()">Close</button>
+    </div>
+
+    <div id="process" class="bubble">
+      <h2>The Process</h2>
+      <p>
+        From consultation to completion, our process is built for transparency and efficiency. It starts with a visit, evolves into a plan, and ends in delivery with minimal disruption. We handle permits, timelines, logistics, and cleanup — so you can focus on the result, not the mess.
+      </p>
+      <button class="close" onclick="closeBubbles()">Close</button>
+    </div>
+
+    <div id="materials" class="bubble">
+      <h2>Materials We Trust</h2>
+      <p>
+        We select our materials with longevity in mind. Pressure-treated lumber, galvanized hardware, fire-rated drywall, and waterproof barriers are our standard — not upgrades. NCR partners with trusted suppliers like Home Depot Canada and local yards to ensure quality with every load delivered.
+      </p>
+      <button class="close" onclick="closeBubbles()">Close</button>
+    </div>
+
+  </section>
+
+  <script>
+    function showBubble(id) {
+      closeBubbles();
+      const el = document.getElementById(id);
+      el.style.display = 'block';
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    function closeBubbles() {
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach(b => b.style.display = 'none');
+    }
+  </script>
+
+
+
+  <!-- BOTÃO DE VOLTA -->
+  <a  href="index.html" style="margin-top: 50px; display:inline-block; background-color:#b3d944; color:#0e0e0e; padding:12px 24px; font-size:16px; border-radius:6px; text-decoration:none; margin-bottom: 60px;">Return to Home Page</a>
+
+</body>
+</html>
