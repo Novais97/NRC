@@ -394,7 +394,7 @@ border-radius: 18px 0 0 18px;
   height: 2rem;
 }
 
-.menu input[type="checkbox"]:checked + label + .submenu {
+.menu input[type="radio"]:checked + label + .submenu {
   max-height:550vh;
   padding: 15px 10px;
 }
@@ -566,14 +566,14 @@ align-items: center;
 }
 
 .conatiner-de-localiacao > div {
-  flex: 1 1 300px;
-  max-width: 400px;
+flex: 1 1 300px;
+  max-width:768px;
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   padding: 25px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-left: 6px solid #b3d943;
+  border-left: 9px solid #030712;
 }
 
 .conatiner-de-localiacao > div:hover {
@@ -584,7 +584,7 @@ align-items: center;
 .conatiner-de-localiacao h3 {
   margin-top: 0;
   margin-bottom: 12px;
-  font-size: 20px;
+  font-size: 25px;
   color: #1e1e24;
 }
 
@@ -1301,7 +1301,7 @@ html {
   }
 }
 /* Responsividade para tablets (max-width: 762px) */
-@media (max-width: 762px) {
+@media (max-width: 768px) {
   body {
     box-sizing: border-box;
     flex-wrap: nowrap;
@@ -1315,25 +1315,25 @@ html {
 
   }
 .loc-1, .loc-2, .loc-3 {
-  background-color: #111827;
+
   color: #f9fafb;
-  border: 1px solid #1f2937;
+
   border-radius: 10px;
   padding: 20px;
   max-width: 768px;
-
+width: 100%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   font-family: 'Segoe UI', sans-serif;
 }
 
 .loc-1 h3, .loc-2 h3, .loc-3 h3 {
   margin-bottom: 10px;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .loc-1 p, .loc-2 p, .loc-3 p {
-  font-size: 1.2rem;
-  line-height: 1.4;
+  font-size: 1.4rem;
+  line-height: 1.6;
 }
   .conatiner-de-localiacao {
  display: flex;
@@ -1347,7 +1347,7 @@ html {
   background-size: cover;
   align-items: center;
   width: 100%;
- 
+ max-width: 768px;
   align-items: center;
   justify-content: center;
 }
@@ -1433,7 +1433,7 @@ html {
 
   .janela-menu {
     max-height: 0;
-
+display: none;
     position: absolute;
     top: 90px;
     right: 0;
@@ -1452,7 +1452,21 @@ html {
   input[type="checkbox"]:checked + label + .janela-menu {
     max-height: 250px;
     height: auto;
+    max-height: 0;
 
+    position: absolute;
+    top: 90px;
+    right: 0;
+    background-color: #0a0a0a;
+    max-width: 250px;
+
+    transition: max-height 0.15s linear, opacity 0.1s linear;
+    opacity: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+
+    gap: 10px;
     /* ou mais dependendo do conteúdo */
     opacity: 1;
     right: 0;
