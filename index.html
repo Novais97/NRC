@@ -1147,13 +1147,13 @@
         <div class="projects__grid">
             <article class="project">
                 <div class="feature__icon material-symbols-rounded" aria-hidden="true">summarize</div>
-                <h3 class="feature__title">Accumulated Delivery (approximate)</h3>
-                <p class="project__summary">We have completed projects totaling approximately thousands of square meters, with focus on finishing, structural integrity, and functionality.</p>
+                <h3 class="feature__title">Accumulated Delivery</h3>
+                <p class="project__summary">We’ve successfully delivered a diverse range of projects, always prioritizing structural integrity, on-time execution, and practical functionality.</p>
             </article>
             <article class="project">
                 <div class="feature__icon material-symbols-rounded" aria-hidden="true">groups</div>
                 <h3 class="feature__title">Clients Served</h3>
-                <p class="project__summary">We serve a diverse clientele, many of whom return or refer us spontaneously.</p>
+                <p class="project__summary">We serve a diverse range of clients, building solid relationships that naturally lead to future collaborations and long-term project partnerships.</p>
             </article>
             <article class="project">
                 <div class="feature__icon material-symbols-rounded" aria-hidden="true">savings</div>
@@ -1163,7 +1163,7 @@
             <article class="project">
                 <div class="feature__icon material-symbols-rounded" aria-hidden="true">schedule</div>
                 <h3 class="feature__title">Deadline Commitment</h3>
-                <p class="project__summary">We operate with discipline and planning to honor agreed deadlines, delivering on time while maintaining transparency throughout the process.</p>
+                <p class="project__summary">These results reflect our commitment to our core values: rigorous planning; ongoing transparency; reliable materials; skilled teams; and continuous evolution.</p>
             </article>
             <article class="project">
                 <div class="feature__icon material-symbols-rounded" aria-hidden="true">lightbulb</div>
@@ -1200,7 +1200,7 @@
             <svg class="back-to-top__graphic" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-120v-240H120l360-440 360 440H640v240H320Zm80-80h160v-240h111L480-674 289-440h111v240Zm80-240Z"/></svg>
         </span>
     </button>
-     <div id="botao-contato-flutuante-ncr">
+        <div id="botao-contato-flutuante-ncr">
     <style>
       /* ===== Ajustes rápidos ===== */
       #botao-contato-flutuante-ncr{
@@ -1280,6 +1280,69 @@
         opacity: 1;
         transform: translateX(0);
       }
+@media (max-width: 768px){
+  /* Offsets fáceis de ajustar */
+  #botao-contato-flutuante-ncr{
+    --direita: 30px;     /* posição horizontal do botão no mobile */
+    --fundo:   80px;     /* posição vertical do botão no mobile */
+    --balao-y: 22px;      /* ajuste fino vertical do balão */
+    --balao-gap-x: 10px; /* distância horizontal entre balão e botão */
+  }
+
+  /* Balão: acima e à ESQUERDA do botão, com texto visível */
+  #botao-contato-flutuante-ncr .balao-contato-ncr{
+    left: 0;                    /* ancora no lado esquerdo do botão */
+    top: 0;                     /* referencia o topo do botão */
+    right: auto;
+    bottom: auto;
+    transform: translate(calc(-100% - var(--balao-gap-x)),
+                         calc(-100% + var(--balao-y)));
+    opacity: 0;
+    /* NÃO esconda a cor aqui — o texto precisa aparecer com padding */
+    color: var(--cor-texto);
+    animation: ncr-balao-loop 10s ease-in-out infinite; /* 5s on + 15s off */
+    will-change: opacity, transform;
+  }
+
+  /* Mostra a frase no mobile (mantém o texto original do desktop intacto) */
+  #botao-contato-flutuante-ncr .balao-contato-ncr::before{
+    content: ""; /* sua frase */
+  }
+
+  /* Se existirem filhos internos (spans etc.), esconda só no mobile */
+  #botao-contato-flutuante-ncr .balao-contato-ncr *{
+    display: none !important;
+  }
+/* Efeito gaveta: entra da direita, fica ~3s, sai para a direita */
+@keyframes ncr-balao-loop{
+  /* 0% → 6%: entrada (desliza da direita) */
+  0%   { opacity:0; transform: translate(calc(-100% - var(--balao-gap-x) + 16px),
+                                         calc(-100% + var(--balao-y))); }
+  6%   { opacity:1; transform: translate(calc(-100% - var(--balao-gap-x)),
+                                         calc(-100% + var(--balao-y))); }
+
+  /* 6% → 22.67%: ~3s totalmente visível (16.67% de 18s) */
+  22.67% { opacity:1; transform: translate(calc(-100% - var(--balao-gap-x)),
+                                           calc(-100% + var(--balao-y))); }
+
+  /* 22.67% → 26%: saída rápida para a direita */
+  26%  { opacity:0; transform: translate(calc(-100% - var(--balao-gap-x) + 16px),
+                                         calc(-100% + var(--balao-y))); }
+
+  /* 26% → 100%: oculto até reiniciar */
+  100% { opacity:0; transform: translate(calc(-100% - var(--balao-gap-x) + 16px),
+                                         calc(-100% + var(--balao-y))); }
+}
+
+
+  /* Pausa durante interação no mobile */
+  #botao-contato-flutuante-ncr:hover .balao-contato-ncr,
+  #botao-contato-flutuante-ncr:focus-within .balao-contato-ncr{
+    animation-play-state: paused;
+  }
+}
+
+
     </style>
 
     <div class="encaixe-balao-ncr">
@@ -1296,7 +1359,7 @@
         </svg>
       </a>
 
-      <div class="balao-contato-ncr">Contact Us!</div>
+      <div class="balao-contato-ncr">Hello Ready for Contact us?</div>
     </div>
   </div>
     <script>
