@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCR Construction</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0,0" />
+    <style>
+ 
+
+        html { scroll-behavior: smooth; }
+        :root {
+            --bg-900:#02070F;
+            --bg-800:#041225;
+            --bg-700:#0A1F38;
+            --bg-600:#0E2949;
+            --primary:#2FB6FF;
+            --primary-bright:#4BC6FF;
+            --primary-soft:rgba(47,182,255,0.28);
+            --white:#E7F1FF;
+            --muted:#8CACD8;
+            --muted-soft:rgba(140,172,216,0.78);
+            --outline:rgba(71,135,210,0.28);
+            --outline-strong:rgba(95,173,255,0.42);
+            --glass:rgba(7,22,44,0.82);
+            --glass-strong:rgba(10,32,61,0.88);
+            --glow:0 32px 62px -40px rgba(5,18,38,0.85);
+            --glow-strong:0 44px 82px -46px rgba(47,150,255,0.55);
+            --radius:20px;
+        }
+
+        body.theme-light {
+            --bg-900:#F4F7FB;
+            --bg-800:#E8EEF9;
+            --bg-700:#D9E2F5;
+            --bg-600:#C9D6F1;
+            --primary:#1F6FEB;
+            --primary-bright:#2F81F7;
+            --primary-soft:rgba(31,111,235,0.22);
+            --white:#0B1220;
+            --muted:#2F3F56;
+            --muted-soft:rgba(47,63,86,0.78);
+            --outline:rgba(47,111,235,0.28);
+            --outline-strong:rgba(47,111,235,0.42);
+            --glass:rgba(255,255,255,0.92);
+            --glass-strong:rgba(235,241,255,0.95);
+            --glow:0 32px 62px -40px rgba(125,152,198,0.45);
+            --glow-strong:0 44px 82px -46px rgba(31,111,235,0.38);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: var(--bg-900);
+            background-image:
+                radial-gradient(circle at 15% -10%, rgba(47,150,255,0.22) 0%, rgba(2,7,15,0) 55%),
+                radial-gradient(circle at 80% 0%, rgba(18,93,201,0.28) 0%, rgba(2,7,15,0) 65%),
+                linear-gradient(180deg, rgba(2,9,21,0.98) 0%, rgba(4,12,31,0.98) 55%, rgba(5,15,33,1) 100%);
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body.theme-light {
+            background-color: var(--bg-900);
+            background-image:
+                radial-gradient(circle at 20% -12%, rgba(31,111,235,0.18) 0%, rgba(244,247,251,0) 55%),
+                radial-gradient(circle at 80% 8%, rgba(118,160,228,0.22) 0%, rgba(244,247,251,0) 60%),
+                linear-gradient(180deg, rgba(246,249,255,1) 0%, rgba(234,240,252,0.95) 55%, rgba(226,234,250,0.95) 100%);
+            color: var(--white);
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::before {
+            background-image:
+                linear-gradient(var(--outline) 1px, transparent 1px),
+                linear-gradient(90deg, var(--outline) 1px, transparent 1px);
+            background-size: 120px 120px;
+            opacity: 0.14;
+        }
+
+        body.theme-light::before {
+            background-image:
+                linear-gradient(rgba(47,111,235,0.22) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(47,111,235,0.22) 1px, transparent 1px);
+            background-size: 120px 120px;
+            opacity: 0.18;
+        }
+
+        body::after {
+            background-image:
+                radial-gradient(circle at 30% 25%, rgba(75,198,255,0.22) 0%, rgba(4,16,36,0) 55%),
+                radial-gradient(circle at 72% 35%, rgba(47,150,255,0.28) 0%, rgba(6,16,36,0) 60%),
+                radial-gradient(circle at 55% 120%, rgba(18,93,201,0.22) 0%, rgba(0,0,0,0) 70%);
+            mix-blend-mode: screen;
+            opacity: 0.55;
+        }
+
+        body.theme-light::after {
+            background-image:
+                radial-gradient(circle at 30% 25%, rgba(90,140,220,0.28) 0%, rgba(244,247,251,0) 55%),
+                radial-gradient(circle at 72% 35%, rgba(122,168,245,0.28) 0%, rgba(244,247,251,0) 60%),
+                radial-gradient(circle at 55% 120%, rgba(150,180,235,0.25) 0%, rgba(244,247,251,0) 70%);
+            opacity: 0.55;
+        }
+
+        a {
+            color: var(--primary-bright);
+            text-decoration: none;
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--white);
+            opacity: 1;
+        }
+
+        header {
+            position: relative;
+            padding-bottom: 4.5rem;
+            background: linear-gradient(150deg, rgba(4,16,36,0.96), rgba(7,26,52,0.82));
+            border-bottom: 1px solid var(--outline);
+            box-shadow: inset 0 -1px 0 rgba(95,173,255,0.14);
+        }
+
+        body.theme-light header {
+            background: linear-gradient(150deg, rgba(255,255,255,0.98), rgba(231,238,250,0.92));
+            border-bottom: 1px solid var(--outline);
+            box-shadow: inset 0 -1px 0 rgba(47,111,235,0.18);
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 85% 8%, rgba(47,150,255,0.18) 0%, rgba(4,16,36,0) 55%);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        body.theme-light header::after {
+            background: radial-gradient(circle at 85% 8%, rgba(47,111,235,0.18) 0%, rgba(255,255,255,0) 55%);
+        }
+
+        .nav {
+            width: 90%;
+            margin: 0 5%;
+            padding: 1.4rem 0 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav__logo {
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .nav__links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 3.5rem;
+        }
+
+        .nav__menu-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            cursor: pointer;
+            transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .nav__menu-toggle:hover,
+        .nav__menu-toggle:focus-visible {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 12px 24px -18px rgba(0, 0, 0, 0.45);
+        }
+
+        .nav__menu-toggle .material-symbols-rounded {
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        body.theme-light .nav__menu-toggle {
+            background: rgba(31, 111, 235, 0.12);
+            border-color: rgba(31, 111, 235, 0.28);
+            color: #0B1220;
+        }
+
+        body.theme-light .nav__menu-toggle:hover,
+        body.theme-light .nav__menu-toggle:focus-visible {
+            background: rgba(31, 111, 235, 0.18);
+            border-color: rgba(31, 111, 235, 0.42);
+            box-shadow: 0 12px 24px -18px rgba(31, 111, 235, 0.32);
+        }
+
+        .nav__link {
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .nav__link:hover {
+            color: var(--white);
+        }
+
+        body.theme-light .nav__logo {
+            color: #0B1220;
+        }
+
+        body.theme-light .nav__link {
+            color: #3A4B65;
+        }
+
+        body.theme-light .nav__link:hover {
+            color: #0B1220;
+        }
+
+        .header-bar__theme-toggle {
+            position: absolute;
+            right: 0.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .header-bar__theme-toggle:hover,
+        .header-bar__theme-toggle:focus-visible {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.45);
+        }
+
+        .header-bar__theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            display: none;
+        }
+
+        .header-bar__theme-toggle[data-mode="light"] {
+            color: #f0c43c;
+        }
+
+        .header-bar__theme-toggle[data-mode="dark"] {
+            color: #ffffff;
+        }
+
+        body.theme-light .header-bar__theme-toggle {
+            border-color: rgba(16, 36, 58, 0.2);
+            background: rgba(16, 36, 58, 0.05);
+        }
+
+        body.theme-light .header-bar__theme-toggle:hover,
+        body.theme-light .header-bar__theme-toggle:focus-visible {
+            background: rgba(16, 36, 58, 0.12);
+            border-color: rgba(16, 36, 58, 0.32);
+            box-shadow: 0 10px 26px -18px rgba(16, 36, 58, 0.32);
+        }
+
+        /* >>> GPT ADD START: THEME ICON CSS */
+        #themeToggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            overflow: hidden;
+            line-height: 0;
+            font-size: 0;
+        }
+
+        #themeToggle svg {
+            width: 24px;
+            height: 24px;
+            display: none;
+        }
+
+        html[data-theme="light"] #icon-moon,
+        body.theme-light #icon-moon {
+            display: block;
+            fill: #0B1220;
+        }
+
+        html[data-theme="dark"] #icon-sun,
+        body:not(.theme-light) #icon-sun {
+            display: block;
+            fill: #FFFFFF;
+        }
+
+        html[data-theme="light"] #icon-sun,
+        body.theme-light #icon-sun {
+            display: none;
+        }
+
+        html[data-theme="dark"] #icon-moon,
+        body:not(.theme-light) #icon-moon {
+            display: none;
+        }
+        /* >>> GPT ADD END: THEME ICON CSS */
+
+        .hero {
+            position: relative;
+            width: 100%;
+            margin: 3rem 0 0;
+            padding: clamp(3.5rem, 6vw, 4.5rem) clamp(1.8rem, 6vw, 4rem);
+            display: grid;
+            grid-template-columns: minmax(320px, 1fr) minmax(360px, 1.2fr);
+            gap: clamp(2.5rem, 4vw, 3.5rem);
+            border: 1px solid var(--outline);
+            background: linear-gradient(150deg, var(--glass), rgba(6,26,52,0.92));
+            box-shadow: var(--glow);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(120deg, rgba(47,150,255,0.22), transparent 65%),
+                repeating-linear-gradient(120deg, rgba(71,135,210,0.12) 0, rgba(71,135,210,0.12) 1px, transparent 1px, transparent 24px);
+            opacity: 0.22;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            bottom: -120px;
+            right: -140px;
+            background: radial-gradient(circle, rgba(75,198,255,0.42) 0%, rgba(4,16,36,0) 70%);
+            filter: blur(0.5px);
+            pointer-events: none;
+        }
+
+        .hero > div {
+            position: relative;
+            z-index: 1;
+        }
+
+        body.theme-light .hero {
+            background: linear-gradient(150deg, rgba(255,255,255,0.96), rgba(232,240,252,0.92));
+            border: 1px solid rgba(47,111,235,0.2);
+        }
+
+        .hero__title {
+            font-size: clamp(2.6rem, 5vw, 3.6rem);
+            font-weight: 700;
+            margin-bottom: 1.4rem;
+            color: var(--white);
+        }
+
+        body.theme-light .hero__title {
+            color: #0B1220;
+        }
+
+        .hero__subtitle {
+            font-size: 1.08rem;
+            margin-bottom: 2.2rem;
+            max-width: 32rem;
+            color: var(--muted-soft);
+        }
+
+        body.theme-light .hero__subtitle {
+            color: var(--muted-soft);
+        }
+
+        .hero p {
+            color: var(--muted-soft);
+        }
+
+        body.theme-light .hero p {
+            color: var(--muted-soft);
+        }
+
+        .hero__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.9rem 1.9rem;
+            border: 1px solid var(--outline);
+            background: linear-gradient(135deg, rgba(47,182,255,0.95), rgba(75,198,255,0.88));
+            color: #031225;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            box-shadow: 0 18px 40px -24px rgba(47,150,255,0.65);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, rgba(75,198,255,0.95), rgba(111,220,255,0.92));
+            box-shadow: 0 24px 48px -26px rgba(75,198,255,0.75);
+        }
+
+        .btn--ghost {
+            background: rgba(6,22,46,0.7);
+            color: var(--white);
+            border-color: var(--outline);
+            box-shadow: none;
+        }
+
+        .btn--ghost:hover {
+            background: rgba(8,28,56,0.85);
+            border-color: var(--outline-strong);
+        }
+
+        body.theme-light .btn {
+            background: linear-gradient(135deg, rgba(31,111,235,0.95), rgba(47,129,245,0.92));
+            color: #FFFFFF;
+            border-color: rgba(47,111,235,0.35);
+        }
+
+        body.theme-light .btn:hover {
+            background: linear-gradient(135deg, rgba(47,129,245,0.98), rgba(63,140,250,0.95));
+            box-shadow: 0 24px 48px -26px rgba(63,140,250,0.55);
+        }
+
+        body.theme-light .btn--ghost {
+            background: rgba(47,111,235,0.12);
+            color: #0B1220;
+            border-color: rgba(47,111,235,0.3);
+        }
+
+        body.theme-light .btn--ghost:hover {
+            background: rgba(47,111,235,0.18);
+            border-color: rgba(47,111,235,0.42);
+        }
+
+        .hero__stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.8rem;
+            color: var(--muted);
+        }
+
+        .hero__stat {
+            text-align: center;
+        }
+
+        .hero__stat strong {
+            display: block;
+            font-size: 2.1rem;
+            color: var(--primary-bright);
+            margin-bottom: 0.35rem;
+        }
+
+        .hero__media video {
+            width: 100%;
+            min-height: 360px;
+            border: 1px solid var(--outline);
+            box-shadow: var(--glow-strong);
+            object-fit: cover;
+        }
+
+        section {
+            position: relative;
+            padding: 5rem 1.5rem;
+            z-index: 1;
+        }
+
+        .section__header {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 3rem;
+        }
+
+        .section__title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .section__subtitle {
+            color: var(--muted-soft);
+        }
+
+        .features__grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .feature {
+            position: relative;
+            padding: 2.4rem 2.1rem;
+            background: linear-gradient(160deg, rgba(9,29,58,0.92), rgba(8,24,52,0.9));
+            border: 1px solid var(--outline);
+            box-shadow: var(--glow);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-6px);
+            border-color: var(--outline-strong);
+            box-shadow: var(--glow-strong);
+        }
+
+        .feature__icon {
+            width: 76px;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.6rem;
+            color: var(--primary-bright);
+            background: radial-gradient(circle at 50% 50%, rgba(75,198,255,0.18) 0%, rgba(6,26,52,0.85) 65%);
+            border: 1px solid var(--outline);
+            box-shadow: inset 0 0 0 1px rgba(95,173,255,0.18), 0 18px 36px -28px rgba(47,150,255,0.65);
+            font-family: 'Material Symbols Rounded', sans-serif;
+            font-size: 44px;
+            line-height: 1;
+            letter-spacing: normal;
+            font-variation-settings: "wght" 400, "FILL" 0, "GRAD" 0, "opsz" 48;
+        }
+
+        .feature__icon svg {
+            display: none;
+        }
+
+        .feature__title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+        }
+
+        .feature p {
+            color: var(--muted-soft);
+        }
+
+        .about {
+            background: linear-gradient(160deg, rgba(4,16,36,0.95), rgba(6,24,50,0.88));
+            border-top: 1px solid rgba(95,173,255,0.1);
+            border-bottom: 1px solid rgba(95,173,255,0.1);
+        }
+
+        .about__content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about__image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(150deg, rgba(12,44,88,0.95), rgba(7,26,52,0.82));
+            border: 1px solid var(--outline);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--glow);
+        }
+
+        .about__image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 75% 20%, rgba(75,198,255,0.18) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .about__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about__text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .about__text p {
+            margin-bottom: 1rem;
+            color: var(--muted-soft);
+        }
+
+        .projects {
+            background: transparent;
+        }
+
+        .projects__grid {
+            max-width: 1100px;
+            margin: 0 auto 2.5rem;
+            display: grid;
+            gap: 2.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .project {
+            padding: 2.4rem 2rem;
+            background: linear-gradient(160deg, rgba(9,29,58,0.92), rgba(8,24,52,0.9));
+            border: 1px solid var(--outline);
+            box-shadow: var(--glow);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-6px);
+            border-color: var(--outline-strong);
+            box-shadow: var(--glow-strong);
+        }
+
+        body.theme-light .hero__stats {
+            color: var(--muted);
+        }
+
+        body.theme-light .hero__stat strong {
+            color: var(--primary);
+        }
+
+        body.theme-light .section__title {
+            color: #0B1220;
+        }
+
+        body.theme-light .section__subtitle {
+            color: var(--muted-soft);
+        }
+
+        body.theme-light .feature,
+        body.theme-light .project {
+            background: linear-gradient(160deg, rgba(255,255,255,0.96), rgba(232,240,252,0.92));
+            border: 1px solid rgba(47,111,235,0.22);
+            box-shadow: 0 24px 40px -30px rgba(125,152,198,0.3);
+        }
+
+        body.theme-light .feature__title,
+        body.theme-light .about__text h3 {
+            color: #0B1220;
+        }
+
+        body.theme-light .feature__icon {
+            background: radial-gradient(circle at 50% 50%, rgba(47,111,235,0.16) 0%, rgba(226,235,255,0.88) 65%);
+            border: 1px solid rgba(47,111,235,0.22);
+        }
+
+        body.theme-light .feature p,
+        body.theme-light .about__text p {
+            color: var(--muted-soft);
+        }
+
+        body.theme-light .about {
+            background: linear-gradient(160deg, rgba(255,255,255,0.95), rgba(230,238,252,0.92));
+            border-top: 1px solid rgba(47,111,235,0.18);
+            border-bottom: 1px solid rgba(47,111,235,0.18);
+        }
+
+        body.theme-light .about__image {
+            background: linear-gradient(150deg, rgba(233,240,252,0.95), rgba(210,222,244,0.88));
+            border: 1px solid rgba(47,111,235,0.22);
+            box-shadow: 0 24px 44px -28px rgba(125,152,198,0.35);
+        }
+
+        .project__summary {
+            font-size: 1rem;
+            color: var(--muted-soft);
+            margin-bottom: 1.5rem;
+        }
+
+        .project__location {
+            font-weight: 600;
+            color: var(--primary-bright);
+        }
+
+        .cta {
+            background: transparent;
+        }
+
+        .cta__content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3.5rem 3rem;
+            background: linear-gradient(150deg, var(--glass), var(--glass-strong));
+            border: 1px solid var(--outline);
+            box-shadow: var(--glow);
+        }
+
+        .cta__content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .cta__content p {
+            margin-bottom: 2rem;
+            color: var(--muted-soft);
+        }
+
+        body.theme-light .cta__content h3 {
+            color: #0B1220;
+        }
+
+        body.theme-light footer {
+            background: linear-gradient(180deg, rgba(235,241,255,0.95), rgba(220,232,250,0.95));
+            border-top: 1px solid rgba(47,111,235,0.18);
+        }
+
+        footer {
+            background: linear-gradient(160deg, rgba(4,12,31,0.95), rgba(6,22,44,0.9));
+            color: var(--muted);
+            padding: 2.4rem 1rem;
+            border-top: 1px solid rgba(95,173,255,0.14);
+        }
+
+        .footer__content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .footer__links {
+            display: flex;
+            justify-content: center;
+            gap: 1.6rem;
+        }
+
+        .footer__link {
+            color: inherit;
+        }
+
+        .footer__link:hover {
+            color: var(--white);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: calc(1.75rem - 10px);
+            right: 1.75rem;
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--outline);
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(7,26,52,0.92), rgba(20,72,132,0.92));
+            color: var(--primary-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 22px 48px -30px rgba(5,18,38,0.85);
+            z-index: 60;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(8px);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .back-to-top--visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, rgba(10,38,72,0.95), rgba(47,150,255,0.92));
+            box-shadow: 0 26px 56px -28px rgba(47,150,255,0.55);
+        }
+
+        .back-to-top:focus-visible {
+            outline: 3px solid rgba(95,173,255,0.65);
+            outline-offset: 3px;
+        }
+
+        .back-to-top__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-to-top__graphic {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .cta-float {
+            position: fixed;
+            bottom: 5.2rem;
+            right: 1.75rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(95,173,255,0.45);
+            background: linear-gradient(135deg, rgba(11,43,86,0.94), rgba(47,150,255,0.94));
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 28px 60px -32px rgba(47,150,255,0.6);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            z-index: 55;
+        }
+
+        .cta-float:hover {
+            background: linear-gradient(135deg, rgba(20,62,110,0.96), rgba(73,173,255,0.96));
+            box-shadow: 0 32px 68px -30px rgba(73,173,255,0.65);
+            transform: translateY(-4px);
+        }
+
+        .cta-float:focus-visible {
+            outline: 3px solid rgba(95,173,255,0.65);
+            outline-offset: 3px;
+        }
+
+        .cta-float svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+            display: block;
+        }
+
+        body.theme-light .cta-float {
+            border-color: rgba(47,131,210,0.4);
+            background: linear-gradient(135deg, rgba(225,236,255,0.96), rgba(172,206,255,0.96));
+            color: #0B1220;
+            box-shadow: 0 26px 60px -34px rgba(47,131,210,0.55);
+        }
+
+        body.theme-light .cta-float:hover {
+            background: linear-gradient(135deg, rgba(210,228,255,0.98), rgba(160,200,255,0.98));
+            box-shadow: 0 30px 70px -34px rgba(47,131,210,0.6);
+        }
+
+        body.theme-light .cta-float svg {
+            fill: currentColor;
+        }
+
+        .sr { opacity: 0; transform: translateY(18px); transition: transform .6s ease, opacity .6s ease; will-change: transform, opacity; }
+        .sr.reveal { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .sr { opacity: 1; transform: none !important; transition: none; }
+    .back-to-top { transition: none; }
+}
+
+        @media (min-width: 901px) {
+            .nav .header-bar__theme-toggle {
+                right: 0.25rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav {
+                width: 100%;
+                margin: 0;
+                padding: 0.75rem 1rem;
+                background: linear-gradient(150deg, rgba(4,16,36,0.96), rgba(6,24,50,0.88));
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.75rem;
+            }
+
+            body.theme-light .nav {
+                background: linear-gradient(150deg, rgba(255,255,255,0.98), rgba(233,240,252,0.92));
+            }
+
+            .nav .header-bar__theme-toggle,
+            .nav__logo,
+            .nav__menu-toggle {
+                flex: 0 0 auto;
+            }
+
+            .nav .header-bar__theme-toggle {
+                position: static;
+                transform: none;
+                width: 44px;
+                height: 44px;
+                background: transparent;
+                border: 0;
+                box-shadow: none;
+                color: var(--white);
+                order: 0;
+            }
+
+            body.theme-light .nav .header-bar__theme-toggle {
+                color: #0B1220;
+            }
+
+            .nav__logo {
+                flex: 1 1 auto;
+                text-align: center;
+                font-size: 1rem;
+                color: var(--white);
+                order: 1;
+            }
+
+            body.theme-light .nav__logo {
+                color: #0B1220;
+            }
+
+            .nav__menu-toggle {
+                display: inline-flex;
+                order: 2;
+            }
+
+            .nav__links {
+                position: absolute;
+                top: calc(100% + 0.75rem);
+                left: 5%;
+                right: 5%;
+                margin: 0;
+                padding: 1rem 1.25rem 1.4rem;
+                background: linear-gradient(160deg, rgba(7,22,44,0.92), rgba(10,32,61,0.92));
+                border: 1px solid rgba(95,173,255,0.25);
+                box-shadow: 0 28px 60px -38px rgba(5,18,38,0.85);
+                display: grid;
+                gap: 0.75rem;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: opacity 0.25s ease, transform 0.25s ease;
+                border-radius: 10px;
+                z-index: 999;
+            }
+
+            body.theme-light .nav__links {
+                background: linear-gradient(160deg, rgba(255,255,255,0.98), rgba(233,240,252,0.94));
+                border-color: rgba(47,111,235,0.25);
+                box-shadow: 0 28px 60px -38px rgba(125,152,198,0.45);
+            }
+
+            .nav__links.is-open {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+
+            .nav__links a {
+                display: block;
+                padding: 0.65rem 0.75rem;
+                border-radius: 8px;
+                background: rgba(255,255,255,0.06);
+                color: var(--white);
+                text-align: left;
+            }
+
+            body.theme-light .nav__links a {
+                background: rgba(47,111,235,0.12);
+                color: #0B1220;
+            }
+
+            .nav__links a:hover {
+                background: rgba(75,150,255,0.18);
+            }
+
+            body.theme-light .nav__links a:hover {
+                background: rgba(47,111,235,0.18);
+            }
+
+            .hero {
+                padding: 3.2rem 2.2rem;
+                grid-template-columns: 1fr;
+            }
+
+            .hero__stats {
+                flex-wrap: wrap;
+                gap: 1.8rem;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 2.6rem 1.6rem;
+            }
+
+            .hero__cta {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+            }
+
+            .hero__stats {
+                flex-direction: column;
+                gap: 1.4rem;
+            }
+
+            .feature,
+            .project {
+                padding: 2.1rem 1.7rem;
+            }
+
+            .cta__content {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <button type="button" class="header-bar__theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+                <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                    <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/>
+                </svg>
+                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                    <path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z"/>
+                </svg>
+            </button>
+            <div class="nav__logo">NCR Construction</div>
+            <button type="button" class="nav__menu-toggle" aria-label="Open navigation" aria-expanded="false">
+                <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+            </button>
+            <nav class="nav__links" id="navMenu">
+                <a class="nav__link" href="#services">Services</a>
+                <a class="nav__link" href="#about">About</a>
+                <a class="nav__link" href="contacts.html">Contact</a>
+            </nav>
+        </div>
+
+        <div class="hero">
+            <div>
+                <h1 class="hero__title">Infrastructure That Transforms Cities</h1>
+                <p class="hero__subtitle">NCR Construction designs, executes, and delivers high-impact developments with a focus on safety, schedule, and operational efficiency at every stage of the build.</p>
+                <div class="hero__cta">
+                    <a class="btn" href="#contact">Request a proposal</a>
+                    <a class="btn btn--ghost" href="galeria.html">See our gallery</a>
+                </div>
+                <div class="hero__stats">
+                    <div class="hero__stat">
+                        <strong>320+</strong>
+                        Projects delivered
+                    </div>
+                    <div class="hero__stat">
+                        <strong>24</strong>
+                        Cities served
+                    </div>
+                    <div class="hero__stat">
+                        <strong>10 years</strong>
+                        Of experience
+                    </div>
+                </div>
+            </div>
+            <div class="hero__media">
+                <video src="https://res.cloudinary.com/dkftkg8wz/video/upload/v1760738464/AZn0DKQEir2cy4UlELvoXA-AZn0DKQEllOlFBXjWdRRdA_owgnwp.mp4" autoplay muted loop playsinline>
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </header>
+
+    <section id="services" class="features">
+        <div class="section__header">
+            <h2 class="section__title">Comprehensive civil engineering solutions</h2>
+            <p class="section__subtitle">From planning to handover, we coordinate every front so your project is delivered with quality, transparency, and predictable results.</p>
+        </div>
+        <div class="features__grid">
+            <article class="feature">
+                <div class="feature__icon material-symbols-rounded" aria-hidden="true">handyman</div>
+                <h3 class="feature__title">Construction Execution</h3>
+                <p>End-to-end management of residential, commercial, and industrial builds with dedicated crews and certified suppliers.</p>
+            </article>
+            <article class="feature">
+                <div class="feature__icon material-symbols-rounded" aria-hidden="true">assignment</div>
+                <h3 class="feature__title">Project Management</h3>
+                <p>Integrated planning, budgeting, and supervision that keeps timelines and costs under control.</p>
+            </article>
+            <article class="feature">
+                <div class="feature__icon material-symbols-rounded" aria-hidden="true">architecture</div>
+                <h3 class="feature__title">Design &amp; BIM</h3>
+                <p>Discipline integration in BIM platforms to reduce rework and optimize performance on-site.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+            <div class="about__content">
+            <div class="about__image">
+                <img src="https://res.cloudinary.com/dkftkg8wz/image/upload/v1759879697/bicho_puto_wvf6zi.jpg" alt="NCR project showcase" loading="lazy" decoding="async" />
+            </div>
+            <div class="about__text">
+                <h3>Construction excellence, lasting relationships</h3>
+                <p>NCR Construction was created to deliver safe, intelligent builds with long-term results. We operate across every phase, from concept to handover, always aligned with our clients' goals.</p>
+                <p>Our multidisciplinary team brings together engineering, architecture, and program management to ensure clear communication, real-time oversight, and data-driven decision-making.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="projects">
+        <div class="section__header">
+            <h2 class="section__title">Impact &amp; Commitment Built</h2>
+            <p class="section__subtitle">Visible results built with transparency, dedication, and quality focus.</p>
+        </div>
+        <div class="projects__grid">
+            <article class="project">
+                <div class="feature__icon material-symbols-rounded" aria-hidden="true">summarize</div>
+                <h3 class="feature__title">Accumulated Delivery (approximate)</h3>
+                <p class="project__summary">We have completed projects totaling approximately thousands of square meters, with focus on finishing, structural integrity, and functionality.</p>
+            </article>
+            <article class="project">
+                <div class="feature__icon material-symbols-rounded" aria-hidden="true">groups</div>
+                <h3 class="feature__title">Clients Served</h3>
+                <p class="project__summary">We serve a diverse clientele, many of whom return or refer us spontaneously.</p>
+            </article>
+            <article class="project">
+                <div class="feature__icon material-symbols-rounded" aria-hidden="true">savings</div>
+                <h3 class="feature__title">Efficiency &amp; Savings</h3>
+                <p class="project__summary">In our projects we aim to reduce waste and optimize resources - we have already achieved visible improvements in consumption, utilization, and system efficiency.</p>
+            </article>
+            <article class="project">
+                <div class="feature__icon material-symbols-rounded" aria-hidden="true">schedule</div>
+                <h3 class="feature__title">Deadline Commitment</h3>
+                <p class="project__summary">We operate with discipline and planning to honor agreed deadlines, delivering on time while maintaining transparency throughout the process.</p>
+            </article>
+            <article class="project">
+                <div class="feature__icon material-symbols-rounded" aria-hidden="true">lightbulb</div>
+                <h3 class="feature__title">Innovation &amp; Differentiators</h3>
+                <p class="project__summary">We incorporate new technologies, automation, and modern solutions in the projects we carry out, aiming to raise the standard of delivery.</p>
+            </article>
+        </div>
+        <div class="section__header" style="max-width: 900px;">
+            <p class="section__subtitle">These results reflect our commitment to: rigorous planning, ongoing transparency, reliable materials, skilled teams, and continuous evolution.<br/>Would you like your project to be part of this impact? Contact us, send photos, or schedule a site visit - let's build something that truly makes a difference together.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="cta">
+        <div class="cta__content">
+            <h3>Ready to launch your next project?</h3>
+            <p>Connect with the NCR Construction team and receive a complete plan with schedule, budget, and performance indicators.</p>
+            <a class="btn" href="form.html">Talk to NCR</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer__content">
+            <p>&copy; 2024 NCR Construction. All rights reserved.</p>
+            <div class="footer__links">
+                <a class="footer__link" href="#services">Services</a>
+                <a class="footer__link" href="#about">About</a>
+                <a class="footer__link" href="#projects">Projects</a>
+                <a class="footer__link" href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <span class="back-to-top__icon" aria-hidden="true">
+            <svg class="back-to-top__graphic" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-120v-240H120l360-440 360 440H640v240H320Zm80-80h160v-240h111L480-674 289-440h111v240Zm80-240Z"/></svg>
+        </span>
+    </button>
+     <div id="botao-contato-flutuante-ncr">
+    <style>
+      /* ===== Ajustes rápidos ===== */
+      #botao-contato-flutuante-ncr{
+        --tam: 50px;            /* diâmetro do botão */
+        --direita: 30px;        /* distância da direita */
+        --fundo: 80px;          /* distância do rodapé */
+        --subida: 8px;          /* quanto o botão sobe no hover/foco */
+
+        /* Cores (um pouco mais claras) */
+        --cor-fundo: #275595;   /* botão */
+        --cor-balao: #275595;   /* balão */
+        --cor-texto: #FFFFFF;   /* texto do balão */
+      }
+
+      /* Posição fixa do conjunto */
+      #botao-contato-flutuante-ncr{
+        position: fixed;
+        right: var(--direita);
+        bottom: var(--fundo);
+        z-index: 9999;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+
+      /* Encaixe do balão relativo ao botão */
+      #botao-contato-flutuante-ncr .encaixe-balao-ncr{ position: relative; }
+
+      /* Acionador (link redondo) */
+      #botao-contato-flutuante-ncr .acionador-contato-ncr{
+        width: var(--tam);
+        height: var(--tam);
+        border-radius: 999px;
+        background: var(--cor-fundo);
+        color: #fff; /* SVG herda via currentColor */
+        display: grid;
+        place-items: center;
+        text-decoration: none;
+        outline: none;
+        transition: transform .4s ease; /* translateY suave */
+        will-change: transform;
+      }
+      #botao-contato-flutuante-ncr .acionador-contato-ncr:focus-visible{
+        outline: 2px solid #2FB6FF; outline-offset: 3px;
+      }
+
+      /* Balão de contato: surge da direita para a esquerda */
+      #botao-contato-flutuante-ncr .balao-contato-ncr{
+        position: absolute;
+        right: calc(var(--tam) + 10px);
+        bottom: calc((var(--tam) - 30px)/2 + 20px); /* balão 20px mais alto */
+        background: var(--cor-balao);
+        color: var(--cor-texto);
+        padding: 12px 19px;
+        border-radius: 8px;
+        white-space: nowrap;
+        font-size: 13px;
+        line-height: 1;
+        opacity: 0;
+        transform: translateX(8px);           /* entra da direita -> esquerda */
+        transition: opacity .4s ease-in-out, transform .4s ease;
+        pointer-events: none;
+      }
+      #botao-contato-flutuante-ncr .balao-contato-ncr::after{
+        content:"";
+        position:absolute;
+        right:-6px; top:50%; transform:translateY(-50%);
+        border:6px solid transparent;
+        border-left-color: var(--cor-balao);
+      }
+
+      /* Interação: botão sobe; balão aparece e desliza */
+      #botao-contato-flutuante-ncr:hover .acionador-contato-ncr,
+      #botao-contato-flutuante-ncr:focus-within .acionador-contato-ncr{
+        transform: translateY(calc(-1 * var(--subida)));
+      }
+      #botao-contato-flutuante-ncr:hover .balao-contato-ncr,
+      #botao-contato-flutuante-ncr:focus-within .balao-contato-ncr{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    </style>
+
+    <div class="encaixe-balao-ncr">
+      <!-- Link para o formulário -->
+      <a class="acionador-contato-ncr" href="form.html" aria-label="Formulário de contato">
+        <!-- SVG com edições *dentro da tag* (sem CSS externo para svg) -->
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 -960 960 960"
+             aria-hidden="true"
+             width="28" height="28"  
+             fill="currentColor"
+             style="display:block">
+          <path d="M480-440 160-640v400h360v80H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v280h-80v-200L480-440Zm0-80 320-200H160l320 200ZM760-40l-56-56 63-64H600v-80h167l-64-64 57-56 160 160L760-40ZM160-640v440-240 3-283 80Z"/>
+        </svg>
+      </a>
+
+      <div class="balao-contato-ncr">Contact Us!</div>
+    </div>
+  </div>
+    <script>
+        (() => {
+          const STORAGE_KEY = 'ncr-gallery-theme';
+          const body = document.body;
+          const root = document.documentElement;
+          const toggle = document.getElementById('themeToggle');
+          if (!toggle) return;
+
+          const getTheme = () => {
+            const dataTheme = root.getAttribute('data-theme');
+            if (dataTheme === 'light' || dataTheme === 'dark') return dataTheme;
+            if (root.classList.contains('dark') || body.classList.contains('dark')) return 'dark';
+            return body.classList.contains('theme-light') ? 'light' : 'dark';
+          };
+
+          const updateThemeIcon = () => {
+            const current = getTheme();
+            const nextLabel = current === 'light' ? 'Switch to dark theme' : 'Switch to light theme';
+            toggle.setAttribute('aria-label', nextLabel);
+            toggle.setAttribute('title', nextLabel);
+            toggle.dataset.mode = current === 'light' ? 'light' : 'dark';
+          };
+
+          const applyTheme = (mode) => {
+            const light = mode === 'light';
+            body.classList.toggle('theme-light', light);
+            toggle.setAttribute('aria-pressed', light ? 'true' : 'false');
+            updateThemeIcon();
+          };
+
+          let stored = null;
+          try {
+            stored = window.localStorage.getItem(STORAGE_KEY);
+          } catch (err) {
+            stored = null;
+          }
+
+          const prefersLight = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)').matches : false;
+          const initialMode = stored === 'light' || (stored === null && prefersLight) ? 'light' : 'dark';
+          applyTheme(initialMode);
+
+          if (typeof window.setTheme === 'function' && !window.setTheme._themeIconHooked) {
+            const originalSetTheme = window.setTheme;
+            window.setTheme = function (...args) {
+              const result = originalSetTheme.apply(this, args);
+              updateThemeIcon();
+              return result;
+            };
+            window.setTheme._themeIconHooked = true;
+          }
+
+          if (typeof window.toggleTheme === 'function' && !window.toggleTheme._themeIconHooked) {
+            const originalToggleTheme = window.toggleTheme;
+            window.toggleTheme = function (...args) {
+              const result = originalToggleTheme.apply(this, args);
+              updateThemeIcon();
+              return result;
+            };
+            window.toggleTheme._themeIconHooked = true;
+          }
+
+          const observer = new MutationObserver(updateThemeIcon);
+          observer.observe(root, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+          observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+
+          toggle.addEventListener('click', () => {
+            const next = getTheme() === 'light' ? 'dark' : 'light';
+            applyTheme(next);
+            try {
+              window.localStorage.setItem(STORAGE_KEY, next);
+            } catch (err) {
+              /* ignore storage errors */
+            }
+          });
+
+            updateThemeIcon();
+        })();
+    </script>
+    <script>
+        (() => {
+          const menuToggle = document.querySelector('.nav__menu-toggle');
+          const menu = document.getElementById('navMenu');
+          if (!menuToggle || !menu) return;
+
+          const closeMenu = () => {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open navigation');
+            menu.classList.remove('is-open');
+          };
+
+          menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!expanded));
+            menu.classList.toggle('is-open', !expanded);
+            menuToggle.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+          });
+
+          menu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+              if (menu.classList.contains('is-open')) closeMenu();
+            });
+          });
+
+          const mq = window.matchMedia('(min-width: 901px)');
+          const syncMenu = () => {
+            if (mq.matches) closeMenu();
+          };
+          mq.addEventListener ? mq.addEventListener('change', syncMenu) : mq.addListener(syncMenu);
+        })();
+    </script>
+    <script>
+        (function () {
+          const root = document.documentElement;
+          const body = document.body;
+          const btn = document.getElementById('themeToggle');
+
+          function getTheme() {
+            const dt = root.getAttribute('data-theme');
+            if (dt === 'light' || dt === 'dark') return dt;
+            if (root.classList.contains('dark') || body.classList.contains('dark')) return 'dark';
+            return 'light';
+          }
+
+          function stripText(el) {
+            if (!el) return;
+            [...el.childNodes].forEach((node) => {
+              if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                node.remove();
+              }
+            });
+          }
+
+          function updateA11y() {
+            if (!btn) return;
+            const theme = getTheme();
+            const label = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+            btn.setAttribute('aria-label', label);
+            btn.title = label;
+          }
+
+          stripText(btn);
+          updateA11y();
+
+          const mo = new MutationObserver(() => {
+            stripText(btn);
+            updateA11y();
+          });
+          mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+          mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+        })();
+    </script>
+    <script>
+        (function(){
+          // Back to top
+          const btn = document.getElementById('backToTop');
+          if (btn) {
+            const toggle = () => {
+              const show = window.scrollY > 200;
+              btn.classList.toggle('back-to-top--visible', show);
+            };
+            window.addEventListener('scroll', toggle, { passive: true });
+            window.addEventListener('load', toggle);
+            toggle();
+            btn.addEventListener('click', (event) => {
+              event.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          }
+
+          // Scroll reveal (smooth entrance on scroll)
+          const targets = [];
+          const heroCols = document.querySelectorAll('.hero > div');
+          const featureCards = document.querySelectorAll('.feature');
+          const aboutBlocks = document.querySelectorAll('.about__image, .about__text');
+          const projectCards = document.querySelectorAll('.project');
+          const headers = document.querySelectorAll('.section__header');
+          const cta = document.querySelector('.cta__content');
+          [ ...headers, ...heroCols, ...featureCards, ...aboutBlocks, ...projectCards ].forEach(el => targets.push(el));
+          if (cta) targets.push(cta);
+
+          targets.forEach((el, i) => { if (el) { el.classList.add('sr'); el.style.transitionDelay = (i*60)+'ms'; } });
+
+          const io = new IntersectionObserver((entries)=>{
+            entries.forEach(entry=>{
+              if(entry.isIntersecting){
+                entry.target.classList.add('reveal');
+                io.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+          document.querySelectorAll('.sr').forEach(el=>io.observe(el));
+        })();
+      </script>
+  </body>
+</html>
+
+

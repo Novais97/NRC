@@ -1,0 +1,820 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NCR — Contact Request</title>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      emailjs.init("BdYa9hIIVqYp41M20"); /* EmailJS PUBLIC KEY */
+    });
+  </script>
+  <!-- Uploadcare -->
+  <script>
+    UPLOADCARE_PUBLIC_KEY = "a9d060d2b3c6bd5b0de0";
+    UPLOADCARE_LOCALE = "en";
+    UPLOADCARE_TABS = "file url camera";
+    UPLOADCARE_MULTIPLE = true;
+    UPLOADCARE_MAX_FILES = 10;
+    UPLOADCARE_MAX_FILE_SIZE = 100 * 1024 * 1024;
+  </script>
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#0B1220; --panel:#0F1B2E; --ink:#EAF6FF; --muted:#A9C1D9; --line:#1C2B42;
+      --accent:#29C3FF; --accent2:#7DE3FF; --ok:#20E3A2; --err:#FF6B6B;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial}
+    body.theme-light{
+      --bg:#f4f7fb; --panel:#ffffff; --ink:#0B1220; --muted:#2F3F56; --line:#c3d2e8;
+      --accent:#1F6FEB; --accent2:#2F81F7;
+    }
+    .wrap{max-width:980px;margin:36px auto;padding:18px}
+    .card{background:linear-gradient(180deg,rgba(17,33,55,.6),rgba(15,27,46,.92));
+          border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 14px 44px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
+    h1{margin:0 0 6px;font-size:24px}
+    .lead{margin:0 0 18px;color:var(--muted)}
+    label{display:block;margin:12px 0 6px;color:var(--muted);font-size:14px}
+    input,select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0E1A2A;color:var(--ink);outline:none}
+    select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23A9C1D9' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:right 14px center;
+      background-size:12px 8px;
+      padding-right:46px;
+      line-height:1.4;
+    }
+    select::-ms-expand{display:none;}
+    input:focus,select:focus,textarea:focus{box-shadow:0 0 0 2px rgba(41,195,255,.45)}
+    textarea{min-height:110px;resize:vertical}
+    .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .row-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .row > div,.row-3 > div{min-width:0}
+    .form-header{position:sticky;top:0;z-index:30;background:rgba(11,18,32,0.95);backdrop-filter:blur(10px);border-top:0;border-right:1px solid rgba(41,195,255,0.25);border-bottom:0;border-left:0;box-shadow:inset 0 1px 0 rgba(41,195,255,0.18),0 18px 40px -28px rgba(0,0,0,0.6)}
+    .form-header .topbar{max-width:980px;margin:0 auto;padding:16px 18px;display:flex;align-items:center;gap:12px;min-height:64px}
+    .form-header .nav-back{order:0}
+    .form-header .brand{order:1}
+    .form-header .mobile-title{order:1}
+    .form-header .home-btn{order:2;margin-left:auto}
+    .form-header .theme-toggle{order:3;margin-left:12px}
+    .form-header .brand{font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
+    .form-header .home-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#061321;text-decoration:none;font-weight:700;border:1px solid rgba(41,195,255,0.45);box-shadow:0 12px 32px -18px rgba(41,195,255,0.6);transition:transform .2s ease, box-shadow .2s ease}
+    .form-header .nav-back{display:none;align-items:center;justify-content:center;padding:0 18px;min-width:64px;height:100%;align-self:stretch;text-decoration:none;border:0;border-right:1px solid rgba(41,195,255,0.25);background:rgba(14,26,42,0.85);color:var(--ink);cursor:pointer;transition:transform .2s ease, box-shadow .2s ease,border-color .2s ease}
+    .form-header .nav-back svg{width:26px;height:26px;display:block}
+    .form-header .nav-back:hover{transform:translateY(-1px);box-shadow:0 12px 26px -18px rgba(125,227,255,0.55);border-right-color:rgba(125,227,255,0.7)}
+     .form-header .home-btn:hover{transform:translateY(-1px);box-shadow:0 16px 38px -20px rgba(125,227,255,0.65)}
+    .form-header .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:transparent;border:0;cursor:pointer;overflow:hidden;line-height:0;font-size:0;color:var(--ink);margin-left:12px}
+    .form-header .theme-toggle svg{width:22px;height:22px;display:none;fill:currentColor}
+    .theme-icon--moon,
+    .theme-icon--sun{display:none}
+    .form-header .theme-toggle[data-mode="light"] .theme-icon--moon{display:block;fill:#0B1220}
+    .form-header .theme-toggle[data-mode="dark"] .theme-icon--sun{display:block;fill:#FFFFFF}
+    body.theme-light .form-header .theme-toggle{color:#0B1220}
+    .mobile-title{display:none}
+
+    .back-to-top{
+      position:fixed;
+      bottom:calc(1.75rem - 10px);
+      right:1.75rem;
+      width:50px;
+      height:50px;
+      border:1px solid rgba(47,131,210,0.4);
+      border-radius:50%;
+      background:linear-gradient(135deg,rgba(225,236,255,0.96),rgba(172,206,255,0.96));
+      color:#0B1220;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 26px 60px -34px rgba(47,131,210,0.55);
+      z-index:80;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transform:translateY(8px);
+      transition:opacity .25s ease,transform .25s ease,visibility .25s ease,box-shadow .25s ease,background .25s ease;
+    }
+    .back-to-top--visible{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+    .back-to-top:hover{
+      background:linear-gradient(135deg,rgba(210,228,255,0.98),rgba(160,200,255,0.98));
+      box-shadow:0 30px 70px -34px rgba(47,131,210,0.6);
+    }
+    .back-to-top:focus-visible{
+      outline:3px solid rgba(95,173,255,0.65);
+      outline-offset:3px;
+    }
+    .back-to-top__icon{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .back-to-top__graphic{
+      width:24px;
+      height:24px;
+      display:block;
+    }
+
+    .cta-float{
+      position:fixed;
+      bottom:5.2rem;
+      right:1.75rem;
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      border:1px solid rgba(95,173,255,0.45);
+      background:linear-gradient(135deg,rgba(11,43,86,0.94),rgba(47,150,255,0.94));
+      color:#ffffff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      box-shadow:0 28px 60px -32px rgba(47,150,255,0.6);
+      cursor:pointer;
+      transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
+      z-index:75;
+    }
+    .cta-float:hover{
+      background:linear-gradient(135deg,rgba(20,62,110,0.96),rgba(73,173,255,0.96));
+      box-shadow:0 32px 68px -30px rgba(73,173,255,0.65);
+      transform:translateY(-4px);
+    }
+    .cta-float:focus-visible{
+      outline:3px solid rgba(95,173,255,0.65);
+      outline-offset:3px;
+    }
+    .cta-float svg{
+      width:28px;
+      height:28px;
+      display:block;
+      fill:currentColor;
+    }
+    body.theme-light .cta-float{
+      border-color:rgba(47,131,210,0.4);
+      background:linear-gradient(135deg,rgba(225,236,255,0.96),rgba(172,206,255,0.96));
+      color:#0B1220;
+      box-shadow:0 26px 60px -34px rgba(47,131,210,0.55);
+    }
+    body.theme-light .cta-float:hover{
+      background:linear-gradient(135deg,rgba(210,228,255,0.98),rgba(160,200,255,0.98));
+      box-shadow:0 30px 70px -34px rgba(47,131,210,0.6);
+    }
+    body.theme-light .cta-float svg{
+      fill:currentColor;
+    }
+    @media (min-width: 901px) {
+      body.theme-light{
+        background:#ffffff;
+        color:#0B1220;
+      }
+      body.theme-light .wrap{
+        background:#ffffff;
+      }
+      body.theme-light .card{
+        background:#ffffff;
+        border-color:#d8e2ef;
+        box-shadow:0 14px 44px rgba(18,36,66,0.18);
+      }
+      body.theme-light label,
+      body.theme-light h1,
+      body.theme-light .lead{
+        color:#10213a;
+      }
+      body.theme-light input,
+      body.theme-light select,
+      body.theme-light textarea{
+        background:#ffffff;
+        color:#10213a;
+        border-color:#c8d6e8;
+      }
+      body.theme-light input::placeholder,
+      body.theme-light textarea::placeholder{
+        color:#8fa2bf;
+      }
+      body.theme-light select{
+        background-color:#ffffff;
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%230B1220' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+      }
+      body.theme-light input:hover,
+      body.theme-light select:hover,
+      body.theme-light textarea:hover{
+        border-color:#a9b8ce;
+      }
+      body.theme-light input:focus,
+      body.theme-light select:focus,
+      body.theme-light textarea:focus{
+        border-color:#75b7ff;
+        box-shadow:0 0 0 2px rgba(117,183,255,0.25);
+      }
+      body.theme-light input:disabled,
+      body.theme-light select:disabled,
+      body.theme-light textarea:disabled{
+        background:#f5f7fb;
+        color:#99a7bd;
+        border-color:#dee5f1;
+      }
+      body.theme-light .calendar-btn{
+        background:#ffffff;
+        color:#10213a;
+        border-color:#c8d6e8;
+      }
+      body.theme-light .calendar-btn:hover{
+        background:#f0f4fa;
+        box-shadow:0 0 0 2px rgba(117,183,255,0.18);
+      }
+      body.theme-light .form-header{
+        background:#ffffff;
+        color:#10213a;
+        border-right:1px solid #d8e2ef;
+        box-shadow:inset 0 1px 0 rgba(26,79,150,0.24),0 18px 40px -28px rgba(18,36,66,0.22);
+      }
+      body.theme-light .form-header .brand,
+      body.theme-light .form-header .mobile-title{
+        color:#10213a;
+      }
+      body.theme-light .form-header .home-btn{
+        background:linear-gradient(135deg,#94c3ff,#d6e7ff);
+        color:#0b2448;
+        border-color:#b7d4f6;
+        box-shadow:0 12px 32px -18px rgba(63,136,214,0.38);
+      }
+      body.theme-light .form-header .home-btn:hover{
+        background:linear-gradient(135deg,#84b6fb,#c5dcff);
+        box-shadow:0 16px 38px -20px rgba(63,136,214,0.48);
+      }
+      body.theme-light .form-header .nav-back{
+        background:#f1f4f9;
+        border-color:#c8d6e8;
+        color:#10213a;
+      }
+      body.theme-light .form-header .theme-toggle{
+        color:#0b2448;
+        background:#e5f2ff;
+        box-shadow:0 12px 28px -20px rgba(63,136,214,0.32);
+      }
+      body.theme-light .form-header .theme-toggle:hover{
+        background:#d3e7ff;
+      }
+      body.theme-light .btn-primary{
+        background:#1a6fdc;
+        color:#ffffff;
+        border-color:#1a6fdc;
+      }
+      body.theme-light .btn-primary:hover{
+        background:#155fc0;
+      }
+      body.theme-light .btn-secondary{
+        background:#e5f2ff;
+        color:#0b2448;
+        border-color:#b7d4f6;
+      }
+      body.theme-light .btn-secondary:hover{
+        background:#d3e7ff;
+      }
+      body.theme-light .btn-ghost{
+        color:#1a6fdc;
+        background:transparent;
+      }
+      body.theme-light .btn-ghost:hover{
+        background:#e5f2ff;
+      }
+      body.theme-light .status{color:#51627a;}
+      body.theme-light .ok{color:#2d7a37;}
+      body.theme-light .err{color:#c64646;}
+      body.theme-light .info{color:#1565c0;}
+    }
+
+    /* >>> GPT ADD START: FORM CONTROLS – STRIP PATTERN (DESKTOP) */
+    @media (min-width: 768px) {
+      body[data-page="form"] input,
+      body[data-page="form"] select,
+      body[data-page="form"] textarea,
+      body[data-page="form"] [role="combobox"],
+      body[data-page="form"] [role="listbox"],
+      body[data-page="form"] .combobox,
+      body[data-page="form"] .select,
+      body[data-page="form"] .select-wrapper,
+      body[data-page="form"] .custom-select,
+      body[data-page="form"] .choices,
+      body[data-page="form"] .choices__inner,
+      body[data-page="form"] .choices__list,
+      body[data-page="form"] .choices__item{
+        background-image:none !important;
+        background:var(--input-bg, #FFFFFF) none !important;
+        background-repeat:no-repeat !important;
+        background-size:auto !important;
+        color:var(--input-fg, #0B1220);
+      }
+    }
+    /* >>> GPT ADD END: FORM CONTROLS – STRIP PATTERN (DESKTOP) */
+
+    .hr{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:16px 0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:14px 16px;cursor:pointer;font-weight:700}
+    .btn-primary{background:rgba(28,41,60,0.95);color:var(--ink);border:1px solid rgba(71,135,210,0.45);box-shadow:0 12px 28px -18px rgba(0,0,0,0.55);transition:background .2s ease, box-shadow .2s ease, transform .2s ease}
+    .btn-primary:hover{background:rgba(36,54,82,0.95);box-shadow:0 16px 36px -18px rgba(0,0,0,0.65);transform:translateY(-1px)}
+    .btn-ghost{background:transparent;border:1px dashed var(--line);color:var(--muted)}
+    .btn svg{width:18px;height:18px;flex-shrink:0;fill:currentColor}
+    .status{margin-top:12px;font-size:14px;color:var(--muted)}
+    .ok{color:var(--ok)} .err{color:var(--err)}
+
+    /* Select wrapper retains layout with background arrow handled on the element */
+    .select{position:relative}
+
+    /* Date + botão Calendar lado a lado */
+    .date-wrap{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+    .calendar-btn{
+      padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0E1A2A;color:#EAF6FF;cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .calendar-btn:hover{background:#102235;box-shadow:0 0 0 2px rgba(41,195,255,.3);transform:translateY(-1px)}
+    .calendar-btn:active{transform:translateY(0)}
+    .calendar-btn svg{width:18px;height:18px;display:block;fill:currentColor}
+
+    /* Overlay */
+    .overlay{position:fixed;inset:0;background:rgba(6,19,33,.75);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:9999}
+    .overlay.show{display:flex}
+    .overlay-card{width:min(520px,92vw);background:#0F1B2E;border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.55)}
+    .progress{height:14px;background:#0E1A2A;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:12px 0 6px}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+
+    @media (max-width: 900px) {
+      body.theme-light{
+        background:#ffffff;
+        color:#0B1220;
+      }
+      body.theme-light .wrap{
+        background:#ffffff;
+      }
+      body.theme-light .card{
+        background:#ffffff;
+        border-color:#d6dfea;
+      }
+      body.theme-light label,
+      body.theme-light h1,
+      body.theme-light .lead{
+        color:#0B1220;
+      }
+      body.theme-light input,
+      body.theme-light select,
+      body.theme-light textarea{
+        background:#ffffff;
+        color:#0B1220;
+        border-color:#d6dfea;
+      }
+      body.theme-light input::placeholder,
+      body.theme-light textarea::placeholder{
+        color:#7c8ca3;
+      }
+      body.theme-light select{
+        background-color:#ffffff;
+      }
+      body.theme-light input:hover,
+      body.theme-light select:hover,
+      body.theme-light textarea:hover{
+        border-color:#afc0d4;
+      }
+      body.theme-light input:focus,
+      body.theme-light select:focus,
+      body.theme-light textarea:focus{
+        border-color:#29c3ff;
+        box-shadow:0 0 0 2px rgba(41,195,255,0.25);
+      }
+      body.theme-light input:disabled,
+      body.theme-light select:disabled,
+      body.theme-light textarea:disabled{
+        background:#f4f7fb;
+        color:#9aa8bd;
+        border-color:#e1e7f0;
+      }
+      body.theme-light .calendar-btn{
+        background:#ffffff;
+        color:#0B1220;
+        border-color:#d6dfea;
+      }
+      body.theme-light .calendar-btn:hover{
+        background:#eaf4ff;
+      }
+      body.theme-light .form-header{
+        background:#ffffff;
+        color:#0B1220;
+      }
+      body.theme-light .mobile-title{
+        color:#0B1220;
+      }
+      body.theme-light .form-header .nav-back{
+        color:#0B1220;
+      }
+      body.theme-light .form-header .nav-back svg{
+        fill:#000000;
+      }
+      body.theme-light .form-header .theme-toggle{
+        color:#0B1220;
+      }
+      body.theme-light .btn-primary{
+        background:#0B6ECF;
+        color:#ffffff;
+        border-color:#0B6ECF;
+      }
+      body.theme-light .btn-secondary{
+        background:#E8F4FF;
+        color:#0B1220;
+        border-color:#c6dcf4;
+      }
+      body.theme-light .btn-secondary:hover{
+        background:#d8eaff;
+      }
+      body.theme-light .btn-ghost{
+        color:#0B6ECF;
+        background:transparent;
+      }
+      body.theme-light .btn-ghost:hover{
+        background:#E8F4FF;
+      }
+      body.theme-light .status{color:#0B1220;}
+      body.theme-light .ok{color:#2E7D32;background:#E7F6EA;}
+      body.theme-light .err{color:#C62828;background:#FDE7E9;}
+      body.theme-light .info{color:#1565C0;background:#E5F0FF;}
+      body.theme-light .warn{color:#B26A00;background:#FFF5D0;}
+
+      .wrap{margin:24px auto;padding:16px;margin-top:16px}
+      .card{padding:20px}
+      .row,
+      .row-3{grid-template-columns:1fr}
+      .form-header{background:linear-gradient(150deg, rgba(4,16,36,0.96), rgba(6,24,50,0.9));border-right:0;border-top:0;box-shadow:0 12px 32px -26px rgba(0,0,0,0.55)}
+      .form-header .topbar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;justify-items:center;padding:14px 16px;gap:12px;min-height:56px;max-width:100%}
+      .form-header .brand,
+      .form-header .home-btn{display:none}
+      .form-header .nav-back{display:flex;border:0;background:transparent;color:#fff;padding:0 12px;justify-self:start;align-self:stretch}
+      .form-header .nav-back svg{width:28px;height:28px}
+      .form-header .theme-toggle{display:flex;border:0;background:transparent;color:#fff;justify-self:end;padding:0 12px}
+      .form-header .theme-toggle{margin-left:0}
+      .form-header .theme-toggle svg{width:26px;height:26px}
+      .mobile-title{display:block;color:#fff;font-weight:700;font-size:1.05rem;justify-self:center;text-transform:uppercase;letter-spacing:.05em}
+    }
+    @media (max-width: 600px) {
+      body{font-size:15px}
+      .card{padding:18px}
+    }
+  </style>
+</head>
+<body data-page="form" class="theme-light">
+  <header class="form-header">
+    <div class="topbar">
+      <a href="index.html" class="nav-back" aria-label="Back to home">
+        <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#fff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
+      </a>
+      <span class="brand">NCR Construction</span>
+      <span class="mobile-title">NCR Construction</span>
+      <a href="index.html" class="home-btn" aria-label="Home">Home</a>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="card">
+      <h1>NCR — Contact Request</h1>
+      <p class="lead">Fill your info, select province and city (Canada). You can use “Use my location” to auto-fill address and ZIP, then click <b>Send</b>.</p>
+
+      <!-- Honeypot -->
+      <input type="text" id="company" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0" />
+
+      <div class="row">
+        <div><label for="name">Full name *</label><input id="name" required></div>
+        <div><label for="email">E-mail *</label><input id="email" type="email" required></div>
+      </div>
+
+      <div class="row">
+        <div><label for="phone">Phone</label><input id="phone" placeholder="+1 (416) 555-0123"></div>
+        <div><label for="address">Address</label><input id="address" placeholder="Street, number"></div>
+      </div>
+
+      <div class="row-3">
+        <div class="select">
+          <label for="province">Province/State (Canada)</label>
+          <select id="province"></select>
+        </div>
+        <div class="select">
+          <label for="city">City</label>
+          <select id="city"></select>
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="btnMyLoc" class="btn btn-ghost" style="width:100%">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true">
+              <path d="M440-42v-80q-125-14-214.5-103.5T122-440H42v-80h80q14-125 103.5-214.5T440-838v-80h80v80q125 14 214.5 103.5T838-520h80v80h-80q-14 125-103.5 214.5T520-122v80h-80Zm40-158q116 0 198-82t82-198q0-116-82-198t-198-82q-116 0-198 82t-82 198q0 116 82 198t198 82Zm0-120q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm0-80q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm0-80Z"/>
+            </svg>
+            <span>Use my location</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div><label for="zip">ZIP / Postal code</label><input id="zip" placeholder="e.g., M5V 0E9"></div>
+        <div><label>&nbsp;</label><div id="locStatus" class="status">Tip: select your province; “Use my location” fills Address/City/Province/ZIP.</div></div>
+      </div>
+
+      <div class="row">
+        <div class="select">
+          <label for="service">Service</label>
+          <select id="service">
+            <option value="">Select…</option>
+            <option>Roofing (Shingles)</option><option>Deck / Fence</option><option>Drywall & Paint</option>
+            <option>Interior Renovation</option><option>Exterior Renovation</option><option>Other</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date-wrap">
+          <div>
+            <label for="start_date">Preferred start date</label>
+            <input id="start_date" type="date">
+          </div>
+          <div style="align-self:end">
+            <label>&nbsp;</label>
+            <button id="openCalendar" type="button" class="calendar-btn" aria-label="Open calendar">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true">
+                <path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="select">
+          <label for="urgency">Urgency</label>
+          <select id="urgency">
+            <option>Flexible</option><option>In 2 weeks</option><option>This week</option><option>Emergency</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="message">Notes</label>
+      <textarea id="message" placeholder="Work details, access instructions, materials…"></textarea>
+
+      <!-- Uploadcare -->
+      <label>Project photos (up to 10 × 100MB)</label>
+      <input type="hidden" role="uploadcare-uploader" id="uploader"
+             data-public-key="a9d060d2b3c6bd5b0de0"
+             data-multiple="true" data-multiple-max="10"
+             data-images-only="true" data-clearable="true" />
+
+      <div class="hr"></div>
+      <div>
+        <button id="send" class="btn btn-primary">Send</button>
+        <button id="clear" class="btn btn-ghost">Clear</button>
+      </div>
+      <div id="status" class="status"></div>
+    </div>
+  </div>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">
+    <span class="back-to-top__icon" aria-hidden="true">
+      <svg class="back-to-top__graphic" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-120v-240H120l360-440 360 440H640v240H320Zm80-80h160v-240h111L480-674 289-440h111v240Zm80-240Z"/></svg>
+    </span>
+  </button>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" aria-hidden="true">
+    <div class="overlay-card">
+      <h2>Sending…</h2>
+      <div class="progress"><div id="bar" class="bar"></div></div>
+      <div id="sub" class="status">Preparing data…</div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('backToTop');
+      if (!btn) return;
+      const update = () => {
+        const show = window.scrollY > 200;
+        btn.classList.toggle('back-to-top--visible', show);
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('load', update);
+      btn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      update();
+    })();
+  </script>
+
+  <script>
+    const TO_EMAIL   = "novais.marcos.usa@gmail.com";
+    const SERVICE_ID = "service_ncr4202";
+    const TEMPLATE_ID= "template_85942tu";
+
+    // ----- UI helpers (overlay/feedback)
+    const overlay=document.getElementById('overlay'), bar=document.getElementById('bar'), sub=document.getElementById('sub'), statusBox=document.getElementById('status');
+    function showOverlay(){ overlay.classList.add('show'); } function hideOverlay(){ overlay.classList.remove('show'); }
+    function setProgress(p){ bar.style.width=Math.max(0,Math.min(100,p))+'%'; } function setSub(t){ sub.textContent=t; }
+    function setStatus(html){ statusBox.innerHTML=html; }
+    let tmr=null; function spin(){ let p=6; setProgress(p); tmr=setInterval(()=>{ p=Math.min(88,p+Math.random()*6); setProgress(p); },200);} function stopSpin(){ if(tmr){clearInterval(tmr);tmr=null;} }
+
+    // ----- Province → Cities (Canada)
+    const CA = {
+      "Alberta": ["Calgary","Edmonton","Red Deer","Lethbridge","Medicine Hat"],
+      "British Columbia": ["Vancouver","Victoria","Surrey","Burnaby","Richmond","Kelowna"],
+      "Manitoba": ["Winnipeg","Brandon","Steinbach"],
+      "New Brunswick": ["Moncton","Saint John","Fredericton"],
+      "Newfoundland and Labrador": ["St. John's","Mount Pearl","Corner Brook"],
+      "Nova Scotia": ["Halifax","Sydney","Dartmouth"],
+      "Ontario": ["Toronto","Ottawa","Mississauga","Brampton","Hamilton","London","Kitchener"],
+      "Prince Edward Island": ["Charlottetown","Summerside"],
+      "Quebec": ["Montréal","Québec City","Laval","Gatineau","Sherbrooke","Longueuil"],
+      "Saskatchewan": ["Saskatoon","Regina","Prince Albert"],
+      "Northwest Territories": ["Yellowknife","Hay River"],
+      "Nunavut": ["Iqaluit"],
+      "Yukon": ["Whitehorse"]
+    };
+
+    const $prov = document.getElementById('province');
+    const $city = document.getElementById('city');
+    const $addr = document.getElementById('address');
+    const $zip  = document.getElementById('zip');
+    const $locStatus = document.getElementById('locStatus');
+
+    function fillProvinces(){
+      $prov.innerHTML = '<option value="">Select…</option>' +
+        Object.keys(CA).map(p => `<option>${p}</option>`).join('');
+      $city.innerHTML = '<option value="">Select…</option>';
+    }
+    function fillCities(province){
+      const list = CA[province] || [];
+      $city.innerHTML = '<option value="">Select…</option>' + list.map(c=>`<option>${c}</option>`).join('');
+    }
+    fillProvinces();
+    $prov.addEventListener('change', e => fillCities(e.target.value));
+
+    // ----- Geolocation + reverse geocode (preenche Address, City, Province e ZIP)
+    document.getElementById('btnMyLoc').addEventListener('click', ()=>{
+      if(!navigator.geolocation){
+        $locStatus.textContent = 'Geolocation not supported by this browser.';
+        return;
+      }
+      $locStatus.textContent = 'Locating…';
+      navigator.geolocation.getCurrentPosition(async pos=>{
+        try{
+          const {latitude, longitude} = pos.coords;
+          const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&accept-language=en`;
+          const res = await fetch(url, { headers: { 'Accept': 'application/json' }});
+          const data = await res.json();
+          const a = data.address || {};
+
+          const street = [a.house_number, a.road].filter(Boolean).join(' ');
+          if(street) $addr.value = street;
+          if(a.postcode) $zip.value = a.postcode;
+
+          const prov = a.state || a.province || '';
+          if(prov){
+            const norm = Object.keys(CA).find(p => p.toLowerCase() === prov.toLowerCase());
+            $prov.value = norm || prov;
+            fillCities($prov.value);
+          }
+          const city = a.city || a.town || a.village || a.municipality || '';
+          if(city){
+            const inList = Array.from($city.options).some(o => o.text.toLowerCase() === city.toLowerCase());
+            if(!inList && city) $city.insertAdjacentHTML('beforeend', `<option selected>${city}</option>`);
+            else $city.value = city;
+          }
+          $locStatus.textContent = 'Location set from your device.';
+        }catch(e){
+          console.warn(e);
+          $locStatus.textContent = 'Could not resolve your address. Please select Province and City manually.';
+        }
+      }, err=>{
+        $locStatus.textContent = 'Unable to get your location. Please select Province and City manually.';
+      }, { enableHighAccuracy:true, timeout:10000 });
+    });// ----- Calendar button
+    const dateInput = document.getElementById('start_date');
+    document.getElementById('openCalendar').addEventListener('click', ()=>{
+      try{ dateInput.showPicker && dateInput.showPicker(); }catch(e){}
+      dateInput.focus();
+    });
+
+    // ----- Uploadcare
+    async function getUploadInfo(){
+      try{
+        const w = uploadcare.Widget('#uploader');
+        const v = await w.value();
+        if(!v) return {links:[], groupUrl:""};
+        if (v.files && typeof v.files === 'function') {
+          const infos = await Promise.all(v.files().map(f => f.promise()));
+          const links = infos.map(i => i?.cdnUrl).filter(Boolean);
+          const groupUrl = v.cdnUrl || "";
+          return { links, groupUrl };
+        } else {
+          const info = await v.promise();
+          return { links: [info?.cdnUrl].filter(Boolean), groupUrl: "" };
+        }
+      }catch(e){
+        console.error('Uploadcare error:', e);
+        setStatus('<span class="err">Uploadcare failed. Check your Public Key and prefer HTTPS in production.</span>');
+        return {links:[], groupUrl:""};
+      }
+    }
+
+    // HTML para o e-mail (thumbs e botões)
+    function buildImagesHtml(links){
+      return "";
+    }
+    function buildButtonsHtml(){
+      return "";
+    }
+    function buildPlain(d){
+      return [
+        "NCR - New Request",
+        "Name: " + (d.name||'-') + "   Email: " + (d.email||'-'),
+        "Phone: " + (d.phone||'-'),
+        "Address: " + (d.address||'-') + ", " + (d.city||'') + " " + (d.province||'') + (d.zip? "  " + d.zip : ""),
+        "Service: " + (d.service||'-'),
+        "Start: " + (d.start_date||'-') + "   Urgency: " + (d.urgency||'-'),
+        "",
+        "Notes:",
+        d.message||'-'
+      ].join('\n');
+    }
+
+    // ----- Send
+    document.getElementById('send').addEventListener('click', async ()=>{
+      if (document.getElementById('company').value) return; // honeypot
+      const name=document.getElementById('name').value.trim(), email=document.getElementById('email').value.trim();
+      if(!name || !email){ setStatus('<span class="err">Please provide name and e-mail.</span>'); return; }
+
+
+      const data = {
+        name, email,
+        phone:document.getElementById('phone').value.trim(),
+        address:document.getElementById('address').value.trim(),
+        zip:document.getElementById('zip').value.trim(),
+        city:document.getElementById('city').value,
+        province:document.getElementById('province').value,
+        service:document.getElementById('service').value,
+        start_date:document.getElementById('start_date').value,
+        urgency:document.getElementById('urgency').value,
+        message:document.getElementById('message').value.trim()
+      };
+
+      showOverlay(); spin(); setSub('Collecting photos…');
+      const up = await getUploadInfo();
+      const links = up.links || [];
+      const groupUrl = up.groupUrl || "";
+
+      const payload = {
+        to_email: TO_EMAIL,
+        from_name: data.name,
+        reply_to: data.email,
+        phone: data.phone,
+        address: data.address,
+        city: data.city,
+        province: data.province,
+        zip: data.zip,
+        service: data.service,
+        start_date: data.start_date,
+        urgency: data.urgency,
+        notes: data.message,
+        image_links: links.join('\n'),
+        images_html: buildImagesHtml(links),
+        buttons_html: buildButtonsHtml(links),
+        full_text: buildPlain({...data, links}),
+        group_url: groupUrl
+      };
+
+      try{
+        setSub('Sending via EmailJS…');
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload);
+        stopSpin(); setProgress(100); setSub('Sent');
+        setStatus('<span class="ok">Email sent. Please check your inbox.</span>');
+        setTimeout(()=>{
+          hideOverlay();
+          window.location.href = 'thank.html';
+        }, 900);
+      }catch(err){
+        console.error('EmailJS error:', err, err?.text);
+        stopSpin(); setProgress(100); setSub('Send failed');
+        const msg = err?.text || err?.message || 'EmailJS failed: check PUBLIC KEY, SERVICE/TEMPLATE IDs and Domains/Origins.';
+        setStatus('<span class="err">'+msg+'</span>');
+        setTimeout(()=> hideOverlay(), 1200);
+      }
+    });
+
+    document.getElementById('clear').addEventListener('click', ()=>{
+      document.querySelectorAll('input, textarea, select').forEach(el=>{ if(el.type==='checkbox') el.checked=false; else el.value=''; });
+      fillProvinces();
+      document.getElementById('urgency').value = 'Flexible';
+      setStatus('');
+      document.getElementById('locStatus').textContent = 'Tip: select your province; “Use my location” fills Address/City/Province/ZIP.';
+    });
+  </script>
+</body>
+</html>

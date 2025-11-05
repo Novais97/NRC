@@ -1,0 +1,4571 @@
+﻿<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portifolio - NCR Construction</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0,0" />
+  <style>
+  
+
+
+    :root {
+      --primary: #2FB6FF;
+      --primary-hover: #4BC6FF;
+      --secondary: #041020;
+      --bg: #02070F;
+      --bg-alt: #041225;
+      --card: #0A1F38;
+      --card-alt: #0E2949;
+      --border: rgba(68, 133, 208, 0.55);
+      --text: #E7F1FF;
+      --muted: #86A7D5;
+      --grid-line: rgba(60, 96, 148, 0.22);
+      --grid-glow: rgba(72, 149, 233, 0.18);
+      --card-glow: rgba(41, 111, 196, 0.22);
+    }
+
+    body.theme-light {
+      --primary: #1f6feb;
+      --primary-hover: #2f81f7;
+      --secondary: #ffffff;
+      --bg: #f4f7fb;
+      --bg-alt: #ffffff;
+      --card: #ffffff;
+      --card-alt: #eef2f9;
+      --border: rgba(60, 110, 180, 0.25);
+      --text: #10243a;
+      --muted: #52627a;
+      --grid-line: rgba(140, 170, 210, 0.38);
+      --grid-glow: rgba(70, 130, 210, 0.15);
+      --card-glow: rgba(70, 130, 210, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 20% -10%, rgba(47, 161, 255, 0.12) 0%, rgba(4, 10, 24, 0) 55%),
+        radial-gradient(circle at 80% 0%, rgba(18, 85, 190, 0.16) 0%, rgba(3, 12, 31, 0) 60%),
+        linear-gradient(180deg, rgba(2, 9, 21, 0.98) 0%, rgba(3, 12, 31, 0.98) 55%, rgba(5, 15, 33, 1) 100%);
+      color: var(--text);
+      line-height: 1.5;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body.theme-light {
+      background-image:
+        radial-gradient(circle at 15% -10%, rgba(70, 130, 210, 0.18) 0%, rgba(255, 255, 255, 0) 55%),
+        radial-gradient(circle at 75% 0%, rgba(120, 160, 230, 0.22) 0%, rgba(255, 255, 255, 0) 60%),
+        linear-gradient(180deg, rgba(248, 250, 255, 1) 0%, rgba(236, 241, 252, 0.96) 55%, rgba(226, 234, 250, 0.95) 100%);
+    }
+
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 120px 120px;
+      opacity: .35;
+    }
+
+    body::after {
+      background-image:
+        radial-gradient(circle at 30% 20%, var(--grid-glow) 0%, rgba(8, 18, 38, 0) 55%),
+        radial-gradient(circle at 72% 35%, rgba(47, 150, 255, 0.22) 0%, rgba(6, 16, 36, 0) 65%),
+        radial-gradient(circle at 50% 120%, rgba(18, 93, 201, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+      mix-blend-mode: screen;
+      opacity: .6;
+    }
+
+    body.theme-light::before {
+      background-image:
+        linear-gradient(rgba(140, 170, 210, 0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(140, 170, 210, 0.35) 1px, transparent 1px);
+      background-size: 120px 120px;
+      opacity: .4;
+    }
+
+    body.theme-light::after {
+      background-image:
+        radial-gradient(circle at 40% 20%, rgba(120, 170, 240, 0.22) 0%, rgba(255, 255, 255, 0) 60%),
+        radial-gradient(circle at 70% 40%, rgba(170, 190, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%),
+        radial-gradient(circle at 50% 110%, rgba(140, 180, 255, 0.18) 0%, rgba(255, 255, 255, 0) 75%);
+      mix-blend-mode: screen;
+      opacity: .7;
+    }
+
+    header.gallery-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: linear-gradient(140deg, rgba(6, 20, 40, 0.9), rgba(5, 15, 33, 0.85));
+      backdrop-filter: blur(18px);
+      color: #fff;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid rgba(71, 135, 210, 0.32);
+      box-shadow: 0 28px 60px -42px rgba(5, 18, 38, 0.85);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    body.theme-light header.gallery-header {
+      background: linear-gradient(130deg, rgba(255, 255, 255, 0.92), rgba(230, 238, 252, 0.92));
+      border-bottom: 1px solid rgba(140, 170, 210, 0.45);
+      box-shadow: 0 24px 48px -34px rgba(120, 150, 200, 0.45);
+      color: var(--text);
+    }
+
+    header.gallery-header.is-hidden {
+      opacity: 0;
+      transform: translateY(-24px);
+      pointer-events: none;
+    }
+
+    .header-bar {
+      position: relative;
+      width: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      padding: 1.6rem 1.25rem;
+      background: var(--secondary);
+    }
+
+    .header-bar__back {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1.25rem;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .header-bar__title {
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--text);
+      text-transform: uppercase;
+      font-size: 0.79rem;
+    }
+
+    .header-bar__icon {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+
+    .header-bar__home {
+      display: none;
+    }
+
+    .header-bar__theme-toggle {
+      position: absolute;
+      right: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .header-bar__theme-toggle:hover,
+    .header-bar__theme-toggle:focus-visible {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.45);
+    }
+
+    .header-bar__theme-toggle svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+      display: none;
+    }
+
+    .header-bar__theme-toggle[data-mode="light"] {
+      color: #f0c43c;
+    }
+
+    .header-bar__theme-toggle[data-mode="dark"] {
+      color: #ffffff;
+    }
+
+    body.theme-light .header-bar__theme-toggle {
+      border-color: rgba(16, 36, 58, 0.2);
+      background: rgba(16, 36, 58, 0.05);
+    }
+
+    body.theme-light .header-bar__theme-toggle:hover,
+    body.theme-light .header-bar__theme-toggle:focus-visible {
+      background: rgba(16, 36, 58, 0.12);
+      border-color: rgba(16, 36, 58, 0.32);
+      box-shadow: 0 10px 26px -18px rgba(16, 36, 58, 0.32);
+    }
+
+    /* >>> GPT ADD START: THEME ICON CSS */
+    #themeToggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      overflow: hidden;
+      line-height: 0;
+      font-size: 0;
+    }
+
+    #themeToggle svg {
+      width: 24px;
+      height: 24px;
+      display: none;
+    }
+
+    html[data-theme="light"] #icon-moon,
+    body.theme-light #icon-moon {
+      display: block;
+      fill: #0B1220;
+    }
+
+    html[data-theme="dark"] #icon-sun,
+    body:not(.theme-light) #icon-sun {
+      display: block;
+      fill: #FFFFFF;
+    }
+
+    html[data-theme="light"] #icon-sun,
+    body.theme-light #icon-sun {
+      display: none;
+    }
+
+    html[data-theme="dark"] #icon-moon,
+    body:not(.theme-light) #icon-moon {
+      display: none;
+    }
+    /* >>> GPT ADD END: THEME ICON CSS */
+
+    /* >>> GPT ADD START: LIGHT THEME COLORS ONLY */
+    :root[data-theme="light"]{
+      --bg: #F7FAFF;
+      --surface: #FFFFFF;
+      --surface-2: #FAFCFF;
+      --elevated: #FFFFFF;
+      --overlay: rgba(11,18,32,0.40);
+
+      --text-primary: #0B1220;
+      --text-secondary: #3A4963;
+      --text-muted: #66758B;
+      --text-inverse: #FFFFFF;
+      --text-accent: #0B6ECF;
+
+      --brand: #0B1220;
+      --accent: #29C3FF;
+      --accent-strong: #0AA3F0;
+      --accent-weak: #D9F3FF;
+
+      --border: #E3EAF6;
+      --border-strong: #CED9EA;
+      --divider: #EDF2FA;
+
+      --hover: rgba(11,110,207,0.06);
+      --active: rgba(11,110,207,0.12);
+      --disabled-fg: #9AA8BD;
+      --disabled-bg: #F2F6FC;
+      --selection: #CDEBFF;
+
+      --focus-ring: #29C3FF;
+
+      --success: #2E7D32;
+      --success-bg: #E7F6EA;
+      --warning: #B26A00;
+      --warning-bg: #FFF5D9;
+      --error: #C62828;
+      --error-bg: #FDE7E9;
+      --info: #1565C0;
+      --info-bg: #E5F0FF;
+
+      --btn-primary-fg: #FFFFFF;
+      --btn-primary-bg: #0B6ECF;
+      --btn-primary-hover: #095DAF;
+      --btn-primary-active: #084F95;
+
+      --btn-secondary-fg: #0B1220;
+      --btn-secondary-bg: #EAF2FF;
+      --btn-secondary-hover: #DCEAFF;
+      --btn-secondary-active: #CADEFF;
+
+      --btn-ghost-fg: #0B6ECF;
+      --btn-ghost-hover: rgba(11,110,207,0.08);
+      --btn-ghost-active: rgba(11,110,207,0.14);
+
+      --input-fg: #0B1220;
+      --input-bg: #FFFFFF;
+      --input-border: #CED9EA;
+      --input-placeholder: #8A99AF;
+      --input-hover: #BFD0E6;
+      --input-focus: #29C3FF;
+      --input-disabled-fg: #9AA8BD;
+      --input-disabled-bg: #F2F6FC;
+      --input-disabled-border: #E6EDF7;
+
+      --menu-bg: #FFFFFF;
+      --menu-fg: #0B1220;
+      --menu-border: #E3EAF6;
+      --menu-item-hover-bg: #F1F7FF;
+      --menu-item-active-bg: #E6F2FF;
+      --menu-item-fg-muted: #51627B;
+      --menu-separator: #EDF2FA;
+      --menu-focus: #29C3FF;
+
+      --table-header-bg: #F4F8FF;
+      --table-header-fg: #0B1220;
+      --table-row-alt: #FBFDFF;
+      --table-row-hover: #F1F7FF;
+      --table-border: #E3EAF6;
+
+      --card-bg: #FFFFFF;
+      --card-fg: #0B1220;
+      --card-border: #E6EDF7;
+      --card-hover: #F9FBFF;
+
+      --tab-fg: #3A4963;
+      --tab-active-fg: #0B1220;
+      --tab-active-underline: #29C3FF;
+      --breadcrumb-fg: #51627B;
+      --breadcrumb-sep: #9AA8BD;
+
+      --badge-fg: #0B6ECF;
+      --badge-bg: #E6F2FF;
+
+      --code-fg: #0B1220;
+      --code-bg: #F4F7FC;
+      --kbd-bg: #EAF0FA;
+      --kbd-fg: #0B1220;
+
+      --link: #0B6ECF;
+      --link-hover: #095DAF;
+      --link-active: #084F95;
+      --link-visited: #6A5ACD;
+
+      --scrollbar: #C7D6EB;
+      --scrollbar-hover: #B6CAE4;
+      --scrollbar-track: #EDF2FA;
+    }
+
+    html[data-theme="light"],
+    body.theme-light{
+      background:var(--bg);
+      color:var(--text-primary);
+    }
+
+    hr{border-color:var(--divider);}
+
+    a{color:var(--link);}
+    a:hover{color:var(--link-hover);}
+    a:active{color:var(--link-active);}
+    a:visited{color:var(--link-visited);}
+
+    .button-primary{color:var(--btn-primary-fg);background:var(--btn-primary-bg);}
+    .button-primary:hover{background:var(--btn-primary-hover);}
+    .button-primary:active{background:var(--btn-primary-active);}
+    .button-secondary{color:var(--btn-secondary-fg);background:var(--btn-secondary-bg);}
+    .button-secondary:hover{background:var(--btn-secondary-hover);}
+    .button-secondary:active{background:var(--btn-secondary-active);}
+    .button-ghost{color:var(--btn-ghost-fg);background:transparent;}
+    .button-ghost:hover{background:var(--btn-ghost-hover);}
+    .button-ghost:active{background:var(--btn-ghost-active);}
+    .button:disabled{color:var(--disabled-fg);background:var(--disabled-bg);}
+
+    input,
+    textarea,
+    select{
+      color:var(--input-fg);
+      background:var(--input-bg);
+      border-color:var(--input-border);
+    }
+    input::placeholder,
+    textarea::placeholder{color:var(--input-placeholder);}
+    input:hover,
+    textarea:hover,
+    select:hover{border-color:var(--input-hover);}
+    input:focus,
+    textarea:focus,
+    select:focus{outline-color:var(--focus-ring);border-color:var(--input-focus);}
+    input:disabled,
+    textarea:disabled,
+    select:disabled{
+      color:var(--input-disabled-fg);
+      background:var(--input-disabled-bg);
+      border-color:var(--input-disabled-border);
+    }
+
+    .menu,
+    .dropdown,
+    .combobox-listbox{
+      background:var(--menu-bg);
+      color:var(--menu-fg);
+      border-color:var(--menu-border);
+    }
+    .menu .item,
+    .dropdown .item,
+    .combobox-listbox .option{color:var(--menu-fg);}
+    .menu .item[aria-disabled="true"]{color:var(--menu-item-fg-muted);}
+    .menu .item:hover,
+    .dropdown .item:hover,
+    .combobox-listbox .option[aria-selected="false"]:hover{background:var(--menu-item-hover-bg);}
+    .menu .item[aria-selected="true"],
+    .combobox-listbox .option[aria-selected="true"]{background:var(--menu-item-active-bg);}
+    .menu .separator{background:var(--menu-separator);}
+
+    input[type="checkbox"],
+    input[type="radio"],
+    .switch{accent-color:var(--accent);}
+
+    table thead th{
+      color:var(--table-header-fg);
+      background:var(--table-header-bg);
+      border-color:var(--table-border);
+    }
+    table tbody tr{background:var(--surface);}
+    table tbody tr:nth-child(2n){background:var(--table-row-alt);}
+    table tbody tr:hover{background:var(--table-row-hover);}
+    table, th, td{border-color:var(--table-border);}
+
+    .card{
+      background:var(--card-bg);
+      color:var(--card-fg);
+      border-color:var(--card-border);
+    }
+    .card:hover{background:var(--card-hover);}
+
+    .tabs .tab{color:var(--tab-fg);}
+    .tabs .tab[aria-selected="true"]{
+      color:var(--tab-active-fg);
+      border-color:var(--tab-active-underline);
+    }
+
+    .breadcrumbs{color:var(--breadcrumb-fg);}
+    .breadcrumbs .separator{color:var(--breadcrumb-sep);}
+
+    .alert-info{color:var(--info);background:var(--info-bg);border-color:var(--info);}
+    .alert-success{color:var(--success);background:var(--success-bg);border-color:var(--success);}
+    .alert-warning{color:var(--warning);background:var(--warning-bg);border-color:var(--warning);}
+    .alert-error{color:var(--error);background:var(--error-bg);border-color:var(--error);}
+
+    code,
+    pre{color:var(--code-fg);background:var(--code-bg);}
+    kbd{color:var(--kbd-fg);background:var(--kbd-bg);}
+
+    :where(a,button,input,textarea,select,[role="tab"],[role="menuitem"]):focus-visible{
+      outline-color:var(--focus-ring);
+    }
+
+    ::selection{
+      background:var(--selection);
+      color:var(--text-primary);
+    }
+
+    *::-webkit-scrollbar-thumb{background:var(--scrollbar);}
+    *::-webkit-scrollbar-thumb:hover{background:var(--scrollbar-hover);}
+    *::-webkit-scrollbar-track{background:var(--scrollbar-track);}
+    /* >>> GPT ADD END: LIGHT THEME COLORS ONLY */
+
+@media (min-width: 901px) {
+  .header-bar {
+    padding: 3.2rem 3rem;
+  }
+  .header-bar__back {
+    display: none;
+  }
+  .header-bar__home {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: 1.05rem;
+    width: 86px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0;
+    transition: background .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .header-bar__theme-toggle {
+    left: 1.5rem;
+    right: auto;
+    width: 50px;
+    height: 50px;
+  }
+  .header-bar__title {
+    font-size: 1.58rem;
+  }
+    .header-bar__home:hover,
+    .header-bar__home:focus-visible {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 18px 42px -28px rgba(0, 0, 0, 0.45);
+    }
+}
+
+    body.theme-light .header-bar__home {
+      color: var(--text);
+      background: rgba(16, 36, 58, 0.08);
+      border: 1px solid rgba(16, 36, 58, 0.18);
+    }
+
+    body.theme-light .header-bar__home:hover,
+    body.theme-light .header-bar__home:focus-visible {
+      background: rgba(16, 36, 58, 0.16);
+      border-color: rgba(16, 36, 58, 0.26);
+      color: var(--text);
+      box-shadow: 0 18px 42px -28px rgba(16, 36, 58, 0.25);
+    }
+
+    body.theme-light .header-bar__back {
+      color: var(--text);
+    }
+
+
+    .toc a {
+      color: #e3f2ff;
+      text-decoration: none;
+      opacity: .92;
+     
+      padding: .35rem .75rem;
+      border: 1px solid rgba(81, 143, 214, 0.45);
+      border-radius: 0;
+      font-size: .9rem;
+      background: rgba(7, 20, 42, 0.55);
+      box-shadow: inset 0 0 0 1px rgba(54, 101, 166, 0.2);
+      transition: border-color .2s ease, opacity .2s ease, transform .2s ease;
+    }
+
+    .toc a:hover {
+      opacity: 1;
+      border-color: rgba(98, 178, 255, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .toc a:focus-visible {
+      outline: 2px solid rgba(98, 178, 255, 0.85);
+      outline-offset: 2px;
+    }
+
+    body.theme-light .toc a {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(120, 160, 220, 0.35);
+      box-shadow: inset 0 0 0 1px rgba(200, 220, 255, 0.35);
+      opacity: 0.95;
+    }
+
+    body.theme-light .toc a:hover {
+      border-color: rgba(90, 140, 220, 0.65);
+      background: rgba(240, 246, 255, 0.95);
+    }
+
+    body.theme-light .toc a:focus-visible {
+      outline: 2px solid rgba(90, 140, 220, 0.75);
+    }
+
+    main {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      min-height: 88vh;
+      padding: 1rem 0;
+      scroll-margin-top: 140px;
+      position: relative;
+    }
+
+    .wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      padding: 2.8rem clamp(1.4rem, 4vw, 3.4rem);
+      border-radius: 0;
+      background: linear-gradient(140deg, rgba(7, 22, 42, 0.85), rgba(11, 32, 58, 0.82));
+      border: 1px solid rgba(71, 135, 210, 0.35);
+      box-shadow: 0 35px 70px -45px rgba(5, 18, 38, 0.95), inset 0 1px 0 rgba(140, 191, 255, 0.08);
+      overflow: hidden;
+    }
+
+    body.theme-light .wrap {
+      background: linear-gradient(150deg, rgba(255, 255, 255, 0.9), rgba(232, 240, 255, 0.88));
+      border: 1px solid rgba(120, 150, 210, 0.35);
+      box-shadow: 0 30px 60px -38px rgba(140, 170, 210, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    section:not(:first-of-type)::before {
+      content: '';
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92%, 1200px);
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(95, 173, 255, 0.65), rgba(0, 0, 0, 0));
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    body.theme-light section:not(:first-of-type)::before {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(120, 160, 230, 0.65), rgba(255, 255, 255, 0));
+      opacity: .8;
+    }
+
+    section > .wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 90px 90px;
+      opacity: .32;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    section > .wrap::after {
+      content: '';
+      position: absolute;
+      inset: -35% -20% 45% -20%;
+      background: radial-gradient(circle at 50% 0%, rgba(75, 198, 255, 0.24) 0%, rgba(7, 22, 42, 0) 70%);
+      opacity: .8;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    body.theme-light section > .wrap::after {
+      background: radial-gradient(circle at 50% 0%, rgba(120, 170, 240, 0.28) 0%, rgba(255, 255, 255, 0) 75%);
+      opacity: .85;
+    }
+
+    section > .wrap > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-page,
+    #gallery,
+    .gallery-section,
+    section[id*="gallery"],
+    main {
+      --bg-900: #020814;
+      --bg-800: #041227;
+      --surface-2: rgba(8, 24, 45, 0.9);
+      --surface-3: rgba(12, 34, 62, 0.92);
+      --border: rgba(71, 135, 210, 0.32);
+      --divider: rgba(71, 135, 210, 0.22);
+      --text: #E7F1FF;
+      --text-muted: #8CACD8;
+      --text-subtle: #5F7FAE;
+      --focus: rgba(75, 198, 255, 0.85);
+      --shadow: 0 30px 60px -40px rgba(3, 21, 46, 0.85);
+      --radius: 8px;
+      --magenta: rgba(75, 198, 255, 0.28);
+      --pink: rgba(71, 135, 210, 0.28);
+      --orange: rgba(47, 150, 255, 0.28);
+      --violet: rgba(51, 104, 185, 0.28);
+      background: linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 100%);
+      color: var(--text);
+    }
+
+    body.theme-light .gallery-page,
+    body.theme-light #gallery,
+    body.theme-light .gallery-section,
+    body.theme-light section[id*="gallery"],
+    body.theme-light main {
+      --bg-900: #f7faff;
+      --bg-800: #edf2fb;
+      --surface-2: rgba(255, 255, 255, 0.92);
+      --surface-3: rgba(245, 248, 255, 0.92);
+      --border: rgba(120, 160, 220, 0.35);
+      --divider: rgba(140, 170, 220, 0.35);
+      --text: #10243a;
+      --text-muted: #4f637c;
+      --text-subtle: #73849a;
+      --focus: rgba(45, 120, 210, 0.75);
+      --shadow: 0 24px 40px -32px rgba(140, 170, 220, 0.55);
+      --magenta: rgba(90, 140, 220, 0.2);
+      --pink: rgba(110, 160, 240, 0.22);
+      --orange: rgba(160, 190, 250, 0.24);
+      --violet: rgba(120, 160, 240, 0.24);
+    }
+
+    .gallery-page h1, .gallery-page h2, .gallery-page h3,
+    #gallery h1, #gallery h2, #gallery h3,
+    .gallery-section h1, .gallery-section h2, .gallery-section h3,
+    section[id*="gallery"] h1, section[id*="gallery"] h2, section[id*="gallery"] h3,
+    main h1, main h2, main h3 {
+      color: var(--text);
+    }
+
+    .gallery-page .caption, #gallery .caption, .gallery-section .caption, section[id*="gallery"] .caption,
+    main .caption, main .section-sub {
+      color: var(--text-muted);
+    }
+
+    .gallery-page .card,
+    #gallery .card,
+    .gallery-section .card,
+    section[id*="gallery"] .card,
+    main .card,
+    .gallery-page .strip__thumbs .thumb,
+    #gallery .strip__thumbs .thumb,
+    .gallery-section .strip__thumbs .thumb,
+    section[id*="gallery"] .strip__thumbs .thumb,
+    main .strip__thumbs .thumb {
+      background: linear-gradient(160deg, rgba(9, 25, 45, 0.9), rgba(8, 34, 62, 0.92));
+      border: 1px solid rgba(71, 135, 210, 0.35);
+      border-radius: 0;
+      box-shadow: 0 26px 48px -34px rgba(4, 18, 38, 0.85), 0 0 0 1px rgba(41, 97, 180, 0.22);
+      color: var(--text);
+    }
+
+    body.theme-light .gallery-page .card,
+    body.theme-light #gallery .card,
+    body.theme-light .gallery-section .card,
+    body.theme-light section[id*="gallery"] .card,
+    body.theme-light main .card,
+    body.theme-light .gallery-page .strip__thumbs .thumb,
+    body.theme-light #gallery .strip__thumbs .thumb,
+    body.theme-light .gallery-section .strip__thumbs .thumb,
+    body.theme-light section[id*="gallery"] .strip__thumbs .thumb,
+    body.theme-light main .strip__thumbs .thumb {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(236, 242, 255, 0.96));
+      border: 1px solid rgba(140, 170, 220, 0.4);
+      box-shadow: 0 24px 44px -32px rgba(150, 180, 220, 0.55), 0 0 0 1px rgba(200, 220, 255, 0.4);
+      color: var(--text);
+    }
+
+    .gallery-page .card:hover,
+    #gallery .card:hover,
+    .gallery-section .card:hover,
+    section[id*="gallery"] .card:hover,
+    main .card:hover,
+    .gallery-page .strip__thumbs .thumb:hover,
+    #gallery .strip__thumbs .thumb:hover,
+    .gallery-section .strip__thumbs .thumb:hover,
+    section[id*="gallery"] .strip__thumbs .thumb:hover,
+    main .strip__thumbs .thumb:hover {
+      background: linear-gradient(160deg, rgba(13, 36, 63, 0.92), rgba(16, 45, 80, 0.95));
+      border-color: rgba(95, 173, 255, 0.5);
+      box-shadow: 0 30px 60px -34px rgba(8, 28, 58, 0.92), 0 0 0 1px rgba(90, 168, 255, 0.35);
+    }
+
+    body.theme-light .gallery-page .card:hover,
+    body.theme-light #gallery .card:hover,
+    body.theme-light .gallery-section .card:hover,
+    body.theme-light section[id*="gallery"] .card:hover,
+    body.theme-light main .card:hover,
+    body.theme-light .gallery-page .strip__thumbs .thumb:hover,
+    body.theme-light #gallery .strip__thumbs .thumb:hover,
+    body.theme-light .gallery-section .strip__thumbs .thumb:hover,
+    body.theme-light section[id*="gallery"] .strip__thumbs .thumb:hover,
+    body.theme-light main .strip__thumbs .thumb:hover {
+      background: linear-gradient(160deg, rgba(245, 249, 255, 0.98), rgba(222, 232, 250, 0.98));
+      border-color: rgba(110, 150, 220, 0.55);
+      box-shadow: 0 28px 52px -36px rgba(140, 170, 220, 0.6), 0 0 0 1px rgba(180, 210, 255, 0.45);
+    }
+
+    .gallery-page .card:focus-visible,
+    #gallery .card:focus-visible,
+    .gallery-section .card:focus-visible,
+    section[id*="gallery"] .card:focus-visible,
+    main .card:focus-visible,
+    .gallery-page .strip__thumbs .thumb:focus-visible,
+    #gallery .strip__thumbs .thumb:focus-visible,
+    .gallery-section .strip__thumbs .thumb:focus-visible,
+    section[id*="gallery"] .strip__thumbs .thumb:focus-visible,
+    main .strip__thumbs .thumb:focus-visible,
+    .gallery-page .arrow:focus-visible,
+    #gallery .arrow:focus-visible,
+    .gallery-section .arrow:focus-visible,
+    section[id*="gallery"] .arrow:focus-visible,
+    main .arrow:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .gallery-page .arrow,
+    #gallery .arrow,
+    .gallery-section .arrow,
+    section[id*="gallery"] .arrow,
+    main .arrow,
+    .gallery-page button,
+    #gallery button,
+    .gallery-section button,
+    section[id*="gallery"] button,
+    main button {
+      background: linear-gradient(150deg, rgba(7, 22, 44, 0.85), rgba(10, 32, 61, 0.82));
+      border: 1px solid rgba(71, 135, 210, 0.35);
+      color: var(--text);
+      box-shadow: 0 20px 45px -32px rgba(4, 18, 35, 0.8);
+    }
+
+    body.theme-light .gallery-page .arrow,
+    body.theme-light #gallery .arrow,
+    body.theme-light .gallery-section .arrow,
+    body.theme-light section[id*="gallery"] .arrow,
+    body.theme-light main .arrow,
+    body.theme-light .gallery-page button,
+    body.theme-light #gallery button,
+    body.theme-light .gallery-section button,
+    body.theme-light section[id*="gallery"] button,
+    body.theme-light main button {
+      background: linear-gradient(150deg, rgba(255, 255, 255, 0.95), rgba(234, 242, 255, 0.92));
+      border: 1px solid rgba(140, 170, 220, 0.35);
+      color: var(--text);
+      box-shadow: 0 18px 40px -30px rgba(150, 180, 220, 0.5);
+    }
+
+    .gallery-page button:hover,
+    #gallery button:hover,
+    .gallery-section button:hover,
+    section[id*="gallery"] button:hover,
+    main button:hover {
+      background: linear-gradient(150deg, rgba(16, 45, 80, 0.92), rgba(22, 62, 112, 0.96));
+      border-color: rgba(95, 173, 255, 0.5);
+    }
+
+    body.theme-light .gallery-page button:hover,
+    body.theme-light #gallery button:hover,
+    body.theme-light .gallery-section button:hover,
+    body.theme-light section[id*="gallery"] button:hover,
+    body.theme-light main button:hover {
+      background: linear-gradient(150deg, rgba(238, 243, 255, 0.98), rgba(222, 232, 250, 0.98));
+      border-color: rgba(120, 160, 220, 0.5);
+    }
+
+    .gallery-page hr,
+    #gallery hr,
+    .gallery-section hr,
+    section[id*="gallery"] hr,
+    main hr {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(95, 173, 255, 0.45), rgba(0, 0, 0, 0));
+      height: 2px;
+      border: none;
+      opacity: 1;
+    }
+
+    .gallery-page .page-bg, #gallery .page-bg, .gallery-section .page-bg, section[id*="gallery"] .page-bg, main .page-bg {
+      background: linear-gradient(180deg, rgba(6, 20, 40, 0.9) 0%, rgba(4, 18, 38, 0.9) 100%);
+      filter: drop-shadow(0 40px 80px rgba(5, 18, 38, 0.45));
+    }
+
+    .gallery-page .orb, #gallery .orb, .gallery-section .orb, section[id*="gallery"] .orb, main .orb {
+      background: radial-gradient(circle at 50% 50%, rgba(75, 198, 255, 0.45) 0%, rgba(7, 26, 56, 0) 65%);
+      box-shadow: none;
+      opacity: .55;
+      mix-blend-mode: screen;
+    }
+
+    .section-head {
+      margin: 0 1rem 1.6rem;
+      display: grid;
+      gap: .35rem;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.35rem, 1.8vw + 1rem, 1.9rem);
+      color: #f4f9ff;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+
+    body.theme-light .section-title {
+      color: #0B1220;
+    }
+
+    .section-sub {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: .98rem;
+    }
+
+    body.theme-light .section-sub {
+      color: #1c2a3f;
+    }
+
+    .strip {
+      --arrow-offset: 3.25rem;
+      --card-width: 75%;
+      --card-margin: 12.5%;
+      --card-height: min(62vh, 620px);
+      position: relative;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      padding: var(--arrow-offset) 0 3px;
+    }
+
+    .strip__scroller {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      align-items: stretch;
+      scroll-padding: 0;
+    }
+
+    .strip__scroller {
+      scrollbar-width: none;
+    }
+
+    .strip__scroller::-webkit-scrollbar {
+      height: 0;
+      width: 0;
+      display: none;
+    }
+
+    .card {
+      position: relative;
+      flex: 0 0 var(--card-width);
+      max-width: var(--card-width);
+      margin: 0 var(--card-margin);
+      height: var(--card-height);
+      
+      overflow: hidden;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      display: grid;
+      place-items: center;
+      cursor: zoom-in;
+      transform: none;
+      opacity: 1;
+      transition: transform .35s ease, opacity .35s ease;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      
+      border: 1px solid rgba(95, 173, 255, 0.28);
+      box-shadow: inset 0 0 35px rgba(57, 140, 226, 0.12);
+      opacity: 0;
+      transition: opacity .3s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::after,
+    .card.is-active::after {
+      opacity: 1;
+      
+    }
+
+    .card.is-active {
+      transform: none;
+      z-index: 2;
+    }
+
+    .card.card--slide-from-right,
+    .card.card--slide-from-left {
+      opacity: 0;
+    }
+
+    .card.card--slide-from-right {
+      transform: translateX(18%);
+    }
+
+    .card.card--slide-from-left {
+      transform: translateX(-18%);
+    }
+
+    .card.card--slide-active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 5px;
+      transition: transform .35s ease, filter .35s ease;
+    }
+
+    .card:hover img,
+    .card.is-active img {
+      transform: scale(1.03);
+      filter: brightness(1.08);
+    }
+    .strip__thumbs {
+      position: relative;
+      display: flex;
+      flex-wrap: nowrap;
+      margin-top: 1rem;
+      gap:5px;
+      padding: 1.25rem .85rem 1.3rem;
+      align-items: center;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      scroll-snap-type: x proximity;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      background: rgba(7, 20, 42, 0.6);
+      
+      border: 1px solid rgba(71, 135, 210, 0.3);
+      box-shadow: inset 0 1px 0 rgba(140, 191, 255, 0.08), 0 22px 48px -36px rgba(5, 18, 38, 0.9);
+    }
+
+    .strip__thumbs::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    .strip__thumbs .thumb {
+      position: relative;
+      flex: 0 0 auto;
+      width: 110px;
+      height: 78px;
+      
+      overflow: hidden;
+      border: 1px solid rgba(71, 135, 210, 0.32);
+      border-radius: 5px;
+      cursor: pointer;
+      scroll-snap-align: center;
+      transition: transform .18s ease, border-color .18s ease, opacity .18s ease;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-x;
+      box-shadow: 0 16px 32px -24px rgba(5, 18, 38, 0.85);
+    }
+
+    .strip__thumbs .thumb::before,
+    .strip__thumbs .thumb::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 14px;
+      pointer-events: none;
+      transition: opacity .2s ease;
+      opacity: .55;
+    }
+
+    .strip__thumbs .thumb::before {
+      left: 0;
+      background: linear-gradient(90deg, rgba(5, 18, 38, 0.7) 0%, rgba(5, 18, 38, 0) 100%);
+    }
+
+    .strip__thumbs .thumb::after {
+      right: 0;
+      background: linear-gradient(270deg, rgba(5, 18, 38, 0.7) 0%, rgba(5, 18, 38, 0) 100%);
+    }
+
+    .strip__thumbs .thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+    .strip__thumbs .thumb.active,
+    .strip__thumbs .thumb.is-active,
+    .strip__thumbs .thumb.is-current {
+      transform: translateY(-5px) scale(1.06);
+      border: 2px solid rgba(95, 173, 255, 0.85);
+      box-shadow: 0 18px 32px -22px rgba(68, 164, 255, 0.6);
+    }
+
+    .strip__thumbs::before,
+    .strip__thumbs::after {
+      content: none;
+    }
+
+    .arrow {
+      position: absolute;
+      top: calc(var(--arrow-offset) + (var(--card-height) / 2) - 21px);
+      transform: none;
+      background: linear-gradient(140deg, rgba(9, 28, 54, 0.82), rgba(16, 46, 90, 0.88));
+      border: 1px solid rgba(95, 173, 255, 0.55);
+      color: #E7F1FF;
+      width: 42px;
+      height: 42px;
+      border-radius: 0;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 24px 48px -32px rgba(5, 18, 38, 0.9);
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+      z-index: 3;
+    }
+
+    .arrow:hover {
+      background: linear-gradient(140deg, rgba(16, 46, 90, 0.95), rgba(26, 72, 130, 0.98));
+      border-color: rgba(120, 195, 255, 0.85);
+      transform: translateY(-1px);
+    }
+
+    .arrow--left {
+      left: calc(var(--card-margin) - 5%);
+    }
+
+    .arrow--right {
+      right: calc(var(--card-margin) - 5%);
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: calc(1.75rem - 10px);
+      right: 1.75rem;
+      width: 50px;
+      height: 50px;
+      border: 1px solid var(--outline, rgba(95, 173, 255, 0.32));
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(7, 26, 52, 0.92), rgba(20, 72, 132, 0.92));
+      color: var(--primary-bright, #deefff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 22px 48px -30px rgba(5, 18, 38, 0.85);
+      z-index: 60;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .back-to-top--visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: linear-gradient(135deg, rgba(10, 38, 72, 0.95), rgba(47, 150, 255, 0.92));
+      box-shadow: 0 26px 56px -28px rgba(47, 150, 255, 0.55);
+    }
+
+    .back-to-top:focus-visible {
+      outline: 3px solid rgba(95, 173, 255, 0.65);
+      outline-offset: 3px;
+    }
+
+    .back-to-top__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-to-top__graphic {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    .cta-float {
+      position: fixed;
+      bottom: calc(1.75rem - 10px);
+      right: calc(1.75rem + 60px);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(95, 173, 255, 0.45);
+      background: linear-gradient(135deg, rgba(11, 43, 86, 0.94), rgba(47, 150, 255, 0.94));
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 28px 60px -32px rgba(47, 150, 255, 0.6);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      z-index: 35;
+    }
+
+    .cta-float:hover {
+      background: linear-gradient(135deg, rgba(20, 62, 110, 0.96), rgba(73, 173, 255, 0.96));
+      box-shadow: 0 32px 68px -30px rgba(73, 173, 255, 0.65);
+      transform: translateY(-4px);
+    }
+
+    .cta-float:focus-visible {
+      outline: 3px solid rgba(95, 173, 255, 0.65);
+      outline-offset: 3px;
+    }
+
+    .cta-float svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+      display: block;
+    }
+
+    body.theme-light .cta-float {
+      border-color: rgba(47, 131, 210, 0.4);
+      background: linear-gradient(135deg, rgba(225, 236, 255, 0.96), rgba(172, 206, 255, 0.96));
+      color: #0B1220;
+      box-shadow: 0 26px 60px -34px rgba(47, 131, 210, 0.55);
+    }
+
+    body.theme-light .cta-float:hover {
+      background: linear-gradient(135deg, rgba(210, 228, 255, 0.98), rgba(160, 200, 255, 0.98));
+      box-shadow: 0 30px 70px -34px rgba(47, 131, 210, 0.6);
+    }
+
+    body.theme-light .cta-float svg {
+      fill: currentColor;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0,0,0,.85);
+      display: none;
+    }
+
+    .lightbox[aria-hidden="false"] {
+      display: block;
+    }
+
+    .lightbox__chrome {
+      position: absolute;
+      top: 1.4rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      gap: 1rem;
+    }
+
+    .lightbox__controls {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+
+    .lb-btn {
+      background: rgba(17,24,39,.6);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 0;
+      padding: .35rem .9rem;
+      cursor: pointer;
+    }
+
+    .lb-btn:hover {
+      background: rgba(255,255,255,.18);
+    }
+
+    .lightbox__stage {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .lb-viewport {
+      max-width: min(1200px, 90vw);
+      max-height: min(90vh, 720px);
+      position: relative;
+      overflow: hidden;
+      border-radius: 0;
+      background: #0b1120;
+      display: grid;
+      place-items: center;
+    }
+
+    .lb-img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      transform-origin: center center;
+      transition: transform .15s ease;
+    }
+
+    @media (max-width: 768px) {
+      .lb-viewport {
+        width: 100vw;
+        max-width: 100vw;
+        height: 70vh;
+        max-height: 70vh;
+      }
+
+      .lb-img {
+        width: 100%;
+        height: 70vh;
+        max-height: 70vh;
+        object-fit: contain;
+      }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        background-size: 160px 160px;
+      }
+
+      header.gallery-header {
+        padding: .9rem 1rem;
+        border-bottom: 1px solid rgba(95, 173, 255, 0.28);
+        box-shadow: 0 18px 48px -34px rgba(5, 18, 38, 0.75);
+      }
+
+      .topbar {
+        padding: 1rem 1.1rem;
+        border-radius: 0;
+        gap: .6rem;
+        width: 90%;
+        margin: 0 5%;
+      }
+
+      .toc {
+        gap: .35rem;
+      }
+
+      section {
+        min-height: auto;
+        padding: 3.2rem 0;
+        scroll-margin-top: 120px;
+      }
+
+      section:not(:first-of-type)::before {
+        width: min(95%, 1000px);
+        top: .5rem;
+      }
+
+      .wrap {
+        padding: 2.1rem 1.4rem;
+        border-radius: 0;
+      }
+
+      .section-head {
+        margin: 0 .6rem 1.1rem;
+      }
+
+      .strip {
+        --arrow-offset: 2.75rem;
+        padding: var(--arrow-offset) 0 2px;
+      }
+
+      .card {
+        flex-basis: 100%;
+        max-width: 100%;
+        margin: 0 0 .4rem;
+        height: 65vh;
+        aspect-ratio: auto;
+      }
+
+      .topbar,
+      .strip__thumbs,
+      .card,
+      .zoom-overlay__viewport,
+      .zoom-overlay__image {
+        border-radius: 0;
+      }
+
+      .card img,
+      .strip__thumbs .thumb,
+      .strip__thumbs .thumb img {
+        border-radius: 5px;
+      }
+
+      .strip__thumbs {
+        padding: 1rem .5rem .25rem;
+      }
+
+      .strip__thumbs .thumb {
+        width: 96px;
+        height: 70px;
+      }
+
+      .strip__thumbs .thumb img {
+        object-fit: cover;
+      }
+
+      .arrow {
+        display: none;
+      }
+
+      .zoom-overlay__viewport {
+        width: 96vw;
+        max-width: 96vw;
+        height: 70vh;
+        max-height: 70vh;
+        aspect-ratio: auto;
+        background: rgba(8, 18, 38, 0.95);
+        border-radius: 0;
+        overflow: hidden;
+      }
+
+      .zoom-overlay__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      body.zoom-overlay--lock .zoom-overlay__viewport {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 65vh !important;
+        max-height: 65vh !important;
+      }
+
+      body.zoom-overlay--lock .zoom-overlay__image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .zoom-overlay__button {
+        display: none;
+      }
+
+      .zoom-overlay__close {
+        display: block;
+        top: 0;
+        right: 0;
+        transform: translate(40%, -60%);
+        padding: 0.45rem 0.7rem;
+        font-size: 1.25rem;
+      }
+
+      .card img {
+        object-fit: cover;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .card {
+        flex-basis: 100vw;
+        margin: .2rem 0;
+        transform: none;
+        max-width: 100%;
+      }
+
+      .strip {
+        --arrow-offset: 2.4rem;
+        padding: var(--arrow-offset) 0 2px;
+      }
+
+      .strip__scroller {
+        gap: 0;
+        padding-inline: 0;
+      }
+
+      .section-head {
+        margin: 0 .5rem .8rem;
+      }
+      .zoom-overlay__button {
+        display: none;
+      }
+      .zoom-overlay__nav {
+        gap: 0;
+      }
+      .zoom-overlay__viewport {
+        width: 96vw;
+        max-width: 96vw;
+        height: 70vh;
+        max-height: 70vh;
+        aspect-ratio: auto;
+        background: rgba(8, 18, 38, 0.95);
+        border-radius: 0;
+      }
+      .zoom-overlay__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .sr {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: transform .6s ease, opacity .6s ease;
+      will-change: transform, opacity;
+    }
+
+    .sr.reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sr {
+        opacity: 1;
+        transform: none !important;
+        transition: none;
+      }
+      .back-to-top {
+        transition: none;
+      }
+    }
+  </style>
+  <style>
+    /* CURSOR_ZOOM: utils */
+    .is-zooming {
+      cursor: grab;
+    }
+
+    .is-zooming:active {
+      cursor: grabbing;
+    }
+  </style>
+  <style>
+    .zoom-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .zoom-overlay.is-visible {
+      display: flex;
+    }
+    .zoom-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(6px);
+    }
+    .zoom-overlay__dialog,
+    .zoomed-wrapper {
+      position: relative;
+      max-width: min(90vw, 1200px);
+      max-height: min(90vh, 80rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 1;
+    }
+    .zoom-overlay__image {
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0;
+      background: #0f172a;
+      transform-origin: center center;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      will-change: transform, opacity;
+    }
+    .zoom-overlay__close {
+      display: none;
+      position: absolute;
+      top: -15px;
+      right: 0;
+      background: rgba(15, 23, 42, 0.85);
+      border: none;
+      border-radius: 0;
+      color: #f8fafc;
+      font-size: 1.1rem;
+      padding: 0.5rem 0.9rem;
+      cursor: pointer;
+    }
+    .zoom-overlay__close:hover {
+      background: rgba(30, 41, 59, 0.95);
+    }
+    .zoom-overlay__nav {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .zoom-overlay__viewport {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      width: auto;
+      height: auto;
+      max-width: min(88vw, 1120px);
+      max-height: min(85vh, 70rem);
+      border-radius: 0;
+      background: #0f172a;
+    }
+    .zoom-overlay__button {
+      background: rgba(15, 23, 42, 0.7);
+      border: none;
+      border-radius: 0;
+      color: #e2e8f0;
+      padding: 0.65rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .zoom-overlay__button:hover {
+      background: rgba(30, 41, 59, 0.9);
+    }
+    body.zoom-overlay--lock {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <header class="gallery-header header-bar">
+    <a href="index.html" class="header-bar__back" aria-label="Voltar para a página inicial" title="Home">
+      <svg class="header-bar__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+        <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+      </svg>
+    </a>
+    <span class="header-bar__title">NCR - Gallery Portifolio</span>
+    <button type="button" class="header-bar__theme-toggle" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">
+      <svg class="icon-dark" id="icon-moon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+        <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/>
+      </svg>
+      <svg class="icon-light" id="icon-sun" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+        <path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z"/>
+      </svg>
+    </button>
+    <a href="index.html" class="header-bar__home" aria-label="Ir para Home" title="Home">Home</a>
+  </header>
+  <main>
+    <section id="carpentry">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title">Portifolio</h2>
+          <p class="section-sub">Framing, finish carpentry, and custom woodwork.</p>
+        </div>
+        <div class="strip" data-strip data-category="carpentry" data-label="Portifolio">
+          <button class="arrow arrow--left" data-left aria-label="Previous">&lsaquo;</button>
+          <div class="strip__scroller" data-scroller></div>
+          <div class="strip__thumbs" data-thumbs></div>
+          <button class="arrow arrow--right" data-right aria-label="Next">&rsaquo;</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox__chrome">
+      <div class="lightbox__controls">
+        <button class="lb-btn" data-zoom-in type="button">Zoom +</button>
+        <button class="lb-btn" data-zoom-out type="button">Zoom -</button>
+        <button class="lb-btn" data-zoom-reset type="button">Reset</button>
+      </div>
+      <button class="lb-btn" data-close type="button" aria-label="Close (Esc)">Close &times;</button>
+    </div>
+    <div class="lightbox__stage">
+      <div class="lb-viewport" id="lb-viewport">
+        <img class="lb-img" id="lb-img" alt="Zoomed image" />
+      </div>
+    </div>
+  </div>
+
+  <div class="zoom-overlay" aria-hidden="true">
+    <div class="zoom-backdrop"></div>
+    <div class="zoom-overlay__dialog zoomed-wrapper">
+      <button type="button" class="zoom-overlay__close btn-close" aria-label="Fechar">&times;</button>
+      <div class="zoom-overlay__nav">
+        <button type="button" class="zoom-overlay__button zoom-overlay__button--prev btn-prev" aria-label="Anterior">&#10094;</button>
+        <div class="zoom-overlay__viewport">
+          <img class="zoom-overlay__image zoomed-image" alt="Imagem ampliada" />
+        </div>
+        <button type="button" class="zoom-overlay__button zoom-overlay__button--next btn-next" aria-label="Próxima">&#10095;</button>
+      </div>
+    </div>
+  </div>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">
+    <span class="back-to-top__icon" aria-hidden="true">
+      <svg class="back-to-top__graphic" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-120v-240H120l360-440 360 440H640v240H320Zm80-80h160v-240h111L480-674 289-440h111v240Zm80-240Z"/></svg>
+    </span>
+  </button>
+     <div id="botao-contato-flutuante-ncr">
+    <style>
+
+
+
+/* ================== BASE (DESKTOP MANTÉM HOVER) ================== */
+#botao-contato-flutuante-ncr{
+  --tam: 50px;            /* diâmetro do botão */
+  --direita: 30px;        /* distância da direita */
+  --fundo: 80px;          /* distância do rodapé */
+  --subida: 8px;          /* quanto o botão sobe no hover/foco */
+
+  /* Cores */
+  --cor-fundo: #275595;   /* botão */
+  --cor-balao: #275595;   /* balão */
+  --cor-texto: #FFFFFF;   /* texto do balão */
+}
+
+#botao-contato-flutuante-ncr{
+  position: fixed;
+  right: var(--direita);
+  bottom: var(--fundo);
+  z-index: 9999;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+#botao-contato-flutuante-ncr .encaixe-balao-ncr{ position: relative; }
+
+#botao-contato-flutuante-ncr .acionador-contato-ncr{
+  width: var(--tam);
+  height: var(--tam);
+  border-radius: 999px;
+  background: var(--cor-fundo);
+  color: #fff; /* SVG herda via currentColor */
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  outline: none;
+  transition: transform .4s ease;
+  will-change: transform;
+}
+#botao-contato-flutuante-ncr .acionador-contato-ncr:focus-visible{
+  outline: 2px solid #2FB6FF; outline-offset: 3px;
+}
+
+#botao-contato-flutuante-ncr .balao-contato-ncr{
+  position: absolute;
+  right: calc(var(--tam) + 10px);
+  bottom: calc((var(--tam) - 30px)/2 + 20px); /* base desktop */
+  background: var(--cor-balao);
+  color: var(--cor-texto);
+  padding: 12px 19px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity .4s ease-in-out, transform .4s ease;
+  pointer-events: none;
+}
+#botao-contato-flutuante-ncr .balao-contato-ncr::after{
+  content:"";
+  position:absolute;
+  right:-6px; top:50%; transform:translateY(-50%);
+  border:6px solid transparent;
+  border-left-color: var(--cor-balao);
+}
+
+/* Interação desktop: botão sobe; balão aparece e desliza */
+#botao-contato-flutuante-ncr:hover .acionador-contato-ncr,
+#botao-contato-flutuante-ncr:focus-within .acionador-contato-ncr{
+  transform: translateY(calc(-1 * var(--subida)));
+}
+#botao-contato-flutuante-ncr:hover .balao-contato-ncr,
+#botao-contato-flutuante-ncr:focus-within .balao-contato-ncr{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ================== SOMENTE MOBILE/TABLET (RESPONSIVO) ================== */
+@media (max-width: 768px){
+
+  /* ---- AJUSTES RÁPIDOS (edite aqui) ---- */
+  #botao-contato-flutuante-ncr{
+    --direita: 50px;          /* posição horizontal no mobile */
+    --fundo:   70px;          /* posição vertical (distância do rodapé) */   /* <<< LOCALIDADE (edite livremente) */
+    --balao-y: 0px;           /* <<< ALTURA FINA do balão (offset no eixo Y) */
+  }
+
+  /* Alinhar balão ao centro vertical do botão (horizontalmente ao lado) */
+  #botao-contato-flutuante-ncr .balao-contato-ncr{
+    right: calc(var(--tam) - 40px);
+    top: 50%;
+    bottom: auto;
+    /* Texto mobile e animação */
+    color: transparent;                   /* esconde texto original */
+    animation: ncr-balao-loop 15s ease-in-out infinite; /* 5s on + 15s off */
+    will-change: opacity, transform;
+  }
+  /* Oculta qualquer filho textual interno no mobile */
+  #botao-contato-flutuante-ncr .balao-contato-ncr *{
+    display: none !important;
+  }
+
+  /* Texto mobile: frase fixa + localidade dinâmica */
+  #botao-contato-flutuante-ncr .balao-contato-ncr::before{
+    content: "Hello Ready for Contact us?";
+    color: var(--cor-texto);
+  }
+
+  /* Ciclo: aparece ~5s, some ~15s, repete. Alinhado ao centro do botão. */
+  @keyframes ncr-balao-loop{
+    0%   { opacity:0; transform: translate(8px, calc(-50% + var(--balao-y))); }
+    2%   { opacity:1; transform: translate(0,    calc(-50% + var(--balao-y))); }
+    25%  { opacity:1; transform: translate(0,    calc(-50% + var(--balao-y))); } /* ~5s */
+    26%  { opacity:0; transform: translate(8px,  calc(-50% + var(--balao-y))); }
+    100% { opacity:0; transform: translate(8px,  calc(-50% + var(--balao-y))); }
+  }
+
+  /* Pausa a animação se houver interação no mobile */
+  #botao-contato-flutuante-ncr:hover .balao-contato-ncr,
+  #botao-contato-flutuante-ncr:focus-within .balao-contato-ncr{
+    animation-play-state: paused;
+  }
+}
+
+
+      /* ===== Ajustes rápidos ===== */
+      #botao-contato-flutuante-ncr{
+        --tam: 50px;            /* diâmetro do botão */
+        --direita: 30px;        /* distância da direita */
+        --fundo: 80px;          /* distância do rodapé */
+        --subida: 8px;          /* quanto o botão sobe no hover/foco */
+
+        /* Cores (um pouco mais claras) */
+        --cor-fundo: #275595;   /* botão */
+        --cor-balao: #275595;   /* balão */
+        --cor-texto: #FFFFFF;   /* texto do balão */
+      }
+
+      /* Posição fixa do conjunto */
+      #botao-contato-flutuante-ncr{
+        position: fixed;
+        right: var(--direita);
+        bottom: var(--fundo);
+        z-index: 9999;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+
+      /* Encaixe do balão relativo ao botão */
+      #botao-contato-flutuante-ncr .encaixe-balao-ncr{ position: relative; }
+
+      /* Acionador (link redondo) */
+      #botao-contato-flutuante-ncr .acionador-contato-ncr{
+        width: var(--tam);
+        height: var(--tam);
+        border-radius: 999px;
+        background: var(--cor-fundo);
+        color: #fff; /* SVG herda via currentColor */
+        display: grid;
+        place-items: center;
+        text-decoration: none;
+        outline: none;
+        transition: transform .4s ease; /* translateY suave */
+        will-change: transform;
+      }
+      #botao-contato-flutuante-ncr .acionador-contato-ncr:focus-visible{
+        outline: 2px solid #2FB6FF; outline-offset: 3px;
+      }
+
+      /* Balão de contato: surge da direita para a esquerda */
+      #botao-contato-flutuante-ncr .balao-contato-ncr{
+        position: absolute;
+        right: calc(var(--tam) + 10px);
+        bottom: calc((var(--tam) - 30px)/2 - 20px); /* balão 20px mais alto */
+        background: var(--cor-balao);
+        color: var(--cor-texto);
+        padding:14px 19px 24px 19px;
+        
+        border-radius: 8px;
+        white-space: nowrap;
+        font-size: 11px;
+        line-height: 1;
+        opacity: 0;
+        transform: translateX(8px);           /* entra da direita -> esquerda */
+        transition: opacity .4s ease-in-out, transform .4s ease-in;
+        pointer-events: none;
+      }
+      #botao-contato-flutuante-ncr .balao-contato-ncr::after{
+        content:"";
+        position:absolute;
+        right:-6px; top:50%; transform:translateY(-50%);
+        border:6px solid transparent;
+        border-left-color: var(--cor-balao);
+      }
+
+      /* Interação: botão sobe; balão aparece e desliza */
+      #botao-contato-flutuante-ncr:hover .acionador-contato-ncr,
+      #botao-contato-flutuante-ncr:focus-within .acionador-contato-ncr{
+        transform: translateY(calc(-1 * var(--subida)));
+      }
+      #botao-contato-flutuante-ncr:hover .balao-contato-ncr,
+      #botao-contato-flutuante-ncr:focus-within .balao-contato-ncr{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    </style>
+
+    <div class="encaixe-balao-ncr">
+      <!-- Link para o formulário -->
+      <a class="acionador-contato-ncr" href="form.html" aria-label="Formulário de contato">
+        <!-- SVG com edições *dentro da tag* (sem CSS externo para svg) -->
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 -960 960 960"
+             aria-hidden="true"
+             width="28" height="28"  
+             fill="currentColor"
+             style="display:block">
+          <path d="M480-440 160-640v400h360v80H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v280h-80v-200L480-440Zm0-80 320-200H160l320 200ZM760-40l-56-56 63-64H600v-80h167l-64-64 57-56 160 160L760-40ZM160-640v440-240 3-283 80Z"/>
+        </svg>
+      </a>
+
+      <div class="balao-contato-ncr">Hello Ready for Contact us?</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const STORAGE_KEY = 'ncr-gallery-theme';
+      const body = document.body;
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      if (!toggle) return;
+
+      const getTheme = () => {
+        const dataTheme = root.getAttribute('data-theme');
+        if (dataTheme === 'light' || dataTheme === 'dark') return dataTheme;
+        if (root.classList.contains('dark') || body.classList.contains('dark')) return 'dark';
+        return body.classList.contains('theme-light') ? 'light' : 'dark';
+      };
+
+      const updateThemeIcon = () => {
+        const current = getTheme();
+        const nextLabel = current === 'light' ? 'Switch to dark theme' : 'Switch to light theme';
+        toggle.setAttribute('aria-label', nextLabel);
+        toggle.setAttribute('title', nextLabel);
+        toggle.dataset.mode = current === 'light' ? 'light' : 'dark';
+      };
+
+      const applyTheme = (mode) => {
+        const light = mode === 'light';
+        root.setAttribute('data-theme', light ? 'light' : 'dark');
+        body.classList.toggle('theme-light', light);
+        toggle.setAttribute('aria-pressed', light ? 'true' : 'false');
+        updateThemeIcon();
+      };
+
+      let stored = null;
+      try {
+        stored = window.localStorage.getItem(STORAGE_KEY);
+      } catch (err) {
+        stored = null;
+      }
+
+      const prefersLight = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)').matches : false;
+      const initialMode = stored === 'light' || (stored === null && prefersLight) ? 'light' : 'dark';
+      applyTheme(initialMode);
+
+      if (typeof window.setTheme === 'function' && !window.setTheme._themeIconHooked) {
+        const originalSetTheme = window.setTheme;
+        window.setTheme = function (...args) {
+          const result = originalSetTheme.apply(this, args);
+          updateThemeIcon();
+          return result;
+        };
+        window.setTheme._themeIconHooked = true;
+      }
+
+      if (typeof window.toggleTheme === 'function' && !window.toggleTheme._themeIconHooked) {
+        const originalToggleTheme = window.toggleTheme;
+        window.toggleTheme = function (...args) {
+          const result = originalToggleTheme.apply(this, args);
+          updateThemeIcon();
+          return result;
+        };
+        window.toggleTheme._themeIconHooked = true;
+      }
+
+      const observer = new MutationObserver(updateThemeIcon);
+      observer.observe(root, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+      observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+
+      toggle.addEventListener('click', () => {
+        const next = getTheme() === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        try {
+          window.localStorage.setItem(STORAGE_KEY, next);
+        } catch (err) {
+          /* ignore storage errors */
+        }
+      });
+
+      updateThemeIcon();
+    })();
+  </script>
+  <script>
+    // >>> GPT ADD START: THEME TOGGLE SANITIZER
+    (function () {
+      const root = document.documentElement;
+      const body = document.body;
+      const btn = document.getElementById('themeToggle');
+
+      function getTheme() {
+        const dt = root.getAttribute('data-theme');
+        if (dt === 'light' || dt === 'dark') return dt;
+        if (root.classList.contains('dark') || body.classList.contains('dark')) return 'dark';
+        return 'light';
+      }
+
+      function stripTextNodes(el) {
+        if (!el) return;
+        [...el.childNodes].forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length) {
+            node.remove();
+          }
+        });
+      }
+
+      function updateA11yLabel() {
+        if (!btn) return;
+        const theme = getTheme();
+        const label = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+        btn.setAttribute('aria-label', label);
+        btn.title = label;
+      }
+
+      stripTextNodes(btn);
+      updateA11yLabel();
+
+      const observer = new MutationObserver(() => {
+        stripTextNodes(btn);
+        updateA11yLabel();
+      });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+      observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    })();
+    // >>> GPT ADD END: THEME TOGGLE SANITIZER
+  </script>
+  <script>
+    (() => {
+      const header = document.querySelector('.header-bar');
+      if (!header) return;
+      [...header.childNodes].forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length) {
+          node.remove();
+        }
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.addEventListener('load', () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+
+      const MOBILE_CATEGORY_OVERRIDES = {
+        carpentry: [
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074540/PXL_20250724_185817706_tywopj.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761077180/PXL_20250613_214013216_tedc4z.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761076758/PXL_20250527_121835255_uaxogz.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074496/PXL_20250724_184321066_pdyhzm.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074497/PXL_20250724_184617909_pznuua.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074512/PXL_20250724_184644656.MP_v84ks0.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074512/PXL_20250724_184833226_fbj2rt.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074497/PXL_20250724_184508764_czttxa.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074013/PXL_20250805_184525878_pmiolz.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073976/PXL_20250805_211344546.MP_dqjmbj.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074014/PXL_20250805_211314236_j0h38l.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073960/PXL_20250805_220150105.MP_qywnti.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073940/PXL_20250805_183200430_lc85of.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073950/PXL_20250805_142554952.MP_uamqag.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073920/PXL_20250805_142604784_zbdo6n.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073660/PXL_20250806_212140403.MP_eteirl.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073641/PXL_20250813_140341147.MP_cjq2hx.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073594/PXL_20250918_223329914_vzo896.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073572/PXL_20250919_202514423_ttwp3r.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761072429/PXL_20250924_194937109_rbwrzx.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761071120/PXL_20251003_215749250_wk0w48.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761068112/PXL_20251014_170507548_h91cap.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761070692/PXL_20251014_170505338_h2ukyf.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073628/PXL_20250808_153456622_bsl7au.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196551/PXL_20250821_183618391.MP_iznqae.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196551/PXL_20250821_183600049.MP_vza2kb.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196551/PXL_20251014_214721595_r4cyqy.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196550/FB_IMG_1755832797532_qgzvtc.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196548/PXL_20250805_183200430_hh4oqq.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196547/PXL_20250724_184528497.MP_bcunsv.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196532/PXL_20250718_123750363_ojzqrv.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196531/PXL_20250610_204049841.MP_cgij6e.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196530/PXL_20231213_215214411_mavyza.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196530/PXL_20240923_141757468_tiwek0.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196530/PXL_20230719_174112094_sp47ak.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196530/PXL_20230719_174048680_iib4nt.jpg',
+  'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074552/PXL_20250227_154451924.MP_2_etcv3j.jpg'
+]
+
+      };
+      const DESKTOP_CATEGORY_OVERRIDES = {
+        carpentry: [
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074539/PXL_20250724_185732393_dwdza6.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074539/PXL_20250724_185616633_hunzcy.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074528/PXL_20250724_185508950_ly5o3a.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074528/PXL_20250724_185444750.MP_chsazy.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074496/PXL_20250724_184321066_pdyhzm.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074512/PXL_20250724_185102359_fow8zx.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074496/PXL_20250724_184245381.MP_yggtjt.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761074014/PXL_20250805_220235606_q7f8qc.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073971/PXL_20250805_211318222_l6pvej.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073920/PXL_20250805_183213774_dpbpzv.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073888/PXL_20250805_135813406_brwdup.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073660/PXL_20250816_165935342_szxrfd.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073643/PXL_20250813_220006110.MP_rkei1j.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761073619/PXL_20250813_132817975_ilgya7.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761072738/PXL_20250920_173453886_nrw6au.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761072395/PXL_20250924_183840459.MP_xs6jby.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196531/PXL_20250630_122941959_gmpbrz.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761071940/PXL_20250924_195150464_md4eud.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761070572/PXL_20250917_215319845_y8fkzi.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761070568/PXL_20251003_202006774_wvhve3.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1761068083/IMG_1381_nnzrwv.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880028/PXL_20240212_192631604_j60nxf.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880029/PXL_20240719_144456735_jwr0fd.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1760738429/deck4_1_i8zm6m.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880027/PXL_20230921_225238677_augpjx.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880026/PXL_20240923_141802888_wc6hiu.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880026/ChatGPT_Image_Jun_30_2025_07_40_12_PM_p9ilrz.png',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880021/PXL_20230719_174038313_c4lnxa.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880018/PXL_20250724_184508764_ozfjbd.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880020/PXL_20210812_233129879.PANO_nmt2fc.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880016/IMG-20250615-WA0056_uhqgpo.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880013/IMG-20250615-WA0055_etseuq.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880013/IMG-20250616-WA0002_gsqv6i.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880013/PXL_20250610_203945033_vpoknx.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1759880013/PXL_20250610_203931666_yls1qi.jpg',
+          'https://res.cloudinary.com/dkftkg8wz/image/upload/v1762196558/PXL_20211008_180925930_q41f9u.jpg'
+        ]
+      };
+      const DEFAULT_TOTAL_IMAGES = 40;
+      const isMobileView = () => window.matchMedia('(max-width: 900px)').matches;
+
+      function overridesFor(cat) {
+        if (isMobileView()) {
+          const mobile = MOBILE_CATEGORY_OVERRIDES[cat];
+          if (Array.isArray(mobile) && mobile.length) return mobile;
+        } else {
+          const desktop = DESKTOP_CATEGORY_OVERRIDES[cat];
+          if (Array.isArray(desktop) && desktop.length) return desktop;
+        }
+        return null;
+      }
+
+      function totalImagesFor(cat) {
+        const overrides = overridesFor(cat);
+        if (Array.isArray(overrides) && overrides.length) {
+          return overrides.length;
+        }
+        return DEFAULT_TOTAL_IMAGES;
+      }
+
+      function imageUrl(cat, index) {
+        const overrides = overridesFor(cat);
+        if (Array.isArray(overrides) && overrides[index - 1]) {
+          return overrides[index - 1];
+        }
+        return `https://picsum.photos/seed/${cat}-${index}/1600/1000`;
+      }
+
+      function formatCategoryName(cat) {
+        return cat
+          .split(/[-_]/)
+          .filter(Boolean)
+          .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+          .join(' ');
+      }
+
+      function parseCategories(strip) {
+        const attr = strip.dataset.categories;
+        if (attr) {
+          return attr
+            .split(',')
+            .map((value) => value.trim())
+            .filter(Boolean);
+        }
+        const category = strip.dataset.category;
+        return category ? [category] : [];
+      }
+
+      function buildGallery(scroller, categories, label) {
+        if (!scroller) return;
+        const cats = Array.isArray(categories)
+          ? categories.filter(Boolean)
+          : categories
+            ? [categories]
+            : [];
+        if (!cats.length) return;
+        scroller.innerHTML = '';
+        let index = 0;
+        cats.forEach((cat) => {
+          const prettyName = formatCategoryName(cat);
+          const total = totalImagesFor(cat);
+          for (let i = 0; i < total; i++) {
+            const fig = document.createElement('figure');
+            fig.className = 'card';
+            fig.dataset.cardIndex = String(index);
+
+            const img = document.createElement('img');
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.src = imageUrl(cat, i + 1);
+            const altLabel = cats.length > 1 ? `${label || prettyName} - ${prettyName}` : (label || prettyName);
+            img.alt = `${altLabel} - Photo ${i + 1}`;
+
+          fig.appendChild(img);
+            scroller.appendChild(fig);
+            index += 1;
+          }
+        });
+      }
+
+      function createState(strip) {
+        const scroller = strip.querySelector('[data-scroller]');
+        const thumbs = strip.querySelector('[data-thumbs]');
+        const categories = parseCategories(strip);
+        const label = strip.dataset.label || categories[0] || strip.dataset.category || '';
+        const cards = scroller ? Array.from(scroller.querySelectorAll('.card')) : [];
+        const state = {
+          strip,
+          scroller,
+          thumbs,
+          label,
+          cards,
+          activeIndex: 0,
+          highlightRaf: null,
+          programmatic: false
+        };
+        if (scroller) scroller._galleryState = state;
+        return state;
+      }
+
+      function scrollOffsetForCard(scroller, card) {
+        const centerOffset = card.offsetLeft - (scroller.clientWidth - card.clientWidth) / 2;
+        return Math.max(0, centerOffset);
+      }
+
+      function updateCards(state) {
+        const { cards, activeIndex } = state;
+        cards.forEach((card, idx) => {
+          const isActive = idx === activeIndex;
+          card.classList.toggle('is-active', isActive);
+          card.classList.toggle('is-selected', isActive);
+        });
+      }
+
+      function updateThumbs(state) {
+        const { thumbs, activeIndex } = state;
+        if (!thumbs) return;
+        thumbs.querySelectorAll('.thumb').forEach((btn) => {
+          const isActive = Number(btn.dataset.cardIndex) === activeIndex;
+          btn.classList.toggle('is-current', isActive);
+          btn.classList.toggle('is-active', isActive);
+          btn.classList.toggle('active', isActive);
+        });
+      }
+
+      function setActiveIndex(state, index) {
+        const total = state.cards.length;
+        if (!total) return;
+        const normalized = ((index % total) + total) % total;
+        state.activeIndex = normalized;
+        updateCards(state);
+        updateThumbs(state);
+      }
+
+      function selectIndex(state, index, behavior = 'auto') {
+        if (!state.scroller || !state.cards.length) return;
+        const total = state.cards.length;
+        const previousRaw = Number.isFinite(state.activeIndex) ? state.activeIndex : 0;
+        const previousNormalized = ((previousRaw % total) + total) % total;
+        const normalized = ((index % total) + total) % total;
+        const card = state.cards[normalized];
+        if (!card) return;
+        const delta = index - previousRaw;
+        const direction = delta === 0 ? 0 : delta > 0 ? 1 : -1;
+        const prevCard = state.cards[previousNormalized];
+        if (prevCard) {
+          prevCard.classList.remove('card--slide-from-left', 'card--slide-from-right', 'card--slide-active');
+        }
+        setActiveIndex(state, normalized);
+        const left = scrollOffsetForCard(state.scroller, card);
+        state.programmatic = true;
+        state.scroller.scrollTo({ left, behavior: 'auto' });
+        requestAnimationFrame(() => {
+          state.programmatic = false;
+        });
+        card.classList.remove('card--slide-from-left', 'card--slide-from-right', 'card--slide-active');
+        if (direction !== 0) {
+          const entryClass = direction > 0 ? 'card--slide-from-right' : 'card--slide-from-left';
+          void card.offsetWidth;
+          card.classList.add(entryClass);
+          requestAnimationFrame(() => {
+            card.classList.add('card--slide-active');
+          });
+          const cleanup = () => {
+            card.classList.remove(entryClass, 'card--slide-active');
+            card.removeEventListener('transitionend', cleanup);
+          };
+          card.addEventListener('transitionend', cleanup);
+          setTimeout(cleanup, 600);
+        }
+      }
+
+      function nearestIndex(state) {
+        const { scroller, cards } = state;
+        if (!scroller || !cards.length) return 0;
+        const center = scroller.getBoundingClientRect().left + scroller.clientWidth / 2;
+        let bestIdx = 0;
+        let bestDist = Infinity;
+        cards.forEach((card, idx) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const dist = Math.abs(cardCenter - center);
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestIdx = idx;
+          }
+        });
+        return bestIdx;
+      }
+
+      function syncStateToScroll(state) {
+        const next = nearestIndex(state);
+        if (next !== state.activeIndex) {
+          setActiveIndex(state, next);
+        }
+      }
+
+      function setupScrollSync(state) {
+        const { scroller } = state;
+        if (!scroller) return;
+        scroller.addEventListener('scroll', () => {
+          if (state.programmatic) return;
+          if (state.highlightRaf) return;
+          state.highlightRaf = requestAnimationFrame(() => {
+            state.highlightRaf = null;
+            syncStateToScroll(state);
+          });
+        }, { passive: true });
+        syncStateToScroll(state);
+      }
+
+      function buildThumbs(state) {
+        const { thumbs, cards, label } = state;
+        if (!thumbs) return;
+        thumbs.innerHTML = '';
+        cards.forEach((card, idx) => {
+          const button = document.createElement('button');
+          button.className = 'thumb';
+          button.type = 'button';
+          button.dataset.cardIndex = String(idx);
+
+          const img = card.querySelector('img').cloneNode();
+          img.removeAttribute('loading');
+          img.removeAttribute('decoding');
+          img.alt = `${label} thumbnail ${idx + 1}`;
+          button.appendChild(img);
+
+          if (idx === state.activeIndex) {
+            button.classList.add('is-current');
+            button.classList.add('is-active');
+            button.classList.add('active');
+          }
+
+          button.addEventListener('click', () => selectIndex(state, idx));
+
+          thumbs.appendChild(button);
+        });
+      }
+
+      function refreshStrip(state) {
+        if (!state || !state.strip || !state.scroller) return;
+        const categories = parseCategories(state.strip);
+        if (!categories.length) return;
+        const label = state.strip.dataset.label || categories[0] || state.strip.dataset.category || '';
+        buildGallery(state.scroller, categories, label);
+        state.cards = Array.from(state.scroller.querySelectorAll('.card'));
+        state.cards.forEach((card, idx) => {
+          card.dataset.cardIndex = String(idx);
+        });
+        state.label = label;
+        state.scroller._galleryState = state;
+        state.activeIndex = 0;
+        buildThumbs(state);
+        setActiveIndex(state, 0);
+        syncStateToScroll(state);
+      }
+
+      function wireArrows(state) {
+        const left = state.strip.querySelector('[data-left]');
+        const right = state.strip.querySelector('[data-right]');
+        if (left) {
+          left.addEventListener('click', (event) => {
+            if (isMobileView()) {
+              event.preventDefault();
+              return;
+            }
+            selectIndex(state, state.activeIndex - 1);
+          });
+        }
+        if (right) {
+          right.addEventListener('click', (event) => {
+            if (isMobileView()) {
+              event.preventDefault();
+              return;
+            }
+            selectIndex(state, state.activeIndex + 1);
+          });
+        }
+      }
+
+      function setupKeyboard(states) {
+        document.addEventListener('keydown', (evt) => {
+          if (evt.key !== 'ArrowRight' && evt.key !== 'ArrowLeft') return;
+          const lightbox = document.getElementById('lightbox');
+          if (lightbox && lightbox.getAttribute('aria-hidden') === 'false') return;
+
+          const midY = window.innerHeight / 2;
+          let bestState = null;
+          let bestDist = Infinity;
+
+          states.forEach((state) => {
+            const scroller = state.scroller;
+            if (!scroller) return;
+            const rect = scroller.getBoundingClientRect();
+            if (rect.top <= midY && rect.bottom >= midY) {
+              bestState = state;
+              bestDist = 0;
+            } else if (bestDist !== 0) {
+              const center = rect.top + rect.height / 2;
+              const dist = Math.abs(center - midY);
+              if (dist < bestDist) {
+                bestDist = dist;
+                bestState = state;
+              }
+            }
+          });
+
+          if (!bestState) return;
+          evt.preventDefault();
+          const delta = evt.key === 'ArrowRight' ? 1 : -1;
+          selectIndex(bestState, bestState.activeIndex + delta);
+        });
+      }
+
+      function setupBackToTop(button) {
+        if (!button) return { setForceVisible: () => {} };
+        let forceVisible = false;
+
+        const update = () => {
+          const show = forceVisible || window.scrollY > 200;
+          button.classList.toggle('back-to-top--visible', show);
+        };
+
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('load', update);
+        update();
+
+        button.addEventListener('click', (evt) => {
+          evt.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        return {
+          setForceVisible(value) {
+            forceVisible = Boolean(value);
+            update();
+          }
+        };
+      }
+
+      function setupHeaderThumbTrigger(header, backToTopApi) {
+        if (!header || !backToTopApi) return;
+
+        let lastHidden = null;
+
+        const evaluate = () => {
+          const threshold = Math.max(0, window.innerHeight * 0.1);
+          const shouldHide = window.scrollY >= threshold;
+          if (shouldHide === lastHidden) return;
+          lastHidden = shouldHide;
+          header.classList.toggle('is-hidden', shouldHide);
+          backToTopApi.setForceVisible(shouldHide);
+        };
+
+        const handleScroll = () => {
+          requestAnimationFrame(evaluate);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', evaluate);
+        window.addEventListener('orientationchange', evaluate);
+        evaluate();
+      }
+
+      function setupLightbox() {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        const viewport = document.getElementById('lb-viewport');
+        if (!lb || !lbImg || !viewport) return;
+
+        let scale = 1;
+        let pos = { x: 0, y: 0 };
+        let start = { x: 0, y: 0 };
+        let startPos = { x: 0, y: 0 };
+        const activePointers = new Map();
+
+        function applyTransform() {
+          lbImg.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scale})`;
+        }
+
+        function openLightbox(src, alt) {
+          lb.setAttribute('aria-hidden', 'false');
+          lbImg.src = src;
+          lbImg.alt = alt || '';
+          scale = 1;
+          pos = { x: 0, y: 0 };
+          applyTransform();
+        }
+
+        function closeLightbox() {
+          lb.setAttribute('aria-hidden', 'true');
+          lbImg.src = '';
+          activePointers.clear();
+        }
+
+        function clamp(value, min, max) {
+          return Math.max(min, Math.min(max, value));
+        }
+
+        document.addEventListener('click', (evt) => {
+          const img = evt.target.closest('.card img');
+          if (!img) return;
+          evt.preventDefault();
+          openLightbox(img.src, img.alt);
+        });
+
+        document.querySelector('[data-close]')?.addEventListener('click', closeLightbox);
+        document.querySelector('[data-zoom-in]')?.addEventListener('click', () => {
+          scale = clamp(scale * 1.2, 1, 5);
+          applyTransform();
+        });
+        document.querySelector('[data-zoom-out]')?.addEventListener('click', () => {
+          scale = clamp(scale / 1.2, 1, 5);
+          applyTransform();
+        });
+        document.querySelector('[data-zoom-reset]')?.addEventListener('click', () => {
+          scale = 1;
+          pos = { x: 0, y: 0 };
+          applyTransform();
+        });
+
+        lb.addEventListener('click', (evt) => {
+          if (evt.target === lb) closeLightbox();
+        });
+        lb.addEventListener('contextmenu', (evt) => {
+          evt.preventDefault();
+          closeLightbox();
+        });
+        document.addEventListener('keydown', (evt) => {
+          if (evt.key === 'Escape') closeLightbox();
+        });
+
+        viewport.addEventListener('pointerdown', (evt) => {
+          if (lb.getAttribute('aria-hidden') === 'true') return;
+          viewport.setPointerCapture(evt.pointerId);
+          activePointers.set(evt.pointerId, { x: evt.clientX, y: evt.clientY });
+          start = { x: evt.clientX, y: evt.clientY };
+          startPos = { ...pos };
+        });
+
+        viewport.addEventListener('pointermove', (evt) => {
+          if (!activePointers.has(evt.pointerId)) return;
+          activePointers.set(evt.pointerId, { x: evt.clientX, y: evt.clientY });
+          if (activePointers.size === 1 && scale > 1) {
+            const dx = evt.clientX - start.x;
+            const dy = evt.clientY - start.y;
+            pos = { x: startPos.x + dx, y: startPos.y + dy };
+            applyTransform();
+          } else if (activePointers.size === 2) {
+            const values = Array.from(activePointers.values());
+            const dx = values[1].x - values[0].x;
+            const dy = values[1].y - values[0].y;
+            const dist = Math.hypot(dx, dy);
+            if (!viewport._baseDist) {
+              viewport._baseDist = dist;
+              viewport._baseScale = scale;
+            }
+            const nextScale = clamp(viewport._baseScale * (dist / viewport._baseDist), 1, 5);
+            const cx = (values[0].x + values[1].x) / 2;
+            const cy = (values[0].y + values[1].y) / 2;
+            const factor = nextScale / scale;
+            pos = { x: (pos.x - cx) * factor + cx, y: (pos.y - cy) * factor + cy };
+            scale = nextScale;
+            applyTransform();
+          }
+        });
+
+        const releasePointer = (evt) => {
+          activePointers.delete(evt.pointerId);
+          if (activePointers.size < 2) {
+            viewport._baseDist = null;
+            viewport._baseScale = null;
+          }
+        };
+
+        viewport.addEventListener('pointerup', releasePointer);
+        viewport.addEventListener('pointercancel', releasePointer);
+
+        viewport.addEventListener('wheel', (evt) => {
+          if (lb.getAttribute('aria-hidden') === 'true') return;
+          evt.preventDefault();
+          const delta = -evt.deltaY;
+          const nextScale = clamp(scale * (delta > 0 ? 1.1 : 0.9), 1, 5);
+          const cx = evt.clientX;
+          const cy = evt.clientY;
+          const factor = nextScale / scale;
+          pos = { x: (pos.x - cx) * factor + cx, y: (pos.y - cy) * factor + cy };
+          scale = nextScale;
+          applyTransform();
+        }, { passive: false });
+      }
+
+      const strips = Array.from(document.querySelectorAll('[data-strip]'));
+      strips.forEach((strip) => {
+        const scroller = strip.querySelector('[data-scroller]');
+        const categories = parseCategories(strip);
+        if (!categories.length) return;
+        const label = strip.dataset.label || categories[0];
+        buildGallery(scroller, categories, label);
+      });
+
+      const states = strips.map((strip) => {
+        const state = createState(strip);
+        setActiveIndex(state, 0);
+        buildThumbs(state);
+        setupScrollSync(state);
+        wireArrows(state);
+        return state;
+      });
+
+  setupKeyboard(states);
+  const backToTopApi = setupBackToTop(document.getElementById('backToTop'));
+  setupHeaderThumbTrigger(document.querySelector('.gallery-header'), backToTopApi);
+  setupLightbox();
+  const viewportMediaQuery = window.matchMedia('(max-width: 900px)');
+  const handleViewportChange = () => {
+    states.forEach((state) => refreshStrip(state));
+  };
+  if (viewportMediaQuery && viewportMediaQuery.addEventListener) {
+    viewportMediaQuery.addEventListener('change', handleViewportChange);
+  } else if (viewportMediaQuery && viewportMediaQuery.addListener) {
+    viewportMediaQuery.addListener(handleViewportChange);
+  }
+  // SNAPSHOT: Toggle gallery snapshot diagnostics.
+      const DEBUG_GALLERY_SNAPSHOT = false;
+      // SNAPSHOT: Capture current gallery nodes and wire listener observer when enabled.
+      if (DEBUG_GALLERY_SNAPSHOT) {
+        // SNAPSHOT: Log thumbnail containers and elements.
+        const thumbCollections = strips
+          .map((strip) => strip.querySelector('[data-thumbs]'))
+          .filter(Boolean)
+          .map((container) => ({
+            container,
+            thumbnails: Array.from(container.querySelectorAll('.thumb, img, button'))
+          }));
+        console.debug('SNAPSHOT thumbnails', thumbCollections);
+        // SNAPSHOT: Log primary viewer/scroller elements.
+        const scrollerCollections = strips
+          .map((strip) => strip.querySelector('[data-scroller]'))
+          .filter(Boolean);
+        console.debug('SNAPSHOT scrollers', scrollerCollections);
+        // SNAPSHOT: Log gallery state objects.
+        console.debug('SNAPSHOT states', states);
+        // SNAPSHOT: Attach instrumentation for future listener registrations.
+        if (!window.__gallerySnapshotListenerPatched) {
+          window.__gallerySnapshotListenerPatched = true;
+          const { addEventListener } = EventTarget.prototype;
+          EventTarget.prototype.addEventListener = function snapshotAddEventListener(type, listener, options) {
+            console.debug('SNAPSHOT addEventListener', { target: this, type, listener, options });
+            return addEventListener.call(this, type, listener, options);
+          };
+        }
+      }
+      // HOTFIX_RESTORE: Ensure thumbnail buttons always drive gallery selection.
+      strips.forEach((strip) => {
+        const thumbs = strip.querySelector('[data-thumbs]');
+        if (!thumbs) return;
+        thumbs.addEventListener('click', (evt) => {
+          const thumbBtn = evt.target.closest('.thumb');
+          if (!thumbBtn) return;
+          const idx = Number(thumbBtn.dataset.cardIndex);
+          if (!Number.isFinite(idx)) return;
+          const scroller = strip.querySelector('[data-scroller]');
+          const state = scroller && scroller._galleryState;
+          if (!state) return;
+          selectIndex(state, idx);
+        });
+      });
+      // HOTFIX_RESTORE: Provide current lightbox zoom scale for guards.
+      const lb = document.getElementById('lightbox');
+      const lbViewport = document.getElementById('lb-viewport');
+      const lbImg = document.getElementById('lb-img');
+      const readLightboxScale = () => {
+        if (!lbImg) return 1;
+        const transform = lbImg.style.transform || '';
+        const match = transform.match(/scale\(([^)]+)\)/);
+        const value = match ? parseFloat(match[1]) : NaN;
+        return Number.isFinite(value) ? value : 1;
+      };
+      // HOTFIX_RESTORE: Guard pointer gestures so panning remains responsive only when zoomed.
+      if (lb && lbViewport) {
+        lbViewport.addEventListener('pointerdown', (evt) => {
+          if (lb.getAttribute('aria-hidden') === 'true') return;
+          if (readLightboxScale() > 1) {
+            evt.preventDefault();
+          }
+        }, { capture: true });
+        lbViewport.addEventListener('pointermove', (evt) => {
+          if (lb.getAttribute('aria-hidden') === 'true') return;
+          if (readLightboxScale() > 1) {
+            evt.preventDefault();
+          }
+        }, { capture: true });
+        lbViewport.addEventListener('wheel', (evt) => {
+          if (lb.getAttribute('aria-hidden') === 'true') return;
+          if (readLightboxScale() <= 1) {
+            evt.stopImmediatePropagation();
+          }
+        }, { capture: true });
+      }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const targets = Array.from(document.querySelectorAll('.section-head, .strip'));
+      targets.forEach((el, idx) => {
+        el.classList.add('sr');
+        el.style.transitionDelay = (idx * 60) + 'ms';
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -5% 0px'
+      });
+      targets.forEach((el) => observer.observe(el));
+    })();
+  </script>
+  <script>
+    // SNAPSHOT: Toggle gallery diagnostics.
+    const SNAPSHOT_GALLERY_DEBUG = false;
+    // SNAPSHOT: Log gallery structure when enabled.
+    if (SNAPSHOT_GALLERY_DEBUG) {
+      // SNAPSHOT: Collect thumbnail containers.
+      const snapshotThumbnails = Array.from(document.querySelectorAll('[data-thumbs]'));
+      console.debug('SNAPSHOT thumbnails', snapshotThumbnails);
+      // SNAPSHOT: Collect primary viewer containers.
+      const snapshotViewers = Array.from(document.querySelectorAll('[data-scroller]'));
+      console.debug('SNAPSHOT viewers', snapshotViewers);
+    }
+  </script>
+  <script>
+    // HOTFIX_RESTORE: [ ] Thumbnails trocam a imagem principal
+    // HOTFIX_RESTORE: [ ] Com zoom ON, pan funciona
+    // HOTFIX_RESTORE: [ ] Página rola normalmente com zoom OFF
+    (() => {
+      // HOTFIX_RESTORE: Utility helpers.
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+      const scheduleApply = (state) => {
+        if (!state) return;
+        if (state.raf) cancelAnimationFrame(state.raf);
+        state.raf = requestAnimationFrame(() => {
+          state.img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
+          state.img.classList.toggle('is-zooming', state.scale > 1);
+          state.raf = null;
+        });
+      };
+      const clampTranslation = (state) => {
+        if (!state) return;
+        const viewportRect = state.viewport.getBoundingClientRect();
+        const baseWidth = state.img.offsetWidth;
+        const baseHeight = state.img.offsetHeight;
+        const maxX = Math.max(0, (baseWidth * state.scale - viewportRect.width) / 2);
+        const maxY = Math.max(0, (baseHeight * state.scale - viewportRect.height) / 2);
+        state.tx = clamp(state.tx, -maxX, maxX);
+        state.ty = clamp(state.ty, -maxY, maxY);
+      };
+      const setScaleAtPoint = (state, nextScale, clientX, clientY) => {
+        if (!state) return;
+        const viewportRect = state.viewport.getBoundingClientRect();
+        const offsetX = clientX - (viewportRect.left + viewportRect.width / 2);
+        const offsetY = clientY - (viewportRect.top + viewportRect.height / 2);
+        const scaleRatio = nextScale / state.scale;
+        state.tx = (state.tx + offsetX) * scaleRatio - offsetX;
+        state.ty = (state.ty + offsetY) * scaleRatio - offsetY;
+        state.scale = nextScale;
+        clampTranslation(state);
+        scheduleApply(state);
+      };
+      const ensureZoomState = (img, viewport) => {
+        if (!img) return null;
+        if (!img.__hotfixRestoreState) {
+          img.__hotfixRestoreState = {
+            img,
+            viewport,
+            scale: 1,
+            tx: 0,
+            ty: 0,
+            zoomMode: false,
+            maxScale: 4,
+            raf: null,
+            activePointer: null,
+            panOrigin: null
+          };
+        }
+        return img.__hotfixRestoreState;
+      };
+      const resetZoomState = (state) => {
+        if (!state) return;
+        state.zoomMode = false;
+        state.scale = 1;
+        state.tx = 0;
+        state.ty = 0;
+        state.activePointer = null;
+        state.panOrigin = null;
+        clampTranslation(state);
+        scheduleApply(state);
+      };
+
+      // HOTFIX_RESTORE: Thumbnails drive selection deterministically.
+      const strips = Array.from(document.querySelectorAll('[data-strip]'));
+      strips.forEach((strip) => {
+        const thumbs = strip.querySelector('[data-thumbs]');
+        if (!thumbs) return;
+        if (thumbs.__hotfixRestoreBound) return;
+        thumbs.__hotfixRestoreBound = true;
+        thumbs.addEventListener('click', (evt) => {
+          const thumbBtn = evt.target.closest('.thumb');
+          if (!thumbBtn) return;
+          const index = Number(thumbBtn.dataset.cardIndex);
+          if (!Number.isFinite(index)) return;
+          const scroller = strip.querySelector('[data-scroller]');
+          const state = scroller && scroller._galleryState;
+          if (!state || !Array.isArray(state.cards) || !state.cards.length) return;
+          const total = state.cards.length;
+          const normalized = ((index % total) + total) % total;
+          state.activeIndex = normalized;
+          state.cards.forEach((card, idx) => {
+            const isActiveCard = idx === normalized;
+            card.classList.toggle('is-active', isActiveCard);
+            card.classList.toggle('is-selected', isActiveCard);
+          });
+          if (state.thumbs) {
+            state.thumbs.querySelectorAll('.thumb').forEach((btn) => {
+              const isActiveThumb = Number(btn.dataset.cardIndex) === normalized;
+              btn.classList.toggle('is-current', isActiveThumb);
+              btn.classList.toggle('is-active', isActiveThumb);
+              btn.classList.toggle('active', isActiveThumb);
+            });
+          }
+          const targetCard = state.cards[normalized];
+          if (state.scroller && targetCard) {
+            const offset = Math.max(0, targetCard.offsetLeft - (state.scroller.clientWidth - targetCard.clientWidth) / 2);
+            state.programmatic = true;
+            state.scroller.scrollTo({ left: offset, behavior: 'smooth' });
+            requestAnimationFrame(() => {
+              state.programmatic = false;
+            });
+          }
+        });
+      });
+
+      // HOTFIX_RESTORE: Zoom and pan safeguards.
+      const lightbox = document.getElementById('lightbox');
+      const viewport = document.getElementById('lb-viewport');
+      const lbImg = document.getElementById('lb-img');
+      if (!lightbox || !viewport || !lbImg) return;
+      const zoomState = ensureZoomState(lbImg, viewport);
+      resetZoomState(zoomState);
+
+      lbImg.addEventListener('load', () => resetZoomState(zoomState));
+      const observer = new MutationObserver(() => {
+        if (lightbox.getAttribute('aria-hidden') === 'true') {
+          resetZoomState(zoomState);
+        }
+      });
+      observer.observe(lightbox, { attributes: true, attributeFilter: ['aria-hidden'] });
+
+      lbImg.addEventListener('click', (evt) => {
+        if (lightbox.getAttribute('aria-hidden') === 'true') return;
+        if (!zoomState) return;
+        if (zoomState.zoomMode && zoomState.scale > 1) {
+          resetZoomState(zoomState);
+          return;
+        }
+        zoomState.zoomMode = true;
+        const targetScale = clamp(zoomState.scale < 1.5 ? 2 : zoomState.scale * 1.25, 1, zoomState.maxScale);
+        setScaleAtPoint(zoomState, targetScale, evt.clientX, evt.clientY);
+        evt.preventDefault();
+      });
+
+      viewport.addEventListener('pointerdown', (evt) => {
+        if (lightbox.getAttribute('aria-hidden') === 'true') return;
+        if (!zoomState?.zoomMode || zoomState.scale <= 1) {
+          zoomState.activePointer = null;
+          return;
+        }
+        zoomState.activePointer = evt.pointerId;
+        zoomState.panOrigin = { x: evt.clientX, y: evt.clientY };
+        viewport.setPointerCapture(evt.pointerId);
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+      }, { capture: true });
+
+      viewport.addEventListener('pointermove', (evt) => {
+        if (zoomState?.activePointer !== evt.pointerId) return;
+        const dx = evt.clientX - zoomState.panOrigin.x;
+        const dy = evt.clientY - zoomState.panOrigin.y;
+        zoomState.panOrigin = { x: evt.clientX, y: evt.clientY };
+        zoomState.tx += dx;
+        zoomState.ty += dy;
+        clampTranslation(zoomState);
+        scheduleApply(zoomState);
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+      }, { capture: true });
+
+      const releasePan = (evt) => {
+        if (zoomState?.activePointer !== evt.pointerId) return;
+        viewport.releasePointerCapture(evt.pointerId);
+        zoomState.activePointer = null;
+        zoomState.panOrigin = null;
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+      };
+      viewport.addEventListener('pointerup', releasePan, { capture: true });
+      viewport.addEventListener('pointercancel', releasePan, { capture: true });
+
+      viewport.addEventListener('wheel', (evt) => {
+        if (lightbox.getAttribute('aria-hidden') === 'true') return;
+        if (!zoomState?.zoomMode) return;
+        evt.preventDefault();
+        const factor = evt.deltaY < 0 ? 1.12 : 0.88;
+        const nextScale = clamp(zoomState.scale * factor, 1, zoomState.maxScale);
+        setScaleAtPoint(zoomState, nextScale, evt.clientX, evt.clientY);
+        if (nextScale === 1) {
+          resetZoomState(zoomState);
+        }
+        evt.stopImmediatePropagation();
+      }, { passive: false, capture: true });
+    })();
+  </script>
+  <script>
+    // [ ] Thumbnails trocam a imagem principal
+    // [ ] Toggle de zoom não congela a imagem
+    // [ ] Wheel centraliza no cursor
+    // [ ] Pan funciona com scale>1 e respeita limites
+    // [ ] Página rola normal com zoom OFF
+    // [ ] Nada renomeado/substituído
+    (() => {
+      // GUARDRAIL: prevent duplicate initialization.
+      if (document.documentElement._galleryGuardRailsInit) {
+        return;
+      }
+      document.documentElement._galleryGuardRailsInit = true;
+
+      const DEBUG_GALLERY = false;
+      const MIN_SCALE = 1;
+      const MAX_SCALE = 4;
+
+      // GUARDRAIL: simple debug logger.
+      const debugLog = (label, payload) => {
+        if (DEBUG_GALLERY) {
+          console.info('[GALLERY]', label, payload);
+        }
+      };
+
+      // GUARDRAIL: value clamp helper.
+      const clampValue = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      // GUARDRAIL: resolve current zoom state if available.
+      const getZoomState = () => {
+        const img = document.getElementById('lb-img');
+        if (!img) return null;
+        return img.__hotfixRestoreState || img.__overlayZoomState || null;
+      };
+
+      // GUARDRAIL: enforce consistent clamp on scale and translations.
+      const clampZoomState = (state) => {
+        if (!state || !state.img || !state.viewport) return;
+        const prev = {
+          scale: state.scale,
+          tx: state.tx,
+          ty: state.ty
+        };
+        state.scale = clampValue(state.scale, MIN_SCALE, state.maxScale || MAX_SCALE);
+        const viewportRect = state.viewport.getBoundingClientRect();
+        const baseWidth = state.img.offsetWidth || viewportRect.width || 1;
+        const baseHeight = state.img.offsetHeight || viewportRect.height || 1;
+        const scaledWidth = baseWidth * state.scale;
+        const scaledHeight = baseHeight * state.scale;
+        const maxX = Math.max(0, (scaledWidth - viewportRect.width) / 2);
+        const maxY = Math.max(0, (scaledHeight - viewportRect.height) / 2);
+        state.tx = clampValue(state.tx, -maxX, maxX);
+        state.ty = clampValue(state.ty, -maxY, maxY);
+        if (
+          DEBUG_GALLERY &&
+          (prev.scale !== state.scale || prev.tx !== state.tx || prev.ty !== state.ty)
+        ) {
+          debugLog('clamp-state', {
+            scale: state.scale,
+            tx: state.tx,
+            ty: state.ty
+          });
+        }
+      };
+
+      // GUARDRAIL: schedule transform application.
+      const renderZoomState = (state) => {
+        if (!state || !state.img) return;
+        if (state._guardRenderRaf) cancelAnimationFrame(state._guardRenderRaf);
+        state._guardRenderRaf = requestAnimationFrame(() => {
+          state.img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
+          state.img.classList.toggle('is-zooming', state.scale > 1);
+          state._guardRenderRaf = null;
+        });
+      };
+
+      // GUARDRAIL: observe thumbnail clicks for debug insight.
+      const strips = Array.from(document.querySelectorAll('[data-strip]'));
+      strips.forEach((strip) => {
+        const thumbs = strip.querySelector('[data-thumbs]');
+        if (!thumbs || thumbs._galleryGuardThumbBound) return;
+        thumbs._galleryGuardThumbBound = true;
+        thumbs.addEventListener('click', (evt) => {
+          const btn = evt.target.closest('.thumb');
+          if (!btn) return;
+          debugLog('thumb-click', { index: btn.dataset.cardIndex });
+        });
+      });
+
+      const viewport = document.getElementById('lb-viewport');
+      if (viewport && !viewport._galleryGuardViewportBound) {
+        viewport._galleryGuardViewportBound = true;
+
+        // GUARDRAIL: ignore wheel when zoom is inactive or target outside viewer.
+        document.addEventListener(
+          'wheel',
+          (evt) => {
+            const state = getZoomState();
+            if (!state || !state.viewport) return;
+            if (!state.viewport.contains(evt.target)) return;
+            if (!state.zoomMode || state.scale <= 1) {
+              debugLog('wheel-ignored', { deltaY: evt.deltaY });
+              return;
+            }
+            debugLog('wheel-observed', { deltaY: evt.deltaY, scale: state.scale });
+            clampZoomState(state);
+            renderZoomState(state);
+          },
+          { capture: true, passive: true }
+        );
+
+        // GUARDRAIL: monitor pan lifecycle without altering existing behavior.
+        document.addEventListener(
+          'pointerdown',
+          (evt) => {
+            const state = getZoomState();
+            if (!state || !state.viewport) return;
+            if (!state.viewport.contains(evt.target)) return;
+            if (!state.zoomMode || state.scale <= 1) return;
+            debugLog('pan-start', {
+              pointerId: evt.pointerId,
+              x: evt.clientX,
+              y: evt.clientY
+            });
+          },
+          { capture: true, passive: true }
+        );
+
+        document.addEventListener(
+          'pointermove',
+          (evt) => {
+            const state = getZoomState();
+            if (!state) return;
+            if (state.activePointer !== evt.pointerId) return;
+            clampZoomState(state);
+            renderZoomState(state);
+            debugLog('pan-move', {
+              pointerId: evt.pointerId,
+              tx: state.tx,
+              ty: state.ty
+            });
+          },
+          { capture: true, passive: true }
+        );
+
+        document.addEventListener(
+          'pointerup',
+          (evt) => {
+            const state = getZoomState();
+            if (!state) return;
+            if (state.activePointer !== evt.pointerId) return;
+            clampZoomState(state);
+            renderZoomState(state);
+            debugLog('pan-end', { pointerId: evt.pointerId });
+          },
+          { capture: true, passive: true }
+        );
+
+        document.addEventListener(
+          'pointercancel',
+          (evt) => {
+            const state = getZoomState();
+            if (!state) return;
+            if (state.activePointer !== evt.pointerId) return;
+            clampZoomState(state);
+            renderZoomState(state);
+            debugLog('pan-cancel', { pointerId: evt.pointerId });
+          },
+          { capture: true, passive: true }
+        );
+      }
+
+      const lbImg = document.getElementById('lb-img');
+      if (lbImg && !lbImg._galleryGuardImageBound) {
+        lbImg._galleryGuardImageBound = true;
+        lbImg.addEventListener(
+          'click',
+          () => {
+            const state = getZoomState();
+            if (!state) return;
+            debugLog('toggle-zoom', {
+              zoomMode: state.zoomMode,
+              scale: state.scale
+            });
+          },
+          { capture: true }
+        );
+        lbImg.addEventListener(
+          'dblclick',
+          (evt) => {
+            const state = getZoomState();
+            if (!state) return;
+            clampZoomState(state);
+            renderZoomState(state);
+            debugLog('double-click', {
+              x: evt.clientX,
+              y: evt.clientY,
+              scale: state.scale
+            });
+          },
+          { capture: true }
+        );
+      }
+
+      // GUARDRAIL: continuous monitor ensures clamps persist without mutating DOM nodes.
+      const monitorZoomState = () => {
+        const state = getZoomState();
+        if (state) {
+          const prevScale = state._guardPrevScale;
+          const prevTx = state._guardPrevTx;
+          const prevTy = state._guardPrevTy;
+          clampZoomState(state);
+          if (
+            prevScale !== state.scale ||
+            prevTx !== state.tx ||
+            prevTy !== state.ty
+          ) {
+            renderZoomState(state);
+            state._guardPrevScale = state.scale;
+            state._guardPrevTx = state.tx;
+            state._guardPrevTy = state.ty;
+          }
+        }
+        requestAnimationFrame(monitorZoomState);
+      };
+      monitorZoomState();
+    })();
+  </script>
+  <script>
+    // [ ] Com scale > 1, arrastar move a imagem suavemente.
+    // [ ] Ao soltar o clique, scale e translate permanecem; nada reseta.
+    // [ ] Cliques simples ainda funcionam quando não houve arraste (abaixo do threshold).
+    // [ ] Dblclick continua aplicando seu zoom, mas não é disparado após um pan.
+    // [ ] Nenhum elemento/ID/classe/função foi renomeado ou removido.
+    (() => {
+      const DEBUG_PAN = false;
+      const debugLog = (...args) => {
+        if (DEBUG_PAN) console.info('[PAN_FIX]', ...args);
+      };
+
+      const img = document.getElementById('lb-img');
+      const viewport = document.getElementById('lb-viewport');
+      if (!img || !viewport) return;
+      if (img._panFixInit) return;
+      img._panFixInit = true;
+
+      // PAN_FIX: local state container
+      const state = {
+        isPanning: false,
+        panPointerId: null,
+        startX: 0,
+        startY: 0,
+        tx: 0,
+        ty: 0,
+        lastTx: 0,
+        lastTy: 0,
+        scale: 1,
+        zoomMode: false,
+        moved: false,
+        suppressClickUntil: 0
+      };
+
+      const getZoomState = () => {
+        return img.__hotfixRestoreState || img.__overlayZoomState || null;
+      };
+
+      const syncFromZoomState = () => {
+        const base = getZoomState();
+        if (!base) return;
+        state.tx = base.tx || 0;
+        state.ty = base.ty || 0;
+        state.lastTx = state.tx;
+        state.lastTy = state.ty;
+        state.scale = base.scale || 1;
+        state.zoomMode = !!base.zoomMode;
+      };
+
+      const applyToZoomState = () => {
+        const base = getZoomState();
+        if (!base) return;
+        base.tx = state.tx;
+        base.ty = state.ty;
+        base.scale = state.scale;
+        base.zoomMode = state.zoomMode;
+        if (typeof base.maxScale !== 'number') {
+          base.maxScale = 4;
+        }
+        if (typeof base.img === 'undefined') base.img = img;
+        if (typeof base.viewport === 'undefined') base.viewport = viewport;
+        if (base._guardPrevScale !== state.scale) base._guardPrevScale = state.scale;
+        if (base._guardPrevTx !== state.tx) base._guardPrevTx = state.tx;
+        if (base._guardPrevTy !== state.ty) base._guardPrevTy = state.ty;
+        if (typeof base._guardRenderRaf !== 'undefined') {
+          base.img = img;
+          base.viewport = viewport;
+        }
+        if (base.__panFixBound !== true) {
+          base.__panFixBound = true;
+        }
+        if (typeof base.scheduleApply === 'function') {
+          base.scheduleApply();
+        } else {
+          if (base._guardRenderRaf) cancelAnimationFrame(base._guardRenderRaf);
+          base._guardRenderRaf = requestAnimationFrame(() => {
+            img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
+            img.classList.toggle('is-zooming', state.scale > 1);
+            base._guardRenderRaf = null;
+          });
+        }
+      };
+
+      const clampPan = () => {
+        const rect = viewport.getBoundingClientRect();
+        const imageWidth = img.offsetWidth;
+        const imageHeight = img.offsetHeight;
+        const scaledWidth = imageWidth * state.scale;
+        const scaledHeight = imageHeight * state.scale;
+        const maxOffsetX = Math.max(0, (scaledWidth - rect.width) / 2);
+        const maxOffsetY = Math.max(0, (scaledHeight - rect.height) / 2);
+        const clampedTx = Math.min(Math.max(state.tx, -maxOffsetX), maxOffsetX);
+        const clampedTy = Math.min(Math.max(state.ty, -maxOffsetY), maxOffsetY);
+        const changed = clampedTx !== state.tx || clampedTy !== state.ty;
+        state.tx = clampedTx;
+        state.ty = clampedTy;
+        if (changed) {
+          debugLog('clampPan', { tx: state.tx, ty: state.ty });
+        }
+      };
+
+      const pointerThreshold = 6;
+
+      viewport.addEventListener('pointerdown', (evt) => {
+        syncFromZoomState();
+        if (!state.zoomMode || state.scale <= 1) {
+          state.moved = false;
+          return;
+        }
+        if (!viewport.contains(evt.target)) return;
+        if (state.isPanning) return;
+        state.isPanning = true;
+        state.panPointerId = evt.pointerId;
+        state.startX = evt.clientX;
+        state.startY = evt.clientY;
+        state.lastTx = state.tx;
+        state.lastTy = state.ty;
+        state.moved = false;
+        viewport.setPointerCapture(evt.pointerId);
+        debugLog('pointerdown', {
+          pointerId: evt.pointerId,
+          tx: state.tx,
+          ty: state.ty,
+          scale: state.scale
+        });
+      }, { capture: true });
+
+      viewport.addEventListener('pointermove', (evt) => {
+        if (!state.isPanning || state.panPointerId !== evt.pointerId) return;
+        const deltaX = evt.clientX - state.startX;
+        const deltaY = evt.clientY - state.startY;
+        if (!state.moved && Math.hypot(deltaX, deltaY) > pointerThreshold) {
+          state.moved = true;
+        }
+        state.tx = state.lastTx + deltaX;
+        state.ty = state.lastTy + deltaY;
+        clampPan();
+        applyToZoomState();
+        debugLog('pointermove', { deltaX, deltaY, tx: state.tx, ty: state.ty });
+        evt.preventDefault();
+      }, { capture: true });
+
+      const endPan = (evt) => {
+        if (!state.isPanning || state.panPointerId !== evt.pointerId) return;
+        state.isPanning = false;
+        viewport.releasePointerCapture(evt.pointerId);
+        state.lastTx = state.tx;
+        state.lastTy = state.ty;
+        applyToZoomState();
+        if (state.moved) {
+          state.suppressClickUntil = performance.now() + 120;
+        }
+        debugLog('pointerup', {
+          moved: state.moved,
+          tx: state.tx,
+          ty: state.ty,
+          scale: state.scale
+        });
+      };
+
+      viewport.addEventListener('pointerup', endPan, { capture: true });
+      viewport.addEventListener('pointercancel', endPan, { capture: true });
+
+      viewport.addEventListener('click', (evt) => {
+        if (performance.now() < state.suppressClickUntil) {
+          debugLog('click suppressed after pan');
+          evt.stopImmediatePropagation();
+          evt.preventDefault();
+        } else {
+          syncFromZoomState();
+        }
+      }, { capture: true });
+
+      viewport.addEventListener('dblclick', (evt) => {
+        if (performance.now() < state.suppressClickUntil) {
+          debugLog('dblclick suppressed after pan');
+          evt.stopImmediatePropagation();
+          evt.preventDefault();
+        }
+      }, { capture: true });
+
+      document.addEventListener('click', (evt) => {
+        if (performance.now() < state.suppressClickUntil) {
+          if (viewport.contains(evt.target)) {
+            evt.stopImmediatePropagation();
+            evt.preventDefault();
+          }
+        }
+      }, { capture: true });
+    })();
+  </script>
+  <script>
+    // [ ] Em 1.0x, ?/? trocam imagens corretamente (respeitando WRAP_NAV).
+    // [ ] Em zoom > 1.0x, ?/? movem a imagem (pan), sem trocar de imagem.
+    // [ ] Pan com setas respeita limites (clamp) e não reseta scale.
+    // [ ] Overlay ativo: setas não rolam a página (preventDefault escopado).
+    // [ ] Fechou overlay: setas voltam ao comportamento normal da página.
+    // [ ] Nada foi renomeado/substituído; apenas adições.
+    (() => {
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const viewport = document.getElementById('lb-viewport');
+      if (!lightbox || !lbImg || !viewport) return;
+      if (document.documentElement._arrowNavInit) return;
+      document.documentElement._arrowNavInit = true;
+
+      const WRAP_NAV = true;
+      const PAN_STEP = 48;
+      const EPSILON = 1e-3;
+
+      // ARROW_NAV: overlay navigation state
+      const overlayNavState = {
+        strip: null,
+        cards: [],
+        index: -1
+      };
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+      const approxOne = (value) => Math.abs((value || 0) - 1) <= EPSILON;
+
+      // ARROW_NAV: attempt to read current zoom state object.
+      const getZoomState = () => {
+        return lbImg.__hotfixRestoreState || lbImg.__overlayZoomState || null;
+      };
+
+      const ensureZoomStateProps = (zoomState) => {
+        if (!zoomState) return;
+        if (!zoomState.img) zoomState.img = lbImg;
+        if (!zoomState.viewport) zoomState.viewport = viewport;
+        if (typeof zoomState.scale !== 'number') zoomState.scale = 1;
+        if (typeof zoomState.tx !== 'number') zoomState.tx = 0;
+        if (typeof zoomState.ty !== 'number') zoomState.ty = 0;
+        if (typeof zoomState.maxScale !== 'number') zoomState.maxScale = 4;
+      };
+
+      // GUARDRAIL: clamp tx/ty based on viewport and scaled size.
+      const clampZoomState = (zoomState) => {
+        if (!zoomState) return;
+        ensureZoomStateProps(zoomState);
+        const imgEl = zoomState.img;
+        const viewportEl = zoomState.viewport;
+        if (!imgEl || !viewportEl) return;
+        const rect = viewportEl.getBoundingClientRect();
+        const width = imgEl.offsetWidth || rect.width || 1;
+        const height = imgEl.offsetHeight || rect.height || 1;
+        const scale = zoomState.scale || 1;
+        const scaledWidth = width * scale;
+        const scaledHeight = height * scale;
+        const maxX = Math.max(0, (scaledWidth - rect.width) / 2);
+        const maxY = Math.max(0, (scaledHeight - rect.height) / 2);
+        zoomState.tx = clamp(zoomState.tx, -maxX, maxX);
+        zoomState.ty = clamp(zoomState.ty, -maxY, maxY);
+      };
+
+      // GUARDRAIL: apply state via requestAnimationFrame without altering existing handlers.
+      const scheduleApply = (zoomState) => {
+        if (!zoomState) return;
+        if (typeof zoomState.scheduleApply === 'function') {
+          zoomState.scheduleApply();
+          return;
+        }
+        ensureZoomStateProps(zoomState);
+        const targetImg = zoomState.img;
+        if (!targetImg) return;
+        if (zoomState._arrowNavRaf) cancelAnimationFrame(zoomState._arrowNavRaf);
+        zoomState._arrowNavRaf = requestAnimationFrame(() => {
+          targetImg.style.transform = `translate(${zoomState.tx}px, ${zoomState.ty}px) scale(${zoomState.scale})`;
+          targetImg.classList.toggle('is-zooming', zoomState.scale > 1);
+          zoomState._arrowNavRaf = null;
+        });
+      };
+
+      // PAN_KEYS: helper to pan by keyboard input.
+      const panByKeys = (zoomState, deltaX, deltaY) => {
+        if (!zoomState) return;
+        ensureZoomStateProps(zoomState);
+        zoomState.tx += deltaX;
+        zoomState.ty += deltaY;
+        clampZoomState(zoomState);
+        zoomState.zoomMode = zoomState.scale > 1;
+        zoomState._guardPrevScale = zoomState.scale;
+        zoomState._guardPrevTx = zoomState.tx;
+        zoomState._guardPrevTy = zoomState.ty;
+        scheduleApply(zoomState);
+      };
+
+      // ARROW_NAV: sync dataset hints for overlay image.
+      const updateOverlayDatasets = () => {
+        if (overlayNavState.index >= 0) {
+          lbImg.dataset.overlayIndex = String(overlayNavState.index);
+        }
+        if (overlayNavState.strip) {
+          const category = overlayNavState.strip.dataset.category || '';
+          lbImg.dataset.overlayCategory = category;
+        }
+      };
+
+      const rebuildCardsForStrip = (strip) => {
+        if (!strip) return [];
+        return Array.from(strip.querySelectorAll('.card'));
+      };
+
+      const syncNavStateFromCard = (card) => {
+        if (!card) return;
+        const strip = card.closest('[data-strip]');
+        if (!strip) return;
+        overlayNavState.strip = strip;
+        overlayNavState.cards = rebuildCardsForStrip(strip);
+        let cardIndex = overlayNavState.cards.indexOf(card);
+        if (cardIndex < 0) {
+          const numericIdx = Number(card.dataset.cardIndex);
+          if (Number.isFinite(numericIdx)) cardIndex = numericIdx;
+        }
+        overlayNavState.index = cardIndex;
+        updateOverlayDatasets();
+      };
+
+      const findStripByCategory = (category) => {
+        if (!category) return null;
+        return document.querySelector(`[data-strip][data-category="${category}"]`);
+      };
+
+      const syncNavStateFromOverlay = () => {
+        const overlayCategory = lbImg.dataset.overlayCategory;
+        if (!overlayNavState.strip && overlayCategory) {
+          overlayNavState.strip = findStripByCategory(overlayCategory);
+        }
+        if (overlayNavState.strip && (!overlayNavState.cards || !overlayNavState.cards.length)) {
+          overlayNavState.cards = rebuildCardsForStrip(overlayNavState.strip);
+        }
+        if (overlayNavState.index < 0) {
+          const datasetIndex = Number(lbImg.dataset.overlayIndex);
+          if (Number.isFinite(datasetIndex)) {
+            overlayNavState.index = datasetIndex;
+          }
+        }
+        if (overlayNavState.index < 0 && overlayNavState.cards && overlayNavState.cards.length) {
+          const currentSrc = lbImg.currentSrc || lbImg.src;
+          overlayNavState.index = overlayNavState.cards.findIndex((card) => {
+            const imgEl = card.querySelector('img');
+            if (!imgEl) return false;
+            const cardSrc = imgEl.currentSrc || imgEl.src;
+            return cardSrc === currentSrc;
+          });
+        }
+        if (overlayNavState.index < 0 && overlayNavState.cards && overlayNavState.cards.length) {
+          overlayNavState.index = 0;
+        }
+        updateOverlayDatasets();
+      };
+
+      const updateGalleryHighlight = (strip, targetIndex) => {
+        if (!strip) return;
+        const scroller = strip.querySelector('[data-scroller]');
+        const galleryState = scroller && scroller._galleryState;
+        if (!galleryState || !Array.isArray(galleryState.cards) || !galleryState.cards.length) return;
+        const total = galleryState.cards.length;
+        if (!total) return;
+        const normalized = ((targetIndex % total) + total) % total;
+        galleryState.activeIndex = normalized;
+        galleryState.cards.forEach((card, idx) => {
+          const isActive = idx === normalized;
+          card.classList.toggle('is-active', isActive);
+          card.classList.toggle('is-selected', isActive);
+        });
+        if (galleryState.thumbs) {
+          galleryState.thumbs.querySelectorAll('.thumb').forEach((btn) => {
+            const isActiveThumb = Number(btn.dataset.cardIndex) === normalized;
+            btn.classList.toggle('is-current', isActiveThumb);
+            btn.classList.toggle('is-active', isActiveThumb);
+            btn.classList.toggle('active', isActiveThumb);
+          });
+        }
+      };
+
+      const changeImageBy = (delta) => {
+        syncNavStateFromOverlay();
+        const cards = overlayNavState.cards || [];
+        if (!cards.length) return;
+        let nextIndex = overlayNavState.index + delta;
+        if (WRAP_NAV) {
+          const len = cards.length;
+          nextIndex = ((nextIndex % len) + len) % len;
+        } else {
+          if (nextIndex < 0 || nextIndex >= cards.length) return;
+        }
+        const nextCard = cards[nextIndex];
+        if (!nextCard) return;
+        const nextImg = nextCard.querySelector('img');
+        if (!nextImg) return;
+
+        overlayNavState.index = nextIndex;
+        updateOverlayDatasets();
+        updateGalleryHighlight(overlayNavState.strip, nextIndex);
+
+        const zoomState = getZoomState();
+        if (zoomState) {
+          zoomState.scale = 1;
+          zoomState.tx = 0;
+          zoomState.ty = 0;
+          zoomState.zoomMode = false;
+          zoomState.activePointer = null;
+          zoomState._guardPrevScale = 1;
+          zoomState._guardPrevTx = 0;
+          zoomState._guardPrevTy = 0;
+        }
+
+        const src = nextImg.currentSrc || nextImg.src;
+        lbImg.src = src;
+        lbImg.alt = nextImg.alt || '';
+        lbImg.classList.remove('is-zooming');
+        lbImg.style.transform = 'translate(0px, 0px) scale(1)';
+
+        if (zoomState) {
+          scheduleApply(zoomState);
+        }
+      };
+
+      const isOverlayOpen = () => lightbox.getAttribute('aria-hidden') === 'false';
+
+      // GUARDRAIL: capture clicks on cards to seed navigation state.
+      document.addEventListener('click', (evt) => {
+        const target = evt.target instanceof Element ? evt.target.closest('.card img') : null;
+        if (!target) return;
+        const card = target.closest('.card');
+        if (!card) return;
+        syncNavStateFromCard(card);
+      }, { capture: true });
+
+      const observer = new MutationObserver(() => {
+        if (isOverlayOpen()) {
+          syncNavStateFromOverlay();
+        }
+      });
+      observer.observe(lightbox, { attributes: true, attributeFilter: ['aria-hidden'] });
+
+      lbImg.addEventListener('load', () => {
+        if (isOverlayOpen()) {
+          syncNavStateFromOverlay();
+        }
+      });
+
+      // ARROW_NAV: key handling scoped to overlay context.
+      document.addEventListener('keydown', (evt) => {
+        if (!isOverlayOpen()) return;
+        if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(evt.key)) return;
+        const zoomState = getZoomState();
+        ensureZoomStateProps(zoomState);
+        const scale = zoomState ? zoomState.scale || 1 : 1;
+        const zoomedIn = scale > 1 + EPSILON;
+
+        if ((evt.key === 'ArrowLeft' || evt.key === 'ArrowRight') && !zoomedIn) {
+          evt.preventDefault();
+          evt.stopPropagation();
+          const delta = evt.key === 'ArrowLeft' ? -1 : 1;
+          changeImageBy(delta);
+          return;
+        }
+
+        if (zoomedIn) {
+          let deltaX = 0;
+          let deltaY = 0;
+          if (evt.key === 'ArrowLeft') deltaX = PAN_STEP;
+          if (evt.key === 'ArrowRight') deltaX = -PAN_STEP;
+          if (evt.key === 'ArrowUp') deltaY = PAN_STEP;
+          if (evt.key === 'ArrowDown') deltaY = -PAN_STEP;
+          if (deltaX !== 0 || deltaY !== 0) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            panByKeys(zoomState, deltaX, deltaY);
+          }
+        }
+      }, { capture: true });
+    })();
+  </script>
+  <script>
+    (() => {
+      if (document.documentElement.dataset.zoomOverlayInit === 'true') return;
+      document.documentElement.dataset.zoomOverlayInit = 'true';
+
+      const overlay = document.querySelector('.zoom-overlay');
+      const overlayImg = overlay?.querySelector('.zoomed-image');
+      const closeBtn = overlay?.querySelector('.btn-close');
+      const prevBtn = overlay?.querySelector('.btn-prev');
+      const nextBtn = overlay?.querySelector('.btn-next');
+      const backdrop = overlay?.querySelector('.zoom-backdrop');
+      const overlayNav = overlay?.querySelector('.zoom-overlay__nav');
+      const overlayViewport = overlay?.querySelector('.zoom-overlay__viewport');
+      if (!overlay || !overlayImg || !closeBtn || !prevBtn || !nextBtn || !backdrop || !overlayNav || !overlayViewport) return;
+      const isMobileViewport = () => window.matchMedia('(max-width: 900px)').matches;
+      const getMaxZoom = () => (isMobileViewport() ? 10 : 5);
+
+      const thumbnails = Array.from(document.querySelectorAll('.card img'));
+      if (!thumbnails.length) return;
+
+      let currentIndex = -1;
+      const zoomState = {
+        scale: 1,
+        tx: 0,
+        ty: 0,
+        slideOffset: 0
+      };
+      let isDragging = false;
+      let previousTouchAction = '';
+      const mobileState = {
+        pointers: new Map(),
+        pinchStartDistance: 0,
+        pinchStartScale: 1,
+        pinchAnchor: null,
+        panStart: null,
+        swipeStart: null,
+        lastTapTime: 0,
+        lastTapPoint: { x: 0, y: 0 }
+      };
+
+      const applyZoomTransform = () => {
+        clampZoom();
+        const effectiveTx = zoomState.tx + zoomState.slideOffset;
+        overlayImg.style.transform = `translate(${effectiveTx}px, ${zoomState.ty}px) scale(${zoomState.scale})`;
+        if (zoomState.scale <= 1 && !isDragging) {
+          overlayImg.classList.remove('is-zooming');
+        }
+      };
+      const clampZoom = () => {
+        const container = overlayImg.parentElement;
+        if (!container) return;
+        zoomState.scale = Math.min(Math.max(zoomState.scale, 1), getMaxZoom());
+        const baseWidth = overlayImg.offsetWidth;
+        const baseHeight = overlayImg.offsetHeight;
+        const viewWidth = container.clientWidth || baseWidth;
+        const viewHeight = container.clientHeight || baseHeight;
+        const scaledWidth = baseWidth * zoomState.scale;
+        const scaledHeight = baseHeight * zoomState.scale;
+        const maxX = Math.max(0, (scaledWidth - viewWidth) / 2);
+        const maxY = Math.max(0, (scaledHeight - viewHeight) / 2);
+        if (zoomState.scale <= 1) {
+          zoomState.tx = 0;
+          zoomState.ty = 0;
+        } else {
+          zoomState.tx = Math.min(Math.max(zoomState.tx, -maxX), maxX);
+          zoomState.ty = Math.min(Math.max(zoomState.ty, -maxY), maxY);
+        }
+      };
+
+      const total = thumbnails.length;
+      const clampIndex = (index) => {
+        return ((index % total) + total) % total;
+      };
+
+      const zoomAtPoint = (targetScale, clientX, clientY) => {
+        const clampedTarget = Math.min(Math.max(targetScale, 1), getMaxZoom());
+        const rect = overlayImg.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const offsetX = clientX - centerX;
+        const offsetY = clientY - centerY;
+        const objectX = (offsetX - zoomState.tx) / zoomState.scale;
+        const objectY = (offsetY - zoomState.ty) / zoomState.scale;
+        zoomState.scale = clampedTarget;
+        zoomState.tx = offsetX - objectX * zoomState.scale;
+        zoomState.ty = offsetY - objectY * zoomState.scale;
+        applyZoomTransform();
+      };
+
+      const resetZoomState = () => {
+        zoomState.scale = 1;
+        zoomState.tx = 0;
+        zoomState.ty = 0;
+        zoomState.slideOffset = 0;
+        applyZoomTransform();
+      };
+
+      let isImageSwapping = false;
+
+      const getSlideDirection = (from, to) => {
+        if (from === -1 || from === to) return 0;
+        const forward = (to - from + total) % total;
+        const backward = (from - to + total) % total;
+        return forward <= backward ? 1 : -1;
+      };
+
+      const animateSlideIn = (direction) => {
+        const effectiveDirection = direction === 0 ? 1 : direction;
+        const travel = (overlayViewport.clientWidth || overlayImg.clientWidth || 600) * 0.75;
+        overlayImg.style.transition = 'none';
+        zoomState.slideOffset = effectiveDirection * travel;
+        overlayImg.style.opacity = '0';
+        applyZoomTransform();
+        requestAnimationFrame(() => {
+          overlayImg.style.transition = 'transform 0.45s ease, opacity 0.45s ease';
+          zoomState.slideOffset = 0;
+          overlayImg.style.opacity = '1';
+          applyZoomTransform();
+        });
+        const handleEnd = (event) => {
+          if (event.target !== overlayImg || event.propertyName !== 'transform') return;
+          overlayImg.removeEventListener('transitionend', handleEnd);
+          overlayImg.style.transition = '';
+          isImageSwapping = false;
+        };
+        overlayImg.addEventListener('transitionend', handleEnd);
+        setTimeout(() => {
+          overlayImg.removeEventListener('transitionend', handleEnd);
+          overlayImg.style.transition = '';
+          isImageSwapping = false;
+        }, 520);
+      };
+
+      const updateImage = (index, { smooth = false } = {}) => {
+        if (!total) return;
+        const previousIndex = currentIndex;
+        const targetIndex = clampIndex(index);
+        if (smooth && previousIndex === targetIndex) {
+          return;
+        }
+        const direction = smooth ? getSlideDirection(previousIndex, targetIndex) : 0;
+
+        const applySource = () => {
+          currentIndex = targetIndex;
+          const thumb = thumbnails[currentIndex];
+          overlayImg.src = thumb.currentSrc || thumb.src;
+          overlayImg.alt = thumb.alt || '';
+        };
+
+        let fadeOutTimeout = null;
+
+        const handleReady = () => {
+          overlayImg.removeEventListener('load', handleReady);
+          overlayImg.removeEventListener('error', handleReady);
+          if (fadeOutTimeout) {
+            clearTimeout(fadeOutTimeout);
+          }
+          resetZoomState();
+          if (smooth && previousIndex !== -1) {
+            animateSlideIn(direction);
+          } else {
+            overlayImg.style.transition = '';
+            overlayImg.style.opacity = '1';
+            zoomState.slideOffset = 0;
+            applyZoomTransform();
+            isImageSwapping = false;
+          }
+        };
+
+        const startSwap = () => {
+          isImageSwapping = true;
+          overlayImg.style.transition = '';
+          overlayImg.addEventListener('load', handleReady);
+          overlayImg.addEventListener('error', handleReady);
+          applySource();
+          if (overlayImg.complete && overlayImg.naturalWidth) {
+            handleReady();
+          }
+        };
+
+        if (!smooth || previousIndex === -1) {
+          overlayImg.style.opacity = '0';
+          startSwap();
+          return;
+        }
+
+        if (isImageSwapping) return;
+        isImageSwapping = true;
+
+        const handleFadeOut = (event) => {
+          if (event.target !== overlayImg || event.propertyName !== 'opacity') return;
+          overlayImg.removeEventListener('transitionend', handleFadeOut);
+          overlayImg.style.transition = '';
+          if (fadeOutTimeout) {
+            clearTimeout(fadeOutTimeout);
+          }
+          startSwap();
+        };
+
+        overlayImg.addEventListener('transitionend', handleFadeOut);
+        overlayImg.style.transition = 'opacity 0.22s ease';
+        requestAnimationFrame(() => {
+          overlayImg.style.opacity = '0';
+        });
+        fadeOutTimeout = setTimeout(() => {
+          overlayImg.removeEventListener('transitionend', handleFadeOut);
+          overlayImg.style.transition = '';
+          startSwap();
+        }, 280);
+      };
+
+      const openOverlay = (index) => {
+        overlayImg.style.opacity = '0';
+        updateImage(index, { smooth: false });
+        overlay.classList.add('is-visible');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('zoom-overlay--lock');
+        overlay.classList.toggle('is-mobile', isMobileViewport());
+        if (isMobileViewport()) {
+          previousTouchAction = document.documentElement.style.touchAction || '';
+          document.documentElement.style.touchAction = 'none';
+          overlayImg.style.touchAction = 'none';
+          mobileState.pointers.clear();
+          mobileState.pinchStartDistance = 0;
+          mobileState.pinchStartScale = 1;
+          mobileState.pinchAnchor = null;
+          mobileState.panStart = null;
+          mobileState.swipeStart = null;
+          mobileState.lastTapTime = 0;
+        } else {
+          overlayImg.style.touchAction = '';
+        }
+        resetZoomState();
+        requestAnimationFrame(() => {
+          overlayImg.style.opacity = '1';
+        });
+      };
+
+      const closeOverlay = () => {
+        overlay.classList.remove('is-visible');
+        overlay.setAttribute('aria-hidden', 'true');
+        isImageSwapping = false;
+        overlayImg.removeAttribute('src');
+        overlayImg.alt = 'Imagem ampliada';
+        resetZoomState();
+        overlayImg.style.transition = '';
+        overlayImg.style.transform = '';
+        overlayImg.style.opacity = '1';
+        /* Restore page state on close */
+        document.body.classList.remove('zoom-overlay--lock');
+        document.documentElement.style.touchAction = previousTouchAction || '';
+        overlayImg.style.touchAction = '';
+        mobileState.pointers.clear();
+        mobileState.pinchStartDistance = 0;
+        mobileState.pinchAnchor = null;
+        mobileState.panStart = null;
+        mobileState.swipeStart = null;
+      };
+
+      thumbnails.forEach((img, index) => {
+        img.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          openOverlay(index);
+        }, { passive: false });
+      });
+
+      closeBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        closeOverlay();
+      });
+
+      prevBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        updateImage(currentIndex - 1, { smooth: true });
+      });
+
+      nextBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        updateImage(currentIndex + 1, { smooth: true });
+      });
+
+      overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+          closeOverlay();
+        }
+      });
+
+      overlayNav.addEventListener('click', (event) => {
+        if (isMobileViewport()) return;
+        if (event.target.closest('.zoom-overlay__button')) return;
+        if (overlayViewport.contains(event.target)) return;
+        closeOverlay();
+      });
+
+      backdrop.addEventListener('click', closeOverlay);
+
+      overlayImg.addEventListener('dblclick', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (zoomState.scale === 1) {
+          const rect = overlayImg.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          zoomState.scale = 2;
+          zoomState.tx = -(event.clientX - centerX);
+          zoomState.ty = -(event.clientY - centerY);
+        } else {
+          zoomState.scale = 1;
+          zoomState.tx = 0;
+          zoomState.ty = 0;
+        }
+        applyZoomTransform();
+      });
+
+      overlayImg.addEventListener('wheel', (event) => {
+        if (overlay.getAttribute('aria-hidden') === 'true') return;
+        event.preventDefault();
+        const direction = event.deltaY;
+        const zoomFactor = direction < 0 ? 1.12 : 0.88;
+        const nextScale = Math.min(Math.max(zoomState.scale * zoomFactor, 1), getMaxZoom());
+        if (Math.abs(nextScale - zoomState.scale) < 1e-3) return;
+        const rect = overlayImg.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const displayX = event.clientX - centerX;
+        const displayY = event.clientY - centerY;
+        const objectX = (displayX - zoomState.tx) / zoomState.scale;
+        const objectY = (displayY - zoomState.ty) / zoomState.scale;
+        zoomState.scale = nextScale;
+        zoomState.tx = displayX - objectX * zoomState.scale;
+        zoomState.ty = displayY - objectY * zoomState.scale;
+        applyZoomTransform();
+      }, { passive: false });
+
+      /* Mobile only: double-tap zoom */
+      const handleDoubleTapMobile = (event) => {
+        if (!isMobileViewport()) return;
+        if (zoomState.scale > 1.05) {
+          zoomState.scale = 1;
+          zoomState.tx = 0;
+          zoomState.ty = 0;
+          applyZoomTransform();
+        } else {
+          zoomAtPoint(Math.min(3, getMaxZoom()), event.clientX, event.clientY);
+        }
+      };
+
+      const handlePointerDownMobile = (event) => {
+        if (!isMobileViewport() || event.pointerType !== 'touch') return;
+        overlayImg.setPointerCapture(event.pointerId);
+        mobileState.pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+        zoomState.slideOffset = 0;
+        overlayImg.style.transition = '';
+        applyZoomTransform();
+        const now = performance.now();
+        if (mobileState.pointers.size === 1) {
+          const distanceSinceLastTap = Math.hypot(
+            event.clientX - mobileState.lastTapPoint.x,
+            event.clientY - mobileState.lastTapPoint.y
+          );
+          if (now - mobileState.lastTapTime < 280 && distanceSinceLastTap < 40) {
+            handleDoubleTapMobile(event);
+            mobileState.lastTapTime = 0;
+            mobileState.panStart = null;
+            mobileState.swipeStart = null;
+          } else {
+            mobileState.lastTapTime = now;
+            mobileState.lastTapPoint = { x: event.clientX, y: event.clientY };
+            mobileState.panStart = { x: event.clientX, y: event.clientY, tx: zoomState.tx, ty: zoomState.ty };
+            mobileState.swipeStart = { x: event.clientX, y: event.clientY, time: now };
+          }
+        } else if (mobileState.pointers.size === 2) {
+          const values = Array.from(mobileState.pointers.values());
+          mobileState.pinchStartDistance = Math.hypot(
+            values[0].x - values[1].x,
+            values[0].y - values[1].y
+          );
+          mobileState.pinchStartScale = zoomState.scale;
+          mobileState.pinchAnchor = {
+            x: (values[0].x + values[1].x) / 2,
+            y: (values[0].y + values[1].y) / 2
+          };
+        }
+        event.preventDefault();
+      };
+
+      const handlePointerMoveMobile = (event) => {
+        if (!isMobileViewport() || event.pointerType !== 'touch') return;
+        const pointer = mobileState.pointers.get(event.pointerId);
+        if (!pointer) return;
+        pointer.x = event.clientX;
+        pointer.y = event.clientY;
+        if (mobileState.pointers.size === 2) {
+          const values = Array.from(mobileState.pointers.values());
+          const currentDistance = Math.hypot(
+            values[0].x - values[1].x,
+            values[0].y - values[1].y
+          );
+          if (!mobileState.pinchStartDistance) {
+            mobileState.pinchStartDistance = currentDistance;
+            mobileState.pinchStartScale = zoomState.scale;
+            mobileState.pinchAnchor = {
+              x: (values[0].x + values[1].x) / 2,
+              y: (values[0].y + values[1].y) / 2
+            };
+          }
+          const ratio = currentDistance / mobileState.pinchStartDistance;
+          const targetScale = mobileState.pinchStartScale * ratio;
+          const anchor = mobileState.pinchAnchor || {
+            x: (values[0].x + values[1].x) / 2,
+            y: (values[0].y + values[1].y) / 2
+          };
+          mobileState.panStart = null;
+          zoomAtPoint(targetScale, anchor.x, anchor.y);
+        } else if (zoomState.scale > 1 && mobileState.panStart) {
+          const dx = event.clientX - mobileState.panStart.x;
+          const dy = event.clientY - mobileState.panStart.y;
+          zoomState.tx = mobileState.panStart.tx + dx;
+          zoomState.ty = mobileState.panStart.ty + dy;
+          applyZoomTransform();
+        }
+        event.preventDefault();
+      };
+
+      const handlePointerUpMobile = (event) => {
+        if (!mobileState.pointers.has(event.pointerId)) return;
+        if (isMobileViewport() && event.pointerType === 'touch') {
+          const start = mobileState.swipeStart;
+          const wasSingleFinger = mobileState.pointers.size === 1;
+          overlayImg.releasePointerCapture(event.pointerId);
+          mobileState.pointers.delete(event.pointerId);
+          if (mobileState.pointers.size < 2) {
+            mobileState.pinchStartDistance = 0;
+            mobileState.pinchAnchor = null;
+            mobileState.pinchStartScale = zoomState.scale;
+          }
+          if (
+            wasSingleFinger &&
+            start &&
+            zoomState.scale <= 1.05
+          ) {
+            const dx = event.clientX - start.x;
+            const dy = event.clientY - start.y;
+            const dt = performance.now() - start.time;
+            if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) && dt < 500) {
+              updateImage(currentIndex + (dx < 0 ? 1 : -1), { smooth: true });
+            }
+          }
+          if (mobileState.pointers.size === 0) {
+            mobileState.panStart = null;
+            mobileState.swipeStart = null;
+          }
+          event.preventDefault();
+        }
+      };
+
+      overlayImg.addEventListener('pointerdown', handlePointerDownMobile, { passive: false });
+      overlayImg.addEventListener('pointermove', handlePointerMoveMobile, { passive: false });
+      overlayImg.addEventListener('pointerup', handlePointerUpMobile, { passive: false });
+      overlayImg.addEventListener('pointercancel', handlePointerUpMobile, { passive: false });
+
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let originTx = 0;
+      let originTy = 0;
+
+      overlayImg.addEventListener('mousedown', (event) => {
+        if (overlay.getAttribute('aria-hidden') === 'true') return;
+        if (zoomState.scale <= 1) return;
+        event.preventDefault();
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
+        originTx = zoomState.tx;
+        originTy = zoomState.ty;
+        overlayImg.classList.add('is-zooming');
+      });
+
+      const handleMouseMove = (event) => {
+        if (!isDragging) return;
+        const dx = event.clientX - dragStartX;
+        const dy = event.clientY - dragStartY;
+        zoomState.tx = originTx + dx;
+        zoomState.ty = originTy + dy;
+        applyZoomTransform();
+        event.preventDefault();
+      };
+
+      const endDrag = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        if (zoomState.scale <= 1) {
+          overlayImg.classList.remove('is-zooming');
+        }
+      };
+
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', endDrag);
+      overlayImg.addEventListener('mouseleave', endDrag);
+
+      document.addEventListener('keydown', (event) => {
+        if (overlay.getAttribute('aria-hidden') === 'true') return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeOverlay();
+          return;
+        }
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          updateImage(currentIndex - 1, { smooth: true });
+          return;
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          updateImage(currentIndex + 1, { smooth: true });
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      const ACTIVE_THUMB_SELECTOR = '.thumb.is-active, .thumb.is-current, .thumb.active';
+      const CLICK_DISTANCE_PX = 6;
+      const CLICK_DURATION_MS = 250;
+      const FRICTION = 0.94;
+      const MIN_VELOCITY = 0.3;
+      const contexts = [];
+
+      const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+      const centerThumb = (viewport, thumb) => {
+        if (!viewport || !thumb) return;
+        const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+        const target = clamp(
+          thumb.offsetLeft + thumb.offsetWidth / 2 - viewport.clientWidth / 2,
+          0,
+          maxScroll
+        );
+        viewport.scrollTo({ left: target, behavior: 'smooth' });
+      };
+
+      const createCenterScheduler = (viewport) => {
+        let rafId = 0;
+        return (thumb) => {
+          if (!thumb) return;
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(() => {
+            rafId = 0;
+            centerThumb(viewport, thumb);
+          });
+        };
+      };
+
+      const enhanceThumbViewport = (viewport) => {
+        if (!viewport || viewport._thumbEnhancer) return;
+        viewport._thumbEnhancer = true;
+
+        const getItems = () => Array.from(viewport.querySelectorAll('.thumb'));
+        const getActiveThumb = () => viewport.querySelector(ACTIVE_THUMB_SELECTOR);
+      const scheduleCenter = createCenterScheduler(viewport);
+        const updateEdgeFades = () => {
+          const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+          const atStart = viewport.scrollLeft <= 1;
+          const atEnd = viewport.scrollLeft >= maxScroll - 1;
+          viewport.classList.toggle('has-left-shadow', !atStart && maxScroll > 0);
+          viewport.classList.toggle('has-right-shadow', !atEnd && maxScroll > 0);
+        };
+        viewport._thumbEnhancerState = { updateEdgeFades };
+
+        const momentum = {
+          frame: 0,
+          velocity: 0,
+          step() {
+            const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+            if (maxScroll <= 0) {
+              this.stop();
+              updateEdgeFades();
+              return;
+            }
+            const next = clamp(viewport.scrollLeft + this.velocity, 0, maxScroll);
+            viewport.scrollLeft = next;
+            updateEdgeFades();
+            this.velocity *= FRICTION;
+            if (Math.abs(this.velocity) >= MIN_VELOCITY && next > 0 && next < maxScroll) {
+              this.frame = requestAnimationFrame(() => this.step());
+            } else {
+              this.stop();
+            }
+          },
+          start(velocity) {
+            this.stop();
+            this.velocity = velocity;
+            if (Math.abs(this.velocity) < MIN_VELOCITY) {
+              this.velocity = 0;
+              return;
+            }
+            this.frame = requestAnimationFrame(() => this.step());
+          },
+          stop() {
+            if (this.frame) cancelAnimationFrame(this.frame);
+            this.frame = 0;
+            this.velocity = 0;
+            updateEdgeFades();
+          }
+        };
+
+        let pointerId = null;
+        let pointerDown = false;
+        let startX = 0;
+        let startScrollLeft = 0;
+        let startTime = 0;
+        let lastScrollLeft = viewport.scrollLeft;
+        let lastVelocity = 0;
+        let isDragging = false;
+        let savedUserSelect = null;
+        let savedWebkitUserSelect = null;
+        let preventClick = false;
+        let pressedThumb = null;
+
+        const restoreBodySelection = () => {
+          if (savedUserSelect !== null) {
+            document.body.style.userSelect = savedUserSelect;
+            document.body.style.webkitUserSelect = savedWebkitUserSelect || '';
+            savedUserSelect = null;
+            savedWebkitUserSelect = null;
+          }
+        };
+
+        const releasePointerCapture = () => {
+          if (pointerId === null) return;
+          try {
+            if (viewport.hasPointerCapture && viewport.hasPointerCapture(pointerId)) {
+              viewport.releasePointerCapture(pointerId);
+            } else {
+              viewport.releasePointerCapture(pointerId);
+            }
+          } catch (_) {
+            // ignore release errors
+          }
+          pointerId = null;
+        };
+
+        const handleClickCapture = (event) => {
+          if (!preventClick) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        };
+
+        viewport.addEventListener('click', handleClickCapture, true);
+
+        const handlePointerDown = (event) => {
+          if (event.pointerType === 'mouse' && event.button !== 0) return;
+          pointerDown = true;
+          pointerId = event.pointerId;
+          pressedThumb = event.target.closest('.thumb');
+          isDragging = false;
+          startX = event.clientX;
+          startScrollLeft = viewport.scrollLeft;
+          startTime = performance.now();
+          lastScrollLeft = viewport.scrollLeft;
+          updateEdgeFades();
+          lastVelocity = 0;
+          preventClick = false;
+          if (savedUserSelect === null) {
+            savedUserSelect = document.body.style.userSelect;
+            savedWebkitUserSelect = document.body.style.webkitUserSelect;
+          }
+          document.body.style.userSelect = 'none';
+          document.body.style.webkitUserSelect = 'none';
+          momentum.stop();
+          try {
+            viewport.setPointerCapture(event.pointerId);
+          } catch (_) {
+            // ignore capture errors
+          }
+        };
+
+        const handlePointerMove = (event) => {
+          if (!pointerDown || event.pointerId !== pointerId) return;
+          const dx = event.clientX - startX;
+          if (!isDragging && Math.abs(dx) > 3) {
+            isDragging = true;
+          }
+          if (isDragging) {
+            event.preventDefault();
+          }
+          const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+          const next = clamp(startScrollLeft - dx, 0, maxScroll);
+          viewport.scrollLeft = next;
+          lastVelocity = viewport.scrollLeft - lastScrollLeft;
+          lastScrollLeft = viewport.scrollLeft;
+          updateEdgeFades();
+        };
+
+        const concludePointer = (event, cancelled) => {
+          if (!pointerDown || event.pointerId !== pointerId) return;
+          pointerDown = false;
+          const elapsed = performance.now() - startTime;
+          const travel = Math.abs(event.clientX - startX);
+          const isClick = !cancelled && travel < CLICK_DISTANCE_PX && elapsed < CLICK_DURATION_MS;
+          restoreBodySelection();
+          releasePointerCapture();
+          if (isClick) {
+            momentum.stop();
+            isDragging = false;
+            if (pressedThumb) {
+              pressedThumb.click();
+            }
+            pressedThumb = null;
+            requestAnimationFrame(() => {
+              const active = getActiveThumb();
+              if (active) scheduleCenter(active);
+            });
+            return;
+          }
+          preventClick = true;
+          setTimeout(() => {
+            preventClick = false;
+          }, 0);
+          if (Math.abs(lastVelocity) > MIN_VELOCITY) {
+            momentum.start(lastVelocity);
+          } else {
+            momentum.stop();
+          }
+          isDragging = false;
+          pressedThumb = null;
+          requestAnimationFrame(updateEdgeFades);
+        };
+
+        const handlePointerUp = (event) => concludePointer(event, false);
+        const handlePointerCancel = (event) => concludePointer(event, true);
+
+        viewport.addEventListener('pointerdown', handlePointerDown);
+        viewport.addEventListener('pointermove', handlePointerMove, { passive: false });
+        viewport.addEventListener('pointerup', handlePointerUp);
+        viewport.addEventListener('pointercancel', handlePointerCancel);
+
+        viewport.addEventListener('wheel', (event) => {
+          if (event.deltaY === 0) return;
+          event.preventDefault();
+          momentum.stop();
+          viewport.scrollBy({ left: event.deltaY, behavior: 'auto' });
+          requestAnimationFrame(updateEdgeFades);
+        }, { passive: false });
+
+        const observer = new MutationObserver((mutations) => {
+          let candidate = null;
+          for (const mutation of mutations) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') continue;
+            const node = mutation.target;
+            if (!node.classList || !node.classList.contains('thumb')) continue;
+            if (node.classList.contains('is-active') || node.classList.contains('is-current') || node.classList.contains('active')) {
+              candidate = node;
+            }
+          }
+          if (candidate) {
+            scheduleCenter(candidate);
+          }
+        });
+        observer.observe(viewport, { attributes: true, subtree: true });
+
+        const ensureInitialActive = () => {
+          const current = getActiveThumb();
+          const [first] = getItems();
+          if (!current && first) {
+            first.classList.add('is-current', 'is-active', 'active');
+          }
+          const target = getActiveThumb() || first;
+          if (target) {
+            scheduleCenter(target);
+          }
+          updateEdgeFades();
+        };
+
+        ensureInitialActive();
+
+        const handleVisibilityChange = () => {
+          if (document.hidden) {
+            momentum.stop();
+          }
+        };
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        contexts.push({
+          viewport,
+          recenter() {
+            const active = getActiveThumb();
+            if (active) {
+              scheduleCenter(active);
+            } else {
+              updateEdgeFades();
+            }
+          },
+          updateEdgeFades
+        });
+      };
+
+      const init = () => {
+        const strips = Array.from(document.querySelectorAll('[data-strip]'));
+        strips.forEach((strip) => {
+          const viewport = strip.querySelector('[data-thumbs]');
+          if (viewport) {
+            enhanceThumbViewport(viewport);
+            requestAnimationFrame(() => {
+              const state = viewport._thumbEnhancerState;
+              if (state && typeof state.updateEdgeFades === 'function') {
+                state.updateEdgeFades();
+              }
+            });
+          }
+        });
+      };
+
+      const debounce = (fn, delay) => {
+        let timer = null;
+        return (...args) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn(...args);
+          }, delay);
+        };
+      };
+
+      const handleResize = debounce(() => {
+        contexts.forEach((context) => {
+          context.recenter();
+          context.updateEdgeFades?.();
+        });
+      }, 120);
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      window.addEventListener('resize', handleResize);
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
